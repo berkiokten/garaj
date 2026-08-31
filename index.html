@@ -244,6 +244,28 @@ body{background:var(--bg);background-image:linear-gradient(rgba(255,255,255,.018
 [data-theme="light"] .profile-hero{background:linear-gradient(145deg,#fff,#f3f0e9);box-shadow:0 18px 45px rgba(26,24,20,.08)}
 [data-theme="light"] .profile-statline{border-top-color:rgba(0,0,0,.08)}[data-theme="light"] .profile-statline div+div{border-left-color:rgba(0,0,0,.08)}
 
+
+/* ===== V12 ONBOARDING / DISCOVERY / MOTION ===== */
+*{-webkit-tap-highlight-color:transparent}
+button,.card,.disc,.chip,.navitem,.tool{transition:transform .16s ease,border-color .18s ease,background .18s ease,opacity .18s ease}
+button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
+.screen.active{animation:v12Screen .22s ease both}@keyframes v12Screen{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.modal-back.open .modal{animation:v12Modal .2s cubic-bezier(.2,.8,.2,1) both}@keyframes v12Modal{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.onboard-back{position:fixed;inset:0;z-index:9999;background:rgba(4,6,9,.88);backdrop-filter:blur(18px);display:none;align-items:flex-end;justify-content:center;padding:18px}.onboard-back.open{display:flex}
+.onboard-card{width:min(100%,460px);border:1px solid rgba(201,165,101,.28);border-radius:28px;background:linear-gradient(155deg,#12161d,#080a0e);padding:25px;box-shadow:0 30px 90px rgba(0,0,0,.55);animation:v12Modal .28s ease both}
+.ob-top{display:flex;justify-content:space-between;align-items:center}.ob-brand{font-size:10px;letter-spacing:.28em;color:var(--gold);font-weight:900}.ob-skip{border:0;background:transparent;color:var(--muted);font-size:11px}
+.ob-visual{height:150px;margin:24px 0 22px;border:1px solid rgba(255,255,255,.07);border-radius:22px;position:relative;overflow:hidden;background:radial-gradient(circle at 70% 20%,rgba(201,165,101,.16),transparent 45%),rgba(255,255,255,.015)}
+.ob-visual:before,.ob-visual:after{content:"";position:absolute;border:1px solid rgba(201,165,101,.25);border-radius:50%}.ob-visual:before{width:170px;height:170px;right:-45px;top:-50px}.ob-visual:after{width:95px;height:95px;right:-8px;top:-12px}
+.ob-number{position:absolute;left:18px;bottom:14px;font-family:Fraunces,serif;font-size:52px;color:rgba(201,165,101,.9);line-height:1}
+.onboard-card h2{font-family:Fraunces,serif;font-size:30px;line-height:1.08;margin:0 0 10px}.onboard-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 22px}
+.ob-dots{display:flex;gap:6px;margin-bottom:18px}.ob-dots i{display:block;width:20px;height:3px;border-radius:9px;background:var(--line)}.ob-dots i.active{background:var(--gold);width:34px}
+.ob-next{width:100%;border:0;border-radius:15px;padding:15px;background:var(--gold);color:#111;font-weight:900;display:flex;justify-content:space-between}
+.v12-search-panel{margin:10px 16px 18px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--surface);display:none}.v12-search-panel.show{display:block;animation:v12Screen .18s ease}
+.v12-search-label{font-size:9px;color:var(--muted);letter-spacing:.15em;font-weight:800;margin-bottom:10px}.v12-search-items{display:flex;flex-wrap:wrap;gap:7px}.v12-search-items button{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:999px;padding:8px 11px;font-size:10px}
+.v12-empty{margin:20px 16px;border:1px solid var(--line);border-radius:22px;padding:22px;background:linear-gradient(145deg,var(--surface),var(--surface-2))}.v12-empty small{color:var(--gold);font-size:9px;letter-spacing:.17em;font-weight:900}.v12-empty h3{font-family:Fraunces,serif;font-size:24px;margin:7px 0}.v12-empty p{color:var(--muted);font-size:12px;line-height:1.55}.v12-pairs{display:grid;gap:8px;margin-top:16px}.v12-pair{border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:rgba(255,255,255,.02);display:flex;justify-content:space-between;align-items:center;color:var(--text);text-align:left}.v12-pair span{font-size:11px}.v12-pair b{color:var(--gold);font-size:10px}
+.calc-premium-result{margin-top:16px;padding:18px;border:1px solid rgba(201,165,101,.28);border-radius:18px;background:linear-gradient(145deg,rgba(201,165,101,.1),rgba(255,255,255,.015))}.calc-premium-result small{display:block;color:var(--gold);font-size:9px;letter-spacing:.15em;margin-bottom:6px}.calc-premium-result b{font-family:Fraunces,serif;font-size:27px;font-variant-numeric:tabular-nums}.calc-premium-result span{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+[data-theme="light"] .onboard-card{background:linear-gradient(155deg,#fff,#f2efe8);box-shadow:0 30px 90px rgba(20,20,20,.18)}
+
 </style></head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home"><div class="editorial-hero" onclick="openDetail(CARS.find(c=>c.brand==='BMW'&&c.model==='3 Serisi'))">
   <div class="eh-top"><span class="eh-kicker">GARAGE SELECT / 01</span><span class="eh-arrow">↗</span></div>
@@ -274,6 +296,9 @@ body{background:var(--bg);background-image:linear-gradient(rgba(255,255,255,.018
 <section class="screen" id="screen-compare"><div class="scr-title">Karşılaştır</div><div class="sub">2 araç ekle, farkları gör. Daha fazlası Pro'da.</div><div class="slots" id="slots"></div><div class="tog" id="modeToggle" style="display:none"><button id="mode-teknik" class="active" onclick="setMode('teknik')">Teknik</button><button id="mode-gundelik" onclick="setMode('gundelik')">Gündelik</button></div><div class="tog" id="viewToggle" style="display:none"><button id="view-rakam" class="active" onclick="setView('rakam')">Rakam</button><button id="view-bar" onclick="setView('bar')">Bar</button><button id="view-radar" onclick="setView('radar')">Radar</button></div><div id="compareResult"></div></section>
 <section class="screen" id="screen-detail"><button class="back" onclick="showScreen('home')">← Geri</button><div id="detailContent"></div></section><section class="screen" id="screen-garage"><div class="scr-title">Garajım</div><div class="sub">Aracını ve yaklaşan işleri tek yerde yönet.</div><div id="garageContent"></div></section>
 <section class="screen" id="screen-profile"><div id="profileContent"></div></section></div>
+<div class="onboard-back" id="onboardBack">
+  <div class="onboard-card" id="onboardCard"></div>
+</div>
 <div class="modal-back" id="modalBack" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><div class="handle"></div><div id="modalBody"></div></div></div>
 <nav class="nav premium-nav" aria-label="Ana navigasyon">
   <div class="navitem active" id="nav-home" onclick="showScreen('home')">
@@ -294,7 +319,7 @@ const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", 
 const MODES={teknik:['Güç (bg)','Tork (Nm)','Motor (cc)','0-100 (sn)','Şanzıman'],gundelik:['Tüketim (L/100)','Bagaj (L)','Uzunluk (mm)','Yakıt','Şanzıman']};const HIGH=['Güç (bg)','Tork (Nm)','Bagaj (L)'],LOW=['0-100 (sn)','Tüketim (L/100)'];const QUICK=['Sedan','SUV','Hatchback','Elektrik','Hibrit','Dizel'];
 const cats=[['En güçlüler','Yüksek beygir',c=>-c.power],['En ekonomikler','Düşük tüketim',c=>c.cons===0?99:c.cons],['Geniş bagaj','En çok hacim',c=>-c.trunk],['En hızlılar','0-100 sprint',c=>c.zero]];const alarms=[['muayene','Muayene'],['sigorta','Sigorta / Kasko'],['yag','Yağ değişimi'],['lastik','Lastik'],['bakim','Genel bakım'],['mtv','MTV / Vergi']];
 function val(c,k){return {'Güç (bg)':c.power,'Tork (Nm)':c.torque,'Motor (cc)':c.engine,'0-100 (sn)':c.zero,'Yakıt':c.fuel,'Şanzıman':c.gear,'Uzunluk (mm)':c.length,'Bagaj (L)':c.trunk,'Tüketim (L/100)':c.cons}[k]}
-function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();scrollTo(0,0)}
+function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();if(n==='compare')setTimeout(renderCompareEmptyV12,0);scrollTo(0,0)}
 function renderQuick(){quickChips.innerHTML=QUICK.map(q=>`<button class="chip" onclick="quickFilter('${q}')">${q}</button>`).join('')}function renderCats(){duoCats.innerHTML=cats.map((x,i)=>`<div class="disc" onclick="openCategory(${i})"><div class="gold-dot"></div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}function card(c){return `<div><div class="brand">${c.brand}</div><div class="model">${c.model}</div><div class="variant">${c.variant} · ${c.body}</div></div><div class="power">${c.power}<small style="display:block;color:var(--muted);font-size:9px">bg</small></div>`}function showResults(t,list){homeDefault.style.display='none';homeResults.style.display='block';resultsTitle.textContent=t;resultsList.innerHTML=list.length?list.map(c=>`<div class="car-card" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">${card(c)}</div>`).join(''):'<div class="sub">Sonuç bulunamadı.</div>';scrollTo(0,0)}function backToHome(){homeDefault.style.display='block';homeResults.style.display='none';homeSearch.value=''}function homeSearchInput(q){if(!q.trim())return backToHome();showResults('"'+q+'" sonuçları',CARS.filter(c=>(c.brand+' '+c.model+' '+c.variant).toLowerCase().includes(q.toLowerCase())))}function quickFilter(q){showResults(q,CARS.filter(c=>['Sedan','SUV','Hatchback'].includes(q)?c.body===q:c.fuel===q))}function openCategory(i){let x=cats[i];showResults(x[0],[...CARS].sort((a,b)=>x[2](a)-x[2](b)))}
 function openDetail(c){
  let specs={Motor:['Güç (bg)','Tork (Nm)','Motor (cc)','Yakıt'],Performans:['0-100 (sn)','Tüketim (L/100)','Şanzıman'],'Boyut & Bagaj':['Uzunluk (mm)','Bagaj (L)']};
@@ -458,6 +483,56 @@ function renderProfile(){
    <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V11</span></div>
  </div>`;
 }
+
+
+const V12_POPULAR=['BMW 320i','Mercedes C200','Toyota Corolla','SUV','Hibrit'];
+let onboardStep=0;
+const ONBOARD_STEPS=[
+ {title:'Kararını veriye bırak.',text:'Araçları yan yana karşılaştır; Garaj Score ve kişisel önceliklerinle sana daha uygun olanı gör.'},
+ {title:'Aracın hep yanında.',text:'Bakım, muayene, sigorta, kilometre ve yaklaşan işlemleri Garajım üzerinden tek yerde takip et.'},
+ {title:'Gerçek maliyeti gör.',text:'Yakıt, bakım ve diğer giderlerini kaydet; aracının sana gerçekte ne kadara mal olduğunu izle.'}
+];
+function renderOnboard(){
+ let b=document.getElementById('onboardBack'),c=document.getElementById('onboardCard');if(!b||!c)return;
+ let x=ONBOARD_STEPS[onboardStep];
+ c.innerHTML=`<div class="ob-top"><div class="ob-brand">GARAJ / BAŞLANGIÇ</div><button class="ob-skip" onclick="finishOnboard()">Atla</button></div>
+ <div class="ob-visual"><div class="ob-number">0${onboardStep+1}</div></div>
+ <div class="ob-dots">${ONBOARD_STEPS.map((_,i)=>`<i class="${i===onboardStep?'active':''}"></i>`).join('')}</div>
+ <h2>${x.title}</h2><p>${x.text}</p>
+ <button class="ob-next" onclick="nextOnboard()"><span>${onboardStep===2?'Garaj’a başla':'Devam et'}</span><span>→</span></button>`;
+}
+function nextOnboard(){if(onboardStep<2){onboardStep++;renderOnboard()}else finishOnboard()}
+function finishOnboard(){localStorage.setItem('garajOnboardV12','1');document.getElementById('onboardBack')?.classList.remove('open')}
+function maybeOnboard(){if(!localStorage.getItem('garajOnboardV12')){renderOnboard();setTimeout(()=>document.getElementById('onboardBack')?.classList.add('open'),180)}}
+function setupSearchAssist(){
+ let inp=document.getElementById('homeSearch');if(!inp) inp=document.querySelector('#screen-home input[type="search"],#screen-home input[placeholder*="ara"]');
+ if(!inp)return;
+ inp.placeholder='BMW 320i, Corolla, elektrikli SUV…';
+ let panel=document.createElement('div');panel.className='v12-search-panel';panel.id='v12SearchPanel';
+ panel.innerHTML=`<div class="v12-search-label">HIZLI ARAMALAR</div><div class="v12-search-items">${V12_POPULAR.map(q=>`<button onclick="v12Search('${q}')">${q}</button>`).join('')}</div>`;
+ let anchor=inp.closest('.search')||inp.parentElement;anchor.parentElement.insertBefore(panel,anchor.nextSibling);
+ inp.addEventListener('focus',()=>panel.classList.add('show'));inp.addEventListener('input',()=>{if(inp.value.trim())saveRecentSearch(inp.value.trim())});
+}
+function saveRecentSearch(q){if(q.length<3)return;let a=JSON.parse(localStorage.getItem('garajRecentSearch')||'[]');a=[q,...a.filter(x=>x!==q)].slice(0,5);localStorage.setItem('garajRecentSearch',JSON.stringify(a))}
+function v12Search(q){let inp=document.getElementById('homeSearch')||document.querySelector('#screen-home input[type="search"],#screen-home input[placeholder*="ara"]');if(inp){inp.value=q;inp.dispatchEvent(new Event('input',{bubbles:true}));inp.focus()}saveRecentSearch(q)}
+function setExamplePair(a,b){slots=[CARS.find(c=>c.id===a)||null,CARS.find(c=>c.id===b)||null];renderSlots();renderCompare()}
+function renderCompareEmptyV12(){
+ let r=document.getElementById('compareResult');if(!r||slots.filter(Boolean).length)return;
+ r.innerHTML=`<div class="v12-empty"><small>HIZLI BAŞLANGIÇ</small><h3>Neyi karşılaştıralım?</h3><p>İki araç seçebilir veya popüler eşleşmelerden biriyle Garaj karar ekranını hemen deneyebilirsin.</p><div class="v12-pairs">
+ <button class="v12-pair" onclick="setExamplePair(4,25)"><span>BMW 320i <b>VS</b> Mercedes C200</span><b>Karşılaştır →</b></button>
+ <button class="v12-pair" onclick="setExamplePair(32,19)"><span>Toyota Corolla <b>VS</b> Honda Civic</span><b>Karşılaştır →</b></button>
+ <button class="v12-pair" onclick="setExamplePair(6,3)"><span>BMW X1 <b>VS</b> Audi Q3</span><b>Karşılaştır →</b></button>
+ </div></div>`;
+}
+function premiumCalcOutput(title,value,note='Tahmini sonuç'){
+ let o=document.getElementById('calcOut');if(!o)return;
+ o.innerHTML=`<div class="calc-premium-result"><small>${title}</small><b>${value}</b><span>${note}</span></div>`;
+}
+function upgradeCalcResults(){
+ const obs=new MutationObserver(ms=>ms.forEach(m=>{let o=m.target;if(o.id!=='calcOut'||o.querySelector('.calc-premium-result')||!o.textContent.trim())return;let text=o.textContent.trim();o.innerHTML=`<div class="calc-premium-result"><small>HESAPLAMA SONUCU</small><b>${text}</b><span>Tahmini değer · güncel mevzuat/veri entegrasyonu sonrası kesinleştirilecek</span></div>`}));
+ obs.observe(document.body,{subtree:true,childList:true});
+}
+setTimeout(()=>{setupSearchAssist();maybeOnboard();renderCompareEmptyV12();upgradeCalcResults()},80);
 
 renderQuick();renderCats();renderSlots();
 </script></body></html>
