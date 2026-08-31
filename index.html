@@ -277,30 +277,55 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v13-toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(10px);z-index:10000;background:#12161d;color:#fff;border:1px solid rgba(201,165,101,.25);border-radius:999px;padding:10px 14px;font-size:10px;opacity:0;pointer-events:none;transition:.2s}.v13-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 [data-theme="light"] .v13-toast{background:#fff;color:#111}
 
+
+/* ===== V14 PREMIUM HOME ===== */
+#screen-home{padding-top:0}
+.v14-home-top{padding:23px 18px 8px}.v14-brandrow{display:flex;justify-content:space-between;align-items:center}.v14-wordmark{font-family:Fraunces,serif;font-size:20px;letter-spacing:.12em}.v14-date{font-size:7px;letter-spacing:.18em;color:var(--muted);margin-top:3px}
+.v14-profile-dot{width:39px;height:39px;border-radius:50%;border:1px solid rgba(201,165,101,.28);background:linear-gradient(145deg,rgba(201,165,101,.14),rgba(255,255,255,.02));color:var(--gold);font-family:Fraunces,serif;font-weight:800}
+.v14-greeting{margin-top:28px}.v14-greeting small{font-size:8px;letter-spacing:.2em;color:var(--gold);font-weight:900}.v14-greeting h1{font-family:Fraunces,serif;font-size:32px;line-height:1.06;letter-spacing:-.035em;margin:7px 0 0}.v14-greeting h1 em{font-style:normal;color:var(--muted);font-weight:400}
+.v14-select{margin:18px 16px 14px;position:relative;min-height:310px;border:1px solid rgba(201,165,101,.25);border-radius:27px;overflow:hidden;background:radial-gradient(circle at 82% 12%,rgba(201,165,101,.15),transparent 32%),linear-gradient(150deg,#151a22,#080a0e 70%);box-shadow:0 26px 70px rgba(0,0,0,.28)}
+.v14-select:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,black,transparent 70%)}
+.v14-select-inner{position:relative;z-index:1;padding:22px}.v14-select-top{display:flex;justify-content:space-between;align-items:center}.v14-select-kicker{font-size:8px;letter-spacing:.2em;color:var(--gold);font-weight:900}.v14-select-count{font-size:9px;color:var(--muted)}
+.v14-select-copy{margin-top:42px}.v14-select-brand{font-size:10px;letter-spacing:.16em;color:var(--muted);font-weight:800}.v14-select-copy h2{font-family:Fraunces,serif;font-size:35px;line-height:.98;margin:6px 0 8px;letter-spacing:-.035em}.v14-select-copy h2 span{display:block;color:var(--gold);font-size:18px;margin-top:7px}.v14-select-copy p{max-width:290px;color:var(--muted);font-size:11px;line-height:1.55;margin:0}
+.v14-select-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:24px;border-radius:14px;overflow:hidden}.v14-select-metrics div{background:rgba(8,10,14,.68);padding:12px 8px}.v14-select-metrics b{display:block;font-size:14px;font-variant-numeric:tabular-nums}.v14-select-metrics small{font-size:7px;color:var(--muted);letter-spacing:.06em}
+.v14-select-foot{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.v14-select-score{display:flex;align-items:baseline;gap:4px}.v14-select-score b{font-family:Fraunces,serif;font-size:22px;color:var(--gold)}.v14-select-score span{font-size:8px;color:var(--muted)}.v14-select-open{border:0;background:transparent;color:var(--text);font-size:10px;font-weight:800}
+.v14-dots{display:flex;gap:5px;position:absolute;right:21px;top:51px;z-index:2}.v14-dots button{width:18px;height:3px;border:0;border-radius:5px;padding:0;background:rgba(255,255,255,.15)}.v14-dots button.on{width:30px;background:var(--gold)}
+.v14-command{display:grid;grid-template-columns:1fr 48px;gap:8px;margin:0 16px}.v14-command .search{margin:0}.v14-search{border-radius:16px!important;min-height:48px}.v14-filter{border:1px solid var(--line);border-radius:16px;background:var(--surface);display:grid;place-items:center}.v14-filter svg{width:18px;fill:none;stroke:var(--gold);stroke-width:1.5}
+.v14-chips{margin-top:10px!important;padding-left:16px!important;padding-right:16px!important}
+#personalHomeV13 .v13-home{margin-top:24px}
+.v14-owner{margin:22px 16px 4px;border:1px solid var(--line);border-radius:21px;background:linear-gradient(145deg,var(--surface),var(--surface-2));padding:17px}.v14-owner-top{display:flex;justify-content:space-between;align-items:center}.v14-owner-top small{font-size:8px;letter-spacing:.17em;color:var(--gold);font-weight:900}.v14-owner-top button{border:0;background:transparent;color:var(--muted);font-size:9px}.v14-owner-main{display:flex;justify-content:space-between;gap:16px;margin-top:11px}.v14-owner-main h3{font-size:16px;margin:0 0 4px}.v14-owner-main p{font-size:10px;color:var(--muted);margin:0}.v14-owner-number{text-align:right}.v14-owner-number b{font-family:Fraunces,serif;font-size:20px;font-variant-numeric:tabular-nums}.v14-owner-number span{display:block;font-size:8px;color:var(--muted);margin-top:3px}
+.home-section-head{margin-top:30px!important;padding-left:18px!important;padding-right:18px!important}.home-section-head .hsh-icon{display:none!important}.home-section-head .hsh-copy small{display:block;color:var(--gold);font-size:8px;letter-spacing:.18em;font-weight:900;margin-bottom:4px}.home-section-head .hsh-copy h2{font-size:20px!important}.home-section-head .hsh-copy p{max-width:280px}
+.tools{gap:9px!important;padding:0 16px!important}.tool{min-height:116px!important;border-radius:19px!important;padding:16px!important;background:linear-gradient(145deg,var(--surface),var(--surface-2))!important}.tool .gold-dot{width:5px!important;height:5px!important;margin-bottom:19px!important}.tool b{font-size:13px!important}.tool span{font-size:9px!important;line-height:1.4}
+.disc-grid{padding:0 16px 22px!important;gap:9px!important}.disc{border-radius:19px!important;min-height:112px!important;padding:16px!important;background:linear-gradient(145deg,var(--surface),var(--surface-2))!important}.disc b{font-size:13px!important}.disc span{font-size:9px!important;line-height:1.4}
+[data-theme="light"] .v14-select{background:radial-gradient(circle at 82% 12%,rgba(174,132,55,.13),transparent 32%),linear-gradient(150deg,#fff,#f0ede6);box-shadow:0 22px 55px rgba(20,20,20,.08)}[data-theme="light"] .v14-select-metrics{background:rgba(0,0,0,.07)}[data-theme="light"] .v14-select-metrics div{background:rgba(255,255,255,.72)}[data-theme="light"] .v14-dots button{background:rgba(0,0,0,.13)}[data-theme="light"] .v14-dots button.on{background:var(--gold)}
+
 </style></head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
-<section class="screen active" id="screen-home"><div class="editorial-hero" onclick="openDetail(CARS.find(c=>c.brand==='BMW'&&c.model==='3 Serisi'))">
-  <div class="eh-top"><span class="eh-kicker">GARAGE SELECT / 01</span><span class="eh-arrow">↗</span></div>
-  <div class="eh-copy">
-    <div class="eh-brand">BMW</div>
-    <h1>320i <span>M Sport</span></h1>
-    <p>Günlük kullanım ile sürüş keyfi arasında dengeli bir premium sedan.</p>
+<section class="screen active" id="screen-home">
+<div class="v14-home-top">
+  <div class="v14-brandrow">
+    <div><div class="v14-wordmark">GARAJ</div><div class="v14-date" id="v14HomeDate">PREMIUM AUTOMOTIVE COMPANION</div></div>
+    <button class="v14-profile-dot" onclick="showScreen('profile')" aria-label="Profil"><span>G</span></button>
   </div>
-  <div class="car-line" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="eh-metrics">
-    <div><b>184</b><small>BG</small></div>
-    <div><b>300</b><small>NM</small></div>
-    <div><b>7.1</b><small>0–100 SN</small></div>
-  </div>
-</div><div class="search"><span>⌕</span><input id="homeSearch" placeholder="Marka veya model ara..." oninput="homeSearchInput(this.value)"></div><div class="chips" id="quickChips"></div><div id="personalHomeV13"></div><div id="homeDefault">
+  <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı bul.<br><em>Gerisini Garaj'a bırak.</em></h1></div>
+</div>
+<div class="v14-select" id="v14Select"></div>
+<div class="v14-command">
+  <div class="search v14-search"><span>⌕</span><input id="homeSearch" placeholder="Marka, model veya gövde tipi ara" oninput="homeSearchInput(this.value)"></div>
+  <button class="v14-filter" onclick="openV14Discovery()" aria-label="Keşfet filtreleri"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg></button>
+</div>
+<div class="chips v14-chips" id="quickChips"></div>
+<div id="personalHomeV13"></div>
+<div id="v14Ownership"></div>
+<div id="homeDefault">
 <div class="home-section-head">
   <div class="hsh-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2m4 0h2M8 15h2m4 0h2M8 19h2m4 0h2"/></svg></div>
-  <div class="hsh-copy"><h2>Hesaplamalarım</h2><p>Aracın maliyetini saniyeler içinde hesapla</p></div>
+  <div class="hsh-copy"><small>ARAÇ MALİYETİ</small><h2>Hesaplamalar</h2><p>Vergi, kredi ve kullanım maliyetini tek yerde gör.</p></div>
   <span class="hsh-line"></span>
 </div>
 <div class="tools"><div class="tool" onclick="openCalc('mtv')"><div class="gold-dot"></div><b>MTV Hesapla</b><span>Yıllık vergi tahmini</span></div><div class="tool" onclick="openCalc('otv')"><div class="gold-dot"></div><b>ÖTV Hesapla</b><span>Vergi etkisini gör</span></div><div class="tool" onclick="openCalc('kredi')"><div class="gold-dot"></div><b>Kredi Hesapla</b><span>Aylık taksit</span></div><div class="tool" onclick="openCalc('yakit')"><div class="gold-dot"></div><b>Yakıt Maliyeti</b><span>Aylık gider</span></div></div>
 <div class="home-section-head discover-head">
   <div class="hsh-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m14.8 9.2-2 5.6-5.6 2 2-5.6 5.6-2Z"/></svg></div>
-  <div class="hsh-copy"><h2>Keşfet</h2><p>Tarzına ve ihtiyacına göre araçları keşfet</p></div>
+  <div class="hsh-copy"><small>KÜRASYON</small><h2>Sana göre keşfet</h2><p>Teknik verinin ötesinde, kullanım karakterine göre seç.</p></div>
   <span class="hsh-line"></span>
 </div>
 <div class="disc-grid" id="duoCats"></div></div><div id="homeResults" style="display:none"><button class="back" onclick="backToHome()">← Ana sayfa</button><div class="section-head"><h2 id="resultsTitle">Sonuçlar</h2></div><div id="resultsList"></div></div></section>
@@ -330,7 +355,7 @@ const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", 
 const MODES={teknik:['Güç (bg)','Tork (Nm)','Motor (cc)','0-100 (sn)','Şanzıman'],gundelik:['Tüketim (L/100)','Bagaj (L)','Uzunluk (mm)','Yakıt','Şanzıman']};const HIGH=['Güç (bg)','Tork (Nm)','Bagaj (L)'],LOW=['0-100 (sn)','Tüketim (L/100)'];const QUICK=['Sedan','SUV','Hatchback','Elektrik','Hibrit','Dizel'];
 const cats=[['En güçlüler','Yüksek beygir',c=>-c.power],['En ekonomikler','Düşük tüketim',c=>c.cons===0?99:c.cons],['Geniş bagaj','En çok hacim',c=>-c.trunk],['En hızlılar','0-100 sprint',c=>c.zero]];const alarms=[['muayene','Muayene'],['sigorta','Sigorta / Kasko'],['yag','Yağ değişimi'],['lastik','Lastik'],['bakim','Genel bakım'],['mtv','MTV / Vergi']];
 function val(c,k){return {'Güç (bg)':c.power,'Tork (Nm)':c.torque,'Motor (cc)':c.engine,'0-100 (sn)':c.zero,'Yakıt':c.fuel,'Şanzıman':c.gear,'Uzunluk (mm)':c.length,'Bagaj (L)':c.trunk,'Tüketim (L/100)':c.cons}[k]}
-function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();if(n==='home')renderPersonalHomeV13();if(n==='compare')setTimeout(()=>{renderCompareEmptyV12();decorateCompareV13()},0);scrollTo(0,0)}
+function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();if(n==='home'){renderPersonalHomeV13();renderV14Home();}if(n==='compare')setTimeout(()=>{renderCompareEmptyV12();decorateCompareV13()},0);scrollTo(0,0)}
 function renderQuick(){quickChips.innerHTML=QUICK.map(q=>`<button class="chip" onclick="quickFilter('${q}')">${q}</button>`).join('')}function renderCats(){duoCats.innerHTML=cats.map((x,i)=>`<div class="disc" onclick="openCategory(${i})"><div class="gold-dot"></div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}function card(c){return `<div><div class="brand">${c.brand}</div><div class="model">${c.model}</div><div class="variant">${c.variant} · ${c.body}</div></div><div class="power">${c.power}<small style="display:block;color:var(--muted);font-size:9px">bg</small></div>`}function showResults(t,list){homeDefault.style.display='none';homeResults.style.display='block';resultsTitle.textContent=t;resultsList.innerHTML=list.length?list.map(c=>`<div class="car-card" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">${card(c)}</div>`).join(''):'<div class="sub">Sonuç bulunamadı.</div>';scrollTo(0,0)}function backToHome(){homeDefault.style.display='block';homeResults.style.display='none';homeSearch.value=''}function homeSearchInput(q){if(!q.trim())return backToHome();showResults('"'+q+'" sonuçları',CARS.filter(c=>(c.brand+' '+c.model+' '+c.variant).toLowerCase().includes(q.toLowerCase())))}function quickFilter(q){showResults(q,CARS.filter(c=>['Sedan','SUV','Hatchback'].includes(q)?c.body===q:c.fuel===q))}function openCategory(i){let x=cats[i];showResults(x[0],[...CARS].sort((a,b)=>x[2](a)-x[2](b)))}
 function openDetail(c){
  saveRecentViewedV13(c.id);
@@ -498,6 +523,47 @@ function renderProfile(){
 
 
 
+
+let v14SelectIndex=0;
+const V14_SELECT_IDS=[4,25,32,35,6];
+const V14_COPY={
+ 4:'Sürüş keyfi, günlük kullanım ve premium hissi dengeli bir pakette buluşturuyor.',
+ 25:'Konfor odaklı karakteri ve güçlü torkuyla uzun yol tarafında öne çıkıyor.',
+ 32:'Düşük tüketim ve günlük kullanım dengesiyle rasyonel sedan seçeneklerinden.',
+ 35:'Elektrikli kullanım, yüksek güç ve geniş bagajı aynı gövdede birleştiriyor.',
+ 6:'Premium kompakt SUV isteyenler için şehir ve pratiklik dengesine odaklanıyor.'
+};
+function v14FuelLabel(c){return c.cons>0?`${c.cons} L`:(c.fuel==='Elektrik'?'EV':'—')}
+function setV14Select(i){v14SelectIndex=(i+V14_SELECT_IDS.length)%V14_SELECT_IDS.length;renderV14Select()}
+function renderV14Select(){
+ let el=document.getElementById('v14Select');if(!el)return;
+ let c=CARS.find(x=>x.id===V14_SELECT_IDS[v14SelectIndex])||CARS[0],score=garajScore(c);
+ el.innerHTML=`<div class="v14-dots">${V14_SELECT_IDS.map((_,i)=>`<button class="${i===v14SelectIndex?'on':''}" onclick="event.stopPropagation();setV14Select(${i})" aria-label="Seçki ${i+1}"></button>`).join('')}</div>
+ <div class="v14-select-inner" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">
+   <div class="v14-select-top"><div class="v14-select-kicker">GARAJ SELECT / ${String(v14SelectIndex+1).padStart(2,'0')}</div><div class="v14-select-count">${c.body} · ${c.fuel}</div></div>
+   <div class="v14-select-copy"><div class="v14-select-brand">${c.brand.toUpperCase()}</div><h2>${c.model}<span>${c.variant}</span></h2><p>${V14_COPY[c.id]||'Garaj seçkisinde öne çıkan modellerden biri.'}</p></div>
+   <div class="v14-select-metrics"><div><b>${c.power}</b><small>BG</small></div><div><b>${c.torque}</b><small>NM</small></div><div><b>${c.zero}</b><small>0–100</small></div><div><b>${v14FuelLabel(c)}</b><small>${c.fuel==='Elektrik'?'YAKIT':'L/100'}</small></div></div>
+   <div class="v14-select-foot"><div class="v14-select-score"><b>${score.toFixed(1)}</b><span>/10 GARAJ SCORE</span></div><button class="v14-select-open">Profili aç →</button></div>
+ </div>`;
+}
+function renderV14Ownership(){
+ let el=document.getElementById('v14Ownership');if(!el)return;normalizeGarageData();
+ if(!myCars.length){el.innerHTML='';return}
+ let m=myCars[0],c=CARS.find(x=>x.id===m.carId);if(!c){el.innerHTML='';return}
+ let next=garageNextAlarm(m),nd=next?daysUntil(next.date):null;
+ let month=(m.expenses||[]).filter(e=>{let d=new Date(e.date),n=new Date();return d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear()}).reduce((a,e)=>a+(Number(e.amount)||0),0);
+ let focus=next?(nd<0?`${Math.abs(nd)} gün gecikti`:nd===0?'Bugün':`${nd} gün kaldı`):'Takip ekle';
+ el.innerHTML=`<div class="v14-owner"><div class="v14-owner-top"><small>GARAJIM / BUGÜN</small><button onclick="showScreen('garage')">Tümünü gör →</button></div><div class="v14-owner-main"><div><h3>${c.brand} ${c.model}</h3><p>${next?(alarms.find(x=>x[0]===next.type)?.[1]||next.type):'Henüz yaklaşan işlem yok'} · ${focus}</p></div><div class="v14-owner-number"><b>${month?moneyTR(month):'—'}</b><span>BU AY GİDER</span></div></div></div>`;
+}
+function renderV14Home(){
+ let d=new Date(),dateEl=document.getElementById('v14HomeDate');if(dateEl)dateEl.textContent=d.toLocaleDateString('tr-TR',{day:'numeric',month:'long'}).toUpperCase()+' · GARAJ';
+ renderV14Select();renderV14Ownership()
+}
+function openV14Discovery(){
+ modalBody.innerHTML=`<div class="pro-modal-kicker">KEŞFET</div><h3>Nasıl bir araç arıyorsun?</h3><div class="sub">Tek dokunuşla araç havuzunu daralt.</div><div class="atype" style="margin-top:16px">
+ ${['Sedan','SUV','Hatchback','Hibrit','Elektrik','Dizel'].map(x=>`<button onclick="closeModal();quickFilter('${x}')">${x}</button>`).join('')}
+ </div>`;modalBack.classList.add('open')
+}
 const V13_FAV_KEY='garajFavoritesV13',V13_RECENT_KEY='garajRecentViewedV13',V13_COMPARE_KEY='garajSavedCompareV13';
 function v13Read(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}}
 function v13Write(k,v){localStorage.setItem(k,JSON.stringify(v))}
@@ -578,7 +644,7 @@ function upgradeCalcResults(){
  const obs=new MutationObserver(ms=>ms.forEach(m=>{let o=m.target;if(o.id!=='calcOut'||o.querySelector('.calc-premium-result')||!o.textContent.trim())return;let text=o.textContent.trim();o.innerHTML=`<div class="calc-premium-result"><small>HESAPLAMA SONUCU</small><b>${text}</b><span>Tahmini değer · güncel mevzuat/veri entegrasyonu sonrası kesinleştirilecek</span></div>`}));
  obs.observe(document.body,{subtree:true,childList:true});
 }
-setTimeout(()=>{setupSearchAssist();maybeOnboard();renderCompareEmptyV12();upgradeCalcResults();renderPersonalHomeV13()},80);
+setTimeout(()=>{setupSearchAssist();maybeOnboard();renderCompareEmptyV12();upgradeCalcResults();renderPersonalHomeV13();renderV14Home()},80);
 
 renderQuick();renderCats();renderSlots();
 </script></body></html>
