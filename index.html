@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V5</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V21.6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -611,7 +611,55 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v21-life-card small{margin:0!important}.v21-life-card strong{font-size:11px!important}.v21-life-card span{margin-top:2px!important}
 .v21-method{border-top:1px solid var(--line)}.v21-method summary{list-style:none;cursor:pointer;padding:10px 14px;font-size:8px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between}.v21-method summary::-webkit-details-marker{display:none}.v21-method summary:after{content:'+';color:var(--gold)}.v21-method[open] summary:after{content:'−'}.v21-method div{padding:0 14px 11px;font-size:7px;line-height:1.5;color:var(--muted)}
 
-</style></head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
+</style>
+<style id="v21-4-fix">
+.v21-compare-pickhint{margin:14px 16px 8px;font-size:8px;font-weight:900;letter-spacing:.18em;color:var(--gold)}
+.v21-compare-suggestions{margin-top:12px!important}
+.v21-compare-suggestions h3{font-size:20px!important}
+.v21-compare-suggestions p{margin-bottom:0}
+</style>
+
+<style id="v21-5-search-fix">
+.search{position:relative!important;overflow:visible!important}
+#homeSearch{width:100%;box-sizing:border-box}
+.home-search-results{
+  position:absolute;
+  left:0;right:0;
+  top:calc(100% + 8px);
+  z-index:80;
+  display:none;
+  max-height:320px;
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(10,11,13,.98);
+  box-shadow:0 18px 50px rgba(0,0,0,.38);
+  padding:6px;
+}
+.home-search-results.open{display:block}
+.home-search-row{
+  appearance:none;
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  text-align:left;
+  padding:11px 12px;
+  border-radius:11px;
+  cursor:pointer;
+}
+.home-search-row:hover{background:rgba(255,255,255,.045)}
+.home-search-row span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
+.home-search-row b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-search-row small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-search-empty{padding:16px 12px;color:var(--muted);font-size:13px}
+</style>
+
+</head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home">
 <div class="v14-home-top">
   <div class="v14-brandrow">
@@ -653,6 +701,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
     <div class="scr-title">Karşılaştır</div>
     <div class="sub">Araçları yan yana koy. Farkı tek bakışta gör.</div>
   </div>
+  <div class="v21-compare-pickhint">ÖNCE ARAÇLARINI SEÇ</div>
   <div class="slots v16-slots" id="slots"></div>
   <div class="tog" id="modeToggle" style="display:none"><button id="mode-teknik" class="active" onclick="setMode('teknik')">Teknik</button><button id="mode-gundelik" onclick="setMode('gundelik')">Gündelik</button></div>
   <div class="tog" id="viewToggle" style="display:none"><button id="view-rakam" class="active" onclick="setView('rakam')">Rakam</button><button id="view-bar" onclick="setView('bar')">Bar</button><button id="view-radar" onclick="setView('radar')">Radar</button></div>
@@ -683,7 +732,7 @@ const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", 
 const MODES={teknik:['Güç (bg)','Tork (Nm)','Motor (cc)','0-100 (sn)','Şanzıman'],gundelik:['Tüketim (L/100)','Bagaj (L)','Uzunluk (mm)','Yakıt','Şanzıman']};const HIGH=['Güç (bg)','Tork (Nm)','Bagaj (L)'],LOW=['0-100 (sn)','Tüketim (L/100)'];const QUICK=['Sedan','SUV','Hatchback','Elektrik','Hibrit','Dizel'];
 const cats=[['En güçlüler','Yüksek beygir',c=>-c.power],['En ekonomikler','Düşük tüketim',c=>c.cons===0?99:c.cons],['Geniş bagaj','En çok hacim',c=>-c.trunk],['En hızlılar','0-100 sprint',c=>c.zero]];const alarms=[['muayene','Muayene'],['sigorta','Sigorta / Kasko'],['yag','Yağ değişimi'],['lastik','Lastik'],['bakim','Genel bakım'],['mtv','MTV / Vergi']];
 function val(c,k){return {'Güç (bg)':c.power,'Tork (Nm)':c.torque,'Motor (cc)':c.engine,'0-100 (sn)':c.zero,'Yakıt':c.fuel,'Şanzıman':c.gear,'Uzunluk (mm)':c.length,'Bagaj (L)':c.trunk,'Tüketim (L/100)':c.cons}[k]}
-function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();if(n==='home'){renderPersonalHomeV13();renderV14Home();}if(n==='compare')setTimeout(()=>{renderCompareEmptyV12();decorateCompareV13()},0);scrollTo(0,0)}
+function toggleTheme(){let n=document.body.dataset.theme==='dark'?'light':'dark';document.body.dataset.theme=n;themeBtn.textContent=n==='dark'?'☀︎':'☾'}function showScreen(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('active'));let z=document.getElementById('nav-'+n);if(z)z.classList.add('active');if(n==='garage')renderGarage();if(n==='profile')renderProfile();if(n==='home'){renderPersonalHomeV13();renderV14Home();}if(n==='compare')setTimeout(()=>{renderSlots();renderCompare();renderCompareEmptyV12();decorateCompareV13()},0);scrollTo(0,0)}
 function renderQuick(){quickChips.innerHTML=QUICK.map(q=>`<button class="chip" onclick="quickFilter('${q}')">${q}</button>`).join('')}function renderCats(){duoCats.innerHTML=cats.map((x,i)=>`<div class="disc" onclick="openCategory(${i})"><div class="gold-dot"></div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}function card(c){return `<div><div class="brand">${c.brand}</div><div class="model">${c.model}</div><div class="variant">${c.variant} · ${c.body}</div></div><div class="power">${c.power}<small style="display:block;color:var(--muted);font-size:9px">bg</small></div>`}function showResults(t,list){homeDefault.style.display='none';homeResults.style.display='block';resultsTitle.textContent=t;resultsList.innerHTML=list.length?list.map(c=>`<div class="car-card" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">${card(c)}</div>`).join(''):'<div class="sub">Sonuç bulunamadı.</div>';scrollTo(0,0)}function backToHome(){homeDefault.style.display='block';homeResults.style.display='none';homeSearch.value=''}function homeSearchInput(q){if(!q.trim())return backToHome();showResults('"'+q+'" sonuçları',CARS.filter(c=>(c.brand+' '+c.model+' '+c.variant).toLowerCase().includes(q.toLowerCase())))}function quickFilter(q){showResults(q,CARS.filter(c=>['Sedan','SUV','Hatchback'].includes(q)?c.body===q:c.fuel===q))}function openCategory(i){let x=cats[i];showResults(x[0],[...CARS].sort((a,b)=>x[2](a)-x[2](b)))}
 function openDetail(c){
  saveRecentViewedV13(c.id);
@@ -1246,20 +1295,101 @@ function nextOnboard(){if(onboardStep<2){onboardStep++;renderOnboard()}else fini
 function finishOnboard(){localStorage.setItem('garajOnboardV12','1');document.getElementById('onboardBack')?.classList.remove('open')}
 function maybeOnboard(){if(!localStorage.getItem('garajOnboardV12')){renderOnboard();setTimeout(()=>document.getElementById('onboardBack')?.classList.add('open'),180)}}
 function setupSearchAssist(){
- let inp=document.getElementById('homeSearch');if(!inp) inp=document.querySelector('#screen-home input[type="search"],#screen-home input[placeholder*="ara"]');
- if(!inp)return;
- inp.placeholder='BMW 320i, Corolla, elektrikli SUV…';
- let panel=document.createElement('div');panel.className='v12-search-panel';panel.id='v12SearchPanel';
- panel.innerHTML=`<div class="v12-search-label">HIZLI ARAMALAR</div><div class="v12-search-items">${V12_POPULAR.map(q=>`<button onclick="v12Search('${q}')">${q}</button>`).join('')}</div>`;
- let anchor=inp.closest('.search')||inp.parentElement;anchor.parentElement.insertBefore(panel,anchor.nextSibling);
- inp.addEventListener('focus',()=>panel.classList.add('show'));inp.addEventListener('input',()=>{if(inp.value.trim())saveRecentSearch(inp.value.trim())});
+  const inp=document.getElementById('homeSearch');
+  if(!inp)return;
+  inp.placeholder='Marka, model veya gövde tipi ara';
+  inp.setAttribute('autocomplete','off');
+  inp.addEventListener('input',()=>renderHomeSearchResults(inp.value));
+  inp.addEventListener('focus',()=>renderHomeSearchResults(inp.value));
+  inp.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'){ inp.blur(); hideHomeSearchResults(); }
+  });
 }
+function ensureHomeSearchResults(){
+  let box=document.getElementById('homeSearchResults');
+  if(box)return box;
+  const inp=document.getElementById('homeSearch');
+  if(!inp)return null;
+  box=document.createElement('div');
+  box.id='homeSearchResults';
+  box.className='home-search-results';
+  inp.closest('.search')?.appendChild(box) || inp.parentElement.appendChild(box);
+  return box;
+}
+function hideHomeSearchResults(){
+  const box=document.getElementById('homeSearchResults');
+  if(box){ box.classList.remove('open'); box.innerHTML=''; }
+}
+function normalizeSearchText(v){
+  return String(v||'').toLocaleLowerCase('tr-TR').trim();
+}
+function homeSearchHaystack(c){
+  return normalizeSearchText([
+    c.brand,c.model,c.name,c.body,c.bodyType,c.fuel,c.fuelType,
+    c.transmission,c.drive,c.segment
+  ].filter(Boolean).join(' '));
+}
+function renderHomeSearchResults(query){
+  const box=ensureHomeSearchResults();
+  if(!box)return;
+  const q=normalizeSearchText(query);
+
+  if(!q){
+    box.classList.remove('open');
+    box.innerHTML='';
+    return;
+  }
+
+  const tokens=q.split(/\s+/).filter(Boolean);
+  const results=CARS.filter(c=>{
+    const hay=homeSearchHaystack(c);
+    return tokens.every(t=>hay.includes(t));
+  }).slice(0,8);
+
+  box.classList.add('open');
+  if(!results.length){
+    box.innerHTML='<div class="home-search-empty">Sonuç bulunamadı</div>';
+    return;
+  }
+
+  box.innerHTML=results.map(c=>`
+    <button type="button" class="home-search-row" onclick="selectHomeSearchCar(${c.id})">
+      <span><b>${c.brand} ${c.model}</b><small>${c.name||''}</small></span>
+      <span>›</span>
+    </button>
+  `).join('');
+}
+function selectHomeSearchCar(id){
+  const car=CARS.find(c=>c.id===id);
+  if(!car)return;
+  const inp=document.getElementById('homeSearch');
+  if(inp) inp.value=`${car.brand} ${car.model}`;
+  hideHomeSearchResults();
+
+  // Keep home-page behavior stable: open the same vehicle detail flow already used elsewhere.
+  if(typeof openCarDetail==='function') return openCarDetail(car);
+  if(typeof showCarDetail==='function') return showCarDetail(car);
+  if(typeof openDetail==='function') return openDetail(car);
+
+  // Fallback: use existing shared modal without page scroll/reflow.
+  if(typeof modalCtx!=='undefined'){
+    modalCtx={type:'detail',carId:id};
+    if(typeof renderCarDetail==='function') renderCarDetail(id);
+    const mb=document.getElementById('modalBack');
+    if(mb) mb.classList.add('open');
+  }
+}
+document.addEventListener('click',(e)=>{
+  const search=e.target.closest?.('.search');
+  if(!search) hideHomeSearchResults();
+});
+
 function saveRecentSearch(q){if(q.length<3)return;let a=JSON.parse(localStorage.getItem('garajRecentSearch')||'[]');a=[q,...a.filter(x=>x!==q)].slice(0,5);localStorage.setItem('garajRecentSearch',JSON.stringify(a))}
 function v12Search(q){let inp=document.getElementById('homeSearch')||document.querySelector('#screen-home input[type="search"],#screen-home input[placeholder*="ara"]');if(inp){inp.value=q;inp.dispatchEvent(new Event('input',{bubbles:true}));inp.focus()}saveRecentSearch(q)}
 function setExamplePair(a,b){slots=[CARS.find(c=>c.id===a)||null,CARS.find(c=>c.id===b)||null];renderSlots();renderCompare()}
 function renderCompareEmptyV12(){
  let r=document.getElementById('compareResult');if(!r||slots.filter(Boolean).length)return;
- r.innerHTML=`<div class="v12-empty"><small>HIZLI BAŞLANGIÇ</small><h3>Neyi karşılaştıralım?</h3><p>İki araç seçebilir veya popüler eşleşmelerden biriyle Garaj karar ekranını hemen deneyebilirsin.</p><div class="v12-pairs">
+ r.innerHTML=`<div class="v12-empty v21-compare-suggestions"><small>İSTEĞE BAĞLI</small><h3>Hazır eşleşmeler</h3><p>Yukarıdaki <b>Araç seç</b> kutularından araçlarını kendin seçebilirsin. İstersen aşağıdaki hazır eşleşmelerden de başlayabilirsin.</p><div class="v12-pairs">
  <button class="v12-pair" onclick="setExamplePair(4,25)"><span>BMW 320i <b>VS</b> Mercedes C200</span><b>Karşılaştır →</b></button>
  <button class="v12-pair" onclick="setExamplePair(32,19)"><span>Toyota Corolla <b>VS</b> Honda Civic</span><b>Karşılaştır →</b></button>
  <button class="v12-pair" onclick="setExamplePair(6,3)"><span>BMW X1 <b>VS</b> Audi Q3</span><b>Karşılaştır →</b></button>
