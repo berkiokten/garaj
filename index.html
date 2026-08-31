@@ -324,12 +324,292 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v16-reasons{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.v16-reasons span{font-size:8px;border:1px solid var(--line);border-radius:999px;padding:7px 8px;color:var(--muted)}.v16-reasons span.good{color:var(--gold);border-color:rgba(201,165,101,.32)}
 .v16-personalize{margin-top:8px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px}.v16-personalize div{font-size:9px;color:var(--muted)}.v16-personalize button{border:0;background:transparent;color:var(--gold);font-size:9px;font-weight:800}
 .v16-data-stage{margin:14px 0 0}.v16-data-head{position:sticky;top:0;z-index:20;padding:10px 16px 8px;background:linear-gradient(to bottom,var(--bg) 80%,transparent);backdrop-filter:blur(12px)}.v16-data-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:9px}.v16-data-title div small{display:block;font-size:8px;letter-spacing:.16em;color:var(--gold);font-weight:900}.v16-data-title div b{display:block;font-size:15px;margin-top:3px}.v16-mode-tabs,.v16-view-tabs{display:flex;border:1px solid var(--line);background:var(--surface);padding:3px;border-radius:12px}.v16-mode-tabs{margin-bottom:6px}.v16-mode-tabs button,.v16-view-tabs button{flex:1;border:0;background:transparent;color:var(--muted);border-radius:9px;padding:9px 6px;font-size:9px;font-weight:800}.v16-mode-tabs button.active,.v16-view-tabs button.active{background:var(--surface-2);color:var(--gold)}.v16-view-tabs button{display:flex;align-items:center;justify-content:center;gap:5px}.v16-view-tabs button svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.7}
-.v16-data-body{padding:0 16px 18px}.v16-data-body .ctable,.v16-data-body .bars,.v16-data-body .radar{border-radius:18px;background:var(--surface);border:1px solid var(--line)}.v16-data-body .ctable{overflow-x:auto}.v16-data-body .row{min-width:0!important;grid-template-columns:minmax(112px,1.15fr) repeat(2,minmax(82px,1fr))!important;padding:12px 10px}.v16-data-body .row.head{position:sticky;top:111px;z-index:8}.v16-data-body .row>div{font-size:11px;line-height:1.25}.v16-data-body .row>div:first-child{font-size:9px}.v16-data-body .win{color:var(--gold);position:relative}.v16-data-body .win:after{content:"EN İYİ";display:block;font-size:6px;letter-spacing:.09em;margin-top:2px;color:var(--gold)}
+.v16-data-body{padding:0 16px 18px}.v16-data-body .ctable,.v16-data-body .bars,.v16-data-body .radar{border-radius:18px;background:var(--surface);border:1px solid var(--line)}.v16-data-body .ctable{overflow-x:auto}.v16-data-body .row{min-width:0!important;grid-template-columns:minmax(112px,1.15fr) repeat(2,minmax(82px,1fr))!important;padding:12px 10px}.v16-data-body .row.head{position:sticky;top:111px;z-index:8}.v16-data-body .row>div{font-size:11px;line-height:1.25}.v16-data-body .row>div:first-child{font-size:9px}.v16-data-body .win{color:var(--gold);position:relative}.v16-data-body .win:after{content:none;display:none}
 .v16-daily-note{margin:9px 16px 0;padding:12px 14px;border-left:2px solid var(--gold);background:rgba(201,165,101,.055);font-size:9px;color:var(--muted);line-height:1.55;border-radius:0 12px 12px 0}
 .v16-why{margin:0 16px 18px;border:1px solid var(--line);border-radius:18px;overflow:hidden}.v16-why details{background:var(--surface)}.v16-why summary{cursor:pointer;list-style:none;padding:14px;font-size:10px;font-weight:800}.v16-why summary::-webkit-details-marker{display:none}.v16-why-body{padding:0 14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.v16-cat{border:1px solid var(--line);border-radius:12px;padding:10px}.v16-cat small{display:block;color:var(--muted);font-size:7px;letter-spacing:.1em}.v16-cat b{display:block;font-size:9px;margin-top:5px}.v16-savebar{padding:0 16px 18px}.v16-savebar button{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text);padding:12px;font-size:9px}
 #screen-compare>.tog{display:none!important}
 @media(max-width:380px){.v16-data-body .row{grid-template-columns:105px repeat(2,minmax(72px,1fr))!important}.v16-score h3{font-size:11px}}
 [data-theme="light"] .v16-data-head{background:linear-gradient(to bottom,var(--bg) 80%,transparent)}
+
+
+/* ===== V17 COMPARISON LAYOUT FIX ===== */
+
+/* Compact selected-car area */
+.v16-slots{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:0 16px 10px!important;
+}
+.v16-slots .slot{
+  min-height:76px!important;
+  height:76px!important;
+  padding:11px 13px!important;
+  border-radius:14px!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+}
+.v16-slots .slot.filled{
+  justify-content:center!important;
+}
+.v16-slots .slot .brand{
+  font-size:7px!important;
+  line-height:1!important;
+  margin:0 0 4px!important;
+}
+.v16-slots .slot .model{
+  font-size:16px!important;
+  line-height:1.05!important;
+  margin:0!important;
+}
+.v16-slots .slot .v16-slot-variant{
+  font-size:7px!important;
+  margin-top:4px!important;
+  max-width:calc(100% - 18px)!important;
+}
+.v16-slots .slot .remove{
+  width:20px!important;
+  height:20px!important;
+  top:7px!important;
+  right:7px!important;
+  font-size:12px!important;
+}
+.v16-slots .slot:nth-child(n+3){
+  grid-column:1/-1;
+  min-height:46px!important;
+  height:46px!important;
+  flex-direction:row!important;
+  gap:8px!important;
+  justify-content:center!important;
+  align-items:center!important;
+  border-radius:13px!important;
+}
+.v16-slots .slot:nth-child(n+3) .v16-slot-plus{font-size:20px!important}
+.v16-slots .slot:nth-child(n+3) small{font-size:8px!important}
+.v16-slots .slot:nth-child(n+3) b{font-size:7px!important}
+
+/* Comparison table: header must stay in document flow; no overlay */
+.v16-data-body .ctable{
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+}
+.v16-data-body .row.head{
+  position:relative!important;
+  top:auto!important;
+  z-index:1!important;
+  background:var(--surface-2)!important;
+  border-bottom:1px solid var(--line)!important;
+}
+.v16-data-body .row{
+  align-items:center!important;
+}
+.v16-data-body .row.head>div{
+  padding-top:2px!important;
+  padding-bottom:2px!important;
+}
+.v16-data-body .row.head>div:first-child{
+  font-size:8px!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+}
+.v16-data-body .row.head>div:not(:first-child){
+  font-size:10px!important;
+}
+.v16-data-body .row.head small{
+  font-size:8px!important;
+  color:var(--muted)!important;
+}
+.v16-data-body .row:not(.head){
+  min-height:48px!important;
+}
+.v16-data-body .row>div:first-child{
+  padding-right:7px!important;
+}
+.v16-data-body .win:after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Slightly tighter top so comparison starts faster */
+.v16-compare-head{padding-bottom:10px!important}
+.v16-summary{margin-top:2px!important}
+
+
+/* ===== V19 COMPACT DECISION ===== */
+.v19-decision{
+  margin:2px 16px 12px;
+  border:1px solid rgba(201,165,101,.28);
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--surface),rgba(201,165,101,.045));
+  padding:15px 15px 12px;
+}
+.v19-decision-main{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+}
+.v19-decision-main small{
+  display:block;
+  font-size:8px;
+  letter-spacing:.16em;
+  color:var(--gold);
+  font-weight:900;
+  margin-bottom:5px;
+}
+.v19-decision-main h2{
+  margin:0;
+  font-family:Fraunces,serif;
+  font-size:22px;
+  line-height:1.05;
+}
+.v19-decision-main p{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.45;
+}
+.v19-main-score{
+  flex:0 0 auto;
+  display:flex;
+  align-items:flex-end;
+  gap:3px;
+  padding-top:2px;
+}
+.v19-main-score b{
+  font-family:Fraunces,serif;
+  font-size:31px;
+  line-height:.9;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.v19-main-score span{
+  color:var(--muted);
+  font-size:8px;
+  padding-bottom:3px;
+}
+.v19-score-compare{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:11px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:8px;
+}
+.v19-score-compare span{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  white-space:nowrap;
+}
+.v19-score-compare b{
+  color:var(--text);
+  font-size:9px;
+}
+.v19-score-compare i{
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+.v19-decision .v16-reasons{
+  margin-top:9px;
+}
+.v19-decision .v16-reasons span{
+  padding:6px 8px;
+  font-size:7px;
+}
+.v19-personalize{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+}
+.v19-personalize span{
+  color:var(--muted);
+  font-size:8px;
+}
+.v19-personalize button{
+  border:0;
+  background:transparent;
+  color:var(--gold);
+  font-size:8px;
+  font-weight:800;
+  padding:0;
+}
+
+
+/* ===== V20 DATA-AWARE COMPARISON ===== */
+.v20-diffbar{display:flex;justify-content:space-between;align-items:center;margin:0 0 8px;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.v20-diffbar span{font-size:8px;color:var(--muted);line-height:1.35}.v20-diffbar button{border:1px solid var(--line);background:var(--surface-2);color:var(--muted);font-size:8px;font-weight:800;padding:7px 9px;border-radius:999px}.v20-diffbar button.on{color:var(--gold);border-color:rgba(201,165,101,.4);background:rgba(201,165,101,.08)}
+.v20-category{margin:8px 0 5px;padding:11px 10px 6px;font-size:8px;font-weight:900;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.v20-delta{display:block;font-size:7px;line-height:1.2;color:var(--muted);margin-top:3px}.v20-delta.good{color:var(--gold)}
+.v20-data-note{padding:9px 11px;margin-bottom:8px;border-radius:11px;background:rgba(201,165,101,.05);border:1px solid rgba(201,165,101,.14);font-size:8px;line-height:1.45;color:var(--muted)}
+.v20-data-note b{color:var(--text)}
+.v20-source-pill{display:inline-flex;align-items:center;gap:5px;font-size:7px;color:var(--muted);margin-top:5px}.v20-source-pill:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+
+/* ===== V20.1 SEMANTIC ADVANTAGE ===== */
+:root{--adv:#69b98a;--adv-soft:rgba(105,185,138,.10);--adv-line:rgba(105,185,138,.24)}
+.v20-delta.good{color:var(--adv)!important;font-weight:800}
+.v20-best-value{color:var(--adv)!important;font-weight:850}
+.v20-category{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.v20-cat-winner{font-size:7px;letter-spacing:.02em;text-transform:none;color:var(--adv);font-weight:800;padding:4px 7px;border:1px solid var(--adv-line);background:var(--adv-soft);border-radius:999px;white-space:nowrap}
+
+
+/* ===== V20.2 DECISION COPY REFINEMENT ===== */
+.v20-cat-winner{padding:4px 7px!important}
+
+
+/* ===== V21 — GERÇEK HAYATTA FARK ===== */
+.v21-life{margin:13px 16px 4px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,var(--surface),rgba(255,255,255,.012));overflow:hidden}
+.v21-life-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 14px 11px;border-bottom:1px solid var(--line)}
+.v21-life-head small{display:block;font-size:7px;letter-spacing:.18em;color:var(--gold);font-weight:900;margin-bottom:4px}
+.v21-life-head b{display:block;font-size:14px}.v21-life-head p{margin:4px 0 0;color:var(--muted);font-size:8px;line-height:1.4}
+.v21-km{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);white-space:nowrap}
+.v21-km button{border:0;background:transparent;color:var(--muted);border-radius:7px;padding:6px 7px;font-size:7px;font-weight:850}
+.v21-km button.on{background:rgba(201,165,101,.12);color:var(--gold)}
+.v21-life-grid{display:grid;grid-template-columns:1fr 1fr}
+.v21-life-card{min-height:102px;padding:13px 14px;border-bottom:1px solid var(--line)}
+.v21-life-card:nth-child(odd){border-right:1px solid var(--line)}
+.v21-life-card:nth-last-child(-n+2){border-bottom:0}
+.v21-life-card small{display:block;font-size:7px;color:var(--muted);letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px}
+.v21-life-card strong{display:block;font-size:15px;line-height:1.18;color:var(--text);font-weight:850}
+.v21-life-card strong.good{color:var(--adv)}
+.v21-life-card span{display:block;margin-top:5px;font-size:8px;line-height:1.4;color:var(--muted)}
+.v21-life-card em{font-style:normal;color:var(--text);font-weight:750}
+.v21-life-note{padding:9px 14px 11px;border-top:1px solid var(--line);font-size:7px;color:var(--muted);line-height:1.45}
+.v21-life-note b{color:var(--text)}
+/* V21: Compare bottom-nav button same footprint as other tabs */
+.premium-nav .navitem.primary{color:var(--muted)!important;padding:5px 3px!important}
+.premium-nav .navitem.primary .nav-icon{
+ width:24px!important;height:24px!important;margin:0!important;border-radius:0!important;
+ background:none!important;color:currentColor!important;box-shadow:none!important;transform:none!important
+}
+.premium-nav .navitem.primary .nav-icon svg{width:21px!important;height:21px!important;stroke-width:1.65!important}
+.premium-nav .navitem.primary span{color:currentColor!important;font-weight:700!important}
+.premium-nav .navitem.primary.active{color:var(--text)!important;background:rgba(255,255,255,.035)}
+[data-theme="light"] .premium-nav .navitem.primary.active{background:rgba(0,0,0,.035)}
+.premium-nav .navitem.primary.active::after{display:block!important;opacity:1;transform:scaleX(1)}
+.premium-nav .navitem.primary.active .nav-icon{transform:none!important;box-shadow:none!important}
+@media(max-width:380px){.premium-nav .navitem.primary .nav-icon{width:24px!important;height:24px!important}}
+
+
+/* ===== V21.1 — QUIET REAL-LIFE SUMMARY ===== */
+.v21-life{margin-top:10px!important}
+.v21-life-head{display:block!important}.v21-life-title-row{display:flex;justify-content:space-between;gap:12px}
+.v21-usage{padding:10px 14px;border-bottom:1px solid var(--line)}
+.v21-usage-label{display:flex;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:8px;color:var(--muted)}.v21-usage-label b{color:var(--text)}
+.v21-km{width:100%;display:grid!important;grid-template-columns:repeat(3,1fr);gap:4px!important;padding:3px!important}
+.v21-km button{padding:7px 4px!important}
+.v21-topdiffs{display:flex;gap:6px;overflow-x:auto;padding:10px 14px 2px;scrollbar-width:none}.v21-topdiffs::-webkit-scrollbar{display:none}
+.v21-topdiff{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:6px 8px;font-size:7px;color:var(--muted);white-space:nowrap;background:var(--surface-2)}.v21-topdiff b{color:var(--text)}
+.v21-life-grid{padding:8px 14px 10px;display:block!important}
+.v21-life-card{min-height:0!important;padding:10px 0!important;border:0!important;border-bottom:1px solid var(--line)!important;display:grid;grid-template-columns:95px 1fr;align-items:center;gap:10px}.v21-life-card:last-child{border-bottom:0!important}
+.v21-life-card small{margin:0!important}.v21-life-card strong{font-size:11px!important}.v21-life-card span{margin-top:2px!important}
+.v21-method{border-top:1px solid var(--line)}.v21-method summary{list-style:none;cursor:pointer;padding:10px 14px;font-size:8px;font-weight:800;color:var(--muted);display:flex;justify-content:space-between}.v21-method summary::-webkit-details-marker{display:none}.v21-method summary:after{content:'+';color:var(--gold)}.v21-method[open] summary:after{content:'−'}.v21-method div{padding:0 14px 11px;font-size:7px;line-height:1.5;color:var(--muted)}
 
 </style></head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home">
@@ -371,7 +651,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   <div class="v16-compare-head">
     <small>GARAJ / KARAR MOTORU</small>
     <div class="scr-title">Karşılaştır</div>
-    <div class="sub">Araçları yan yana koy. Farkı sadece rakamda değil, günlük kullanımda da gör.</div>
+    <div class="sub">Araçları yan yana koy. Farkı tek bakışta gör.</div>
   </div>
   <div class="slots v16-slots" id="slots"></div>
   <div class="tog" id="modeToggle" style="display:none"><button id="mode-teknik" class="active" onclick="setMode('teknik')">Teknik</button><button id="mode-gundelik" onclick="setMode('gundelik')">Gündelik</button></div>
@@ -456,6 +736,174 @@ function renderSlotsLegacyV15(){
  let ok=slots.filter(Boolean).length>=2;
  let mt=document.getElementById('modeToggle'),vt=document.getElementById('viewToggle');if(mt)mt.style.display='none';if(vt)vt.style.display='none';
 }
+
+let V20_DIFF_ONLY=false;
+
+/* Garaj normalization layer.
+   It accepts today's compact demo CARS and is deliberately shaped so the
+   real API JSON can later be mapped here without changing the UI. */
+const V20_SPEC_GROUPS=[
+ {name:'Performans',keys:['Güç (bg)','Tork (Nm)','0-100 (sn)','Maks. hız (km/s)']},
+ {name:'Ekonomi & Enerji',keys:['Tüketim (L/100)','Enerji tüketimi (kWh/100)','Elektrikli menzil (km)','Net batarya (kWh)','CO₂ (g/km)','Depo (L)']},
+ {name:'Boyut & Pratiklik',keys:['Bagaj (L)','Maks. bagaj (L)','Ağırlık (kg)','Uzunluk (mm)','Genişlik (mm)','Yükseklik (mm)','Dingil (mm)','Yerden yükseklik (mm)']},
+ {name:'Motor & Aktarma',keys:['Motor (cc)','Silindir','Çekiş','Şanzıman']}
+];
+const V20_LOWER_BETTER=new Set(['0-100 (sn)','Tüketim (L/100)','Enerji tüketimi (kWh/100)','CO₂ (g/km)','Ağırlık (kg)']);
+const V20_HIGHER_BETTER=new Set(['Güç (bg)','Tork (Nm)','Maks. hız (km/s)','Elektrikli menzil (km)','Net batarya (kWh)','Bagaj (L)','Maks. bagaj (L)','Yerden yükseklik (mm)']);
+
+function v20Num(x){
+ if(x===null||x===undefined||x==='')return null;
+ if(typeof x==='number')return Number.isFinite(x)?x:null;
+ let m=String(x).replace(',','.').match(/-?\d+(?:\.\d+)?/);return m?Number(m[0]):null
+}
+function v20ApiNormalize(raw){
+ let d=raw.diger||{};
+ let pick=(...xs)=>{for(let x of xs){if(x!==undefined&&x!==null&&x!=='')return x}return null};
+ let parseRange=x=>{if(!x)return null;let nums=String(x).replace(/,/g,'.').match(/\d+(?:\.\d+)?/g);return nums&&nums.length?nums.map(Number):null};
+ let rangeMid=x=>{let r=parseRange(x);return r?r.reduce((a,b)=>a+b,0)/r.length:null};
+ let systemPower=v20Num(d['Sistem gücü']);
+ let systemTorque=v20Num(d['Sistem tork']);
+ let evTorque=v20Num(d['Elektrikli motor torku']);
+ let energy=rangeMid(d['Ortalama Enerji Tüketimi (WLTP)']);
+ let range=rangeMid(d['Elektrikli menzil (WLTP)']);
+ return {
+   id:raw.id,brand:raw.marka,model:raw.model,variant:raw.motor,year:raw.yil,body:raw.govde,
+   fuel:raw.yakit,architecture:raw.mimari,
+   power:pick(systemPower,raw.guc),torque:pick(systemTorque,evTorque,raw.tork),
+   zero100:raw.sifir_yuz,maxSpeed:raw.max_hiz,consumption:raw.tuketim,
+   energyConsumption:energy,range:range,netBattery:v20Num(d['Net batarya kapasitesi']),
+   grossBattery:v20Num(d['Brüt batarya kapasitesi']),co2:raw.co2,
+   boot:raw.bagaj,bootMax:raw.bagaj_max,tank:raw.depo,weight:raw.agirlik,
+   length:raw.uzunluk,width:raw.genislik,height:raw.yukseklik,wheelbase:raw.dingil,
+   clearance:raw.yerden_yukseklik,engineCc:raw.hacim,cylinders:raw.silindir,
+   drive:raw.cekis,transmission:raw.sanziman,
+   raw
+ }
+}
+function v20DemoNormalize(c){
+ return {
+  id:c.id,brand:c.brand,model:c.model,variant:c.variant,year:c.year,body:c.body,fuel:c.fuel,
+  power:v20Num(val(c,'Güç (bg)')),torque:v20Num(val(c,'Tork (Nm)')),zero100:v20Num(val(c,'0-100 (sn)')),
+  maxSpeed:v20Num(val(c,'Maks. hız (km/s)')),consumption:v20Num(val(c,'Tüketim (L/100)')),
+  energyConsumption:null,range:null,netBattery:null,grossBattery:null,co2:null,
+  boot:v20Num(val(c,'Bagaj (L)')),bootMax:null,tank:null,weight:v20Num(val(c,'Ağırlık (kg)')),
+  length:v20Num(val(c,'Uzunluk (mm)')),width:v20Num(val(c,'Genişlik (mm)')),height:v20Num(val(c,'Yükseklik (mm)')),
+  wheelbase:v20Num(val(c,'Dingil (mm)')),clearance:null,engineCc:v20Num(val(c,'Motor (cc)')),cylinders:null,
+  drive:c.drive||null,transmission:c.trans||c.transmission||null,raw:c
+ }
+}
+function v20N(c){return c&&c.marka?v20ApiNormalize(c):v20DemoNormalize(c)}
+const V20_FIELDS={
+ 'Güç (bg)':{p:'power',u:'bg'},'Tork (Nm)':{p:'torque',u:'Nm'},'0-100 (sn)':{p:'zero100',u:'sn'},
+ 'Maks. hız (km/s)':{p:'maxSpeed',u:'km/s'},'Tüketim (L/100)':{p:'consumption',u:'L/100'},
+ 'Enerji tüketimi (kWh/100)':{p:'energyConsumption',u:'kWh/100'},'Elektrikli menzil (km)':{p:'range',u:'km'},
+ 'Net batarya (kWh)':{p:'netBattery',u:'kWh'},'CO₂ (g/km)':{p:'co2',u:'g/km'},'Depo (L)':{p:'tank',u:'L'},
+ 'Bagaj (L)':{p:'boot',u:'L'},'Maks. bagaj (L)':{p:'bootMax',u:'L'},'Ağırlık (kg)':{p:'weight',u:'kg'},
+ 'Uzunluk (mm)':{p:'length',u:'mm'},'Genişlik (mm)':{p:'width',u:'mm'},'Yükseklik (mm)':{p:'height',u:'mm'},
+ 'Dingil (mm)':{p:'wheelbase',u:'mm'},'Yerden yükseklik (mm)':{p:'clearance',u:'mm'},'Motor (cc)':{p:'engineCc',u:'cc'},
+ 'Silindir':{p:'cylinders',u:''},'Çekiş':{p:'drive',u:''},'Şanzıman':{p:'transmission',u:''}
+};
+function v20Val(c,k){let f=V20_FIELDS[k];if(!f)return null;return v20N(c)[f.p]}
+function v20Same(vals){let x=vals.filter(v=>v!==null&&v!==undefined);return x.length===vals.length&&x.every(v=>String(v)===String(x[0]))}
+function v20Fmt(v,k){
+ if(v===null||v===undefined||v==='')return null;
+ let u=(V20_FIELDS[k]||{}).u||'';
+ if(typeof v==='number'){let n=Math.round(v*10)/10;return `${n}${u?' '+u:''}`}
+ return String(v)
+}
+
+const V20_MEANINGFUL={
+ 'Güç (bg)':{abs:10,pct:5},'Tork (Nm)':{abs:15,pct:5},'0-100 (sn)':{abs:.3,pct:4},
+ 'Maks. hız (km/s)':{abs:8,pct:4},'Tüketim (L/100)':{abs:.3,pct:5},
+ 'Enerji tüketimi (kWh/100)':{abs:.7,pct:4},'Elektrikli menzil (km)':{abs:25,pct:5},
+ 'Net batarya (kWh)':{abs:3,pct:5},'CO₂ (g/km)':{abs:8,pct:5},'Depo (L)':{abs:5,pct:8},
+ 'Bagaj (L)':{abs:40,pct:8},'Maks. bagaj (L)':{abs:80,pct:8},'Ağırlık (kg)':{abs:60,pct:4},
+ 'Uzunluk (mm)':{abs:80,pct:2},'Genişlik (mm)':{abs:35,pct:2},'Yükseklik (mm)':{abs:50,pct:3},
+ 'Dingil (mm)':{abs:50,pct:2},'Yerden yükseklik (mm)':{abs:15,pct:8},'Motor (cc)':{abs:150,pct:10}
+};
+function v20IsBetter(vals,i,k){
+ if(vals.length!==2||vals.some(v=>typeof v!=='number'))return false;
+ let me=vals[i],other=vals[i?0:1],diff=me-other;
+ if(Math.abs(diff)<.0001)return false;
+ return V20_LOWER_BETTER.has(k)?diff<0:V20_HIGHER_BETTER.has(k)?diff>0:false;
+}
+function v20Meaningful(vals,k){
+ if(vals.length!==2||vals.some(v=>typeof v!=='number'))return false;
+ let a=vals[0],b=vals[1],abs=Math.abs(a-b),base=Math.max(Math.abs(a),Math.abs(b),.0001);
+ let pct=abs/base*100,t=V20_MEANINGFUL[k];
+ return !!t && abs>=t.abs && pct>=t.pct;
+}
+function v20CategoryWinner(rows,a){
+ if(a.length!==2)return '';
+ let score=[0,0],count=0;
+ rows.forEach(({k,vals})=>{
+   if(!v20Meaningful(vals,k))return;
+   if(v20IsBetter(vals,0,k))score[0]++,count++;
+   else if(v20IsBetter(vals,1,k))score[1]++,count++;
+ });
+ if(!count||score[0]===score[1])return '';
+ let i=score[0]>score[1]?0:1;
+ return `<span class="v20-cat-winner">${a[i].brand} ${a[i].model}</span>`;
+}
+
+const V20_DIRECTIONAL_KEYS=new Set([
+ 'Güç (bg)','Tork (Nm)','0-100 (sn)','Maks. hız (km/s)','Tüketim (L/100)',
+ 'Enerji tüketimi (kWh/100)','Elektrikli menzil (km)','Net batarya (kWh)',
+ 'CO₂ (g/km)','Bagaj (L)','Maks. bagaj (L)','Ağırlık (kg)','Yerden yükseklik (mm)'
+]);
+function v20DeltaText(diff,k){
+ let abs=Math.round(Math.abs(diff)*10)/10;
+ if(k==='0-100 (sn)') return `${abs} sn ${diff<0?'daha hızlı':'daha yavaş'}`;
+ if(k==='Tüketim (L/100)') return `${abs} L ${diff<0?'daha düşük':'daha yüksek'}`;
+ if(k==='Enerji tüketimi (kWh/100)') return `${abs} kWh ${diff<0?'daha düşük':'daha yüksek'}`;
+ if(k==='Elektrikli menzil (km)') return `${abs} km ${diff>0?'daha fazla':'daha az'}`;
+ if(k==='Bagaj (L)'||k==='Maks. bagaj (L)') return `${abs} L ${diff>0?'daha fazla':'daha az'}`;
+ if(k==='Ağırlık (kg)') return `${abs} kg ${diff<0?'daha hafif':'daha ağır'}`;
+ if(k==='CO₂ (g/km)') return `${abs} g/km ${diff<0?'daha düşük':'daha yüksek'}`;
+ if(k==='Güç (bg)') return `${abs} bg ${diff>0?'daha güçlü':'daha düşük'}`;
+ if(k==='Tork (Nm)') return `${abs} Nm ${diff>0?'daha fazla':'daha az'}`;
+ if(k==='Maks. hız (km/s)') return `${abs} km/s ${diff>0?'daha yüksek':'daha düşük'}`;
+ if(k==='Yerden yükseklik (mm)') return `${abs} mm ${diff>0?'daha yüksek':'daha alçak'}`;
+ let u=(V20_FIELDS[k]||{}).u||'';
+ return `${diff>0?'+':'−'}${abs}${u?' '+u:''}`;
+}
+function v20Delta(vals,i,k){
+ if(vals.length!==2||vals.some(v=>typeof v!=='number'))return '';
+ let other=vals[i?0:1],me=vals[i],diff=me-other;if(Math.abs(diff)<.0001)return '';
+ let better=v20IsBetter(vals,i,k), meaningful=v20Meaningful(vals,k);
+ // Only the advantageous side gets explanatory copy. Non-directional metrics
+ // may show a neutral numeric difference, never "better/worse".
+ if(V20_DIRECTIONAL_KEYS.has(k)){
+   if(!(better&&meaningful))return '';
+   return `<span class="v20-delta good">${v20DeltaText(diff,k)}</span>`;
+ }
+ if(!v20Meaningful(vals,k))return '';
+ return `<span class="v20-delta">${v20DeltaText(diff,k)}</span>`;
+}
+function toggleV20Diff(){V20_DIFF_ONLY=!V20_DIFF_ONLY;renderCompare()}
+function v20Rows(a){
+ let html=`<div class="v20-diffbar"><span>Aynı değerleri gizleyerek<br>kararı hızlandır.</span><button class="${V20_DIFF_ONLY?'on':''}" onclick="toggleV20Diff()">${V20_DIFF_ONLY?'✓ Sadece farklar':'Sadece farklar'}</button></div>`;
+ let any=false;
+ V20_SPEC_GROUPS.forEach(g=>{
+   let rows=[];
+   g.keys.forEach(k=>{
+     let vals=a.map(c=>v20Val(c,k));
+     let present=vals.filter(v=>v!==null&&v!==undefined&&v!=='');
+     if(!present.length)return;
+     if(V20_DIFF_ONLY&&v20Same(vals))return;
+     // Don't create meaningless mostly-empty rows in heterogeneous powertrains.
+     if(present.length===1 && a.length>1 && ['Enerji tüketimi (kWh/100)','Elektrikli menzil (km)','Net batarya (kWh)','CO₂ (g/km)','Depo (L)'].includes(k))return;
+     rows.push({k,vals});
+   });
+   if(!rows.length)return;any=true;
+   html+=`<div class="v20-category"><span>${g.name}</span>${v20CategoryWinner(rows,a)}</div>`;
+   rows.forEach(({k,vals})=>{
+     html+=`<div class="row" style="grid-template-columns:minmax(112px,1.15fr) ${a.map(()=> 'minmax(82px,1fr)').join(' ')}"><div>${k}</div>${vals.map((v,i)=>`<div class="${(v20IsBetter(vals,i,k)&&v20Meaningful(vals,k))?'v20-best-value':''}">${v20Fmt(v,k)||'—'}${v20Delta(vals,i,k)}</div>`).join('')}</div>`
+   })
+ });
+ if(!any)html+=`<div class="v20-data-note"><b>Gösterilecek fark kalmadı.</b> Bu görünümde araçların mevcut değerleri aynı.</div>`;
+ return html
+}
 function v16ControlBar(){
  const iconR=`<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>`;
  const iconB=`<svg viewBox="0 0 24 24"><path d="M5 18V9h4v9M11 18V5h4v13M17 18v-6h3v6"/></svg>`;
@@ -463,6 +911,45 @@ function v16ControlBar(){
  return `<div class="v16-data-head"><div class="v16-data-title"><div><small>VERİ KARŞILAŞTIRMASI</small><b>${currentMode==='teknik'?'Teknik veriler':'Günlük kullanım'}</b></div><span style="font-size:8px;color:var(--muted)">Görünümü değiştir</span></div>
  <div class="v16-mode-tabs"><button class="${currentMode==='teknik'?'active':''}" onclick="setMode('teknik')">Teknik</button><button class="${currentMode==='gundelik'?'active':''}" onclick="setMode('gundelik')">Gündelik</button></div>
  <div class="v16-view-tabs"><button class="${currentView==='rakam'?'active':''}" onclick="setView('rakam')">${iconR} Rakam</button><button class="${currentView==='bar'?'active':''}" onclick="setView('bar')">${iconB} Bar</button><button class="${currentView==='radar'?'active':''}" onclick="setView('radar')">${iconD} Radar</button></div></div>`
+}
+
+let V21_ANNUAL_KM=15000;
+function setV21Km(k){V21_ANNUAL_KM=k;renderCompare()}
+function v21CarName(c){return `${c.brand} ${c.model}`}
+function v21Compact(n,dec=0){return Number(n).toLocaleString('tr-TR',{maximumFractionDigits:dec,minimumFractionDigits:dec})}
+function v21LifeSection(a){
+ if(a.length!==2)return '';
+ let n=a.map(v20N), cards=[];
+ const car=i=>v21CarName(a[i]);
+ const add=(key,i,headline,detail,rank)=>cards.push({key,i,headline,detail,rank});
+ if(n.every(x=>typeof x.consumption==='number'&&x.consumption>0)){
+  let annual=n.map(x=>x.consumption*V21_ANNUAL_KM/100),i=annual[0]<=annual[1]?0:1,d=Math.abs(annual[0]-annual[1]),pct=d/Math.max(...annual)*100;
+  if(d>=45&&pct>=4)add('Yıllık yakıt',i,`${v21Compact(d)} L daha az/yıl`,`${car(i)} · ${v21Compact(V21_ANNUAL_KM)} km kullanımda`,pct);
+ }
+ if(n.every(x=>typeof x.boot==='number'&&x.boot>0)){
+  let i=n[0].boot>n[1].boot?0:1,d=Math.abs(n[0].boot-n[1].boot),pct=d/Math.max(n[0].boot,n[1].boot)*100;
+  if(d>=40&&pct>=8)add('Bagaj',i,`${v21Compact(d)} L daha fazla`,`${car(i)} daha geniş yükleme hacmi sunuyor`,pct);
+ }
+ if(n.every(x=>typeof x.zero100==='number'&&x.zero100>0)){
+  let i=n[0].zero100<n[1].zero100?0:1,d=Math.abs(n[0].zero100-n[1].zero100),pct=d/Math.max(...n.map(x=>x.zero100))*100;
+  if(d>=.3&&pct>=4)add('Hızlanma',i,`${v21Compact(d,1)} sn daha hızlı`,`${car(i)} · 0–100 km/s`,pct);
+ }
+ if(n.every(x=>typeof x.length==='number'&&x.length>0)){
+  let i=n[0].length<n[1].length?0:1,d=Math.abs(n[0].length-n[1].length);
+  if(d>=100)add('Şehir ölçüsü',i,`${v21Compact(d)} mm daha kısa`,`${car(i)} daha kompakt bir gövdeye sahip`,Math.max(6,d/50));
+ }
+ let ev=n.map((x,i)=>({x,i})).filter(z=>typeof z.x.range==='number'&&z.x.range>0);
+ if(ev.length===1){let z=ev[0];add('Elektrikli kullanım',z.i,`≈ ${v21Compact(z.x.range)} km WLTP`,`${car(z.i)}${z.x.netBattery?` · ${v21Compact(z.x.netBattery,1)} kWh net batarya`:''}`,12)}
+ if(!cards.length)return '';
+ cards.sort((a,b)=>b.rank-a.rank); let shown=cards.slice(0,4);
+ let top=cards.slice(0,3).map(x=>`<span class="v21-topdiff"><b>${x.key}</b> · ${x.headline}</span>`).join('');
+ return `<section class="v21-life">
+  <div class="v21-life-head"><div class="v21-life-title-row"><div><small>GERÇEK HAYATTA FARK</small><b>Rakamların günlük karşılığı</b><p>Yalnızca anlamlı farkları öne çıkarıyoruz.</p></div></div></div>
+  <div class="v21-usage"><div class="v21-usage-label"><b>Yıllık kullanımın</b><span>Yakıt hesabı</span></div><div class="v21-km">${[10000,15000,20000].map(k=>`<button class="${V21_ANNUAL_KM===k?'on':''}" onclick="setV21Km(${k})">${v21Compact(k)} km</button>`).join('')}</div></div>
+  ${top?`<div class="v21-topdiffs">${top}</div>`:''}
+  <div class="v21-life-grid">${shown.map(x=>`<div class="v21-life-card"><small>${x.key}</small><div><strong class="${['Yıllık yakıt','Bagaj','Hızlanma'].includes(x.key)?'good':''}">${x.headline}</strong><span>${x.detail}</span></div></div>`).join('')}</div>
+  <details class="v21-method"><summary>Bu sonuç neye göre?</summary><div>Yıllık yakıt farkı seçtiğin kilometre ile katalog tüketim değerlerinden hesaplanır. Diğer yorumlar yalnızca belirgin teknik farklardan üretilir. Gerçek kullanım koşulları sonuçları değiştirebilir.</div></details>
+ </section>`;
 }
 function renderCompare(){
  let a=slots.filter(Boolean),res=document.getElementById('compareResult');if(!res)return;
@@ -474,15 +961,34 @@ function renderCompare(){
  let leadName=leader>=0?`${a[leader].brand} ${a[leader].model}`:'Başa baş';
  let cats=[['Performans',perf],['Ekonomi',eco],['Pratiklik',prac],['Şehir',city]];
  let reasons=cats.filter(x=>x[1]===leader).slice(0,3).map((x,i)=>`<span class="${i===0?'good':''}">${x[0]}</span>`).join('')||'<span class="good">Dengeli genel skor</span>';
- let h=`<div class="v16-summary"><div class="v16-scoreline">${a.map((c,i)=>`<div class="v16-score ${i===leader?'leader':''}"><small>${i===leader?'ÖNERİLEN':'GARAJ SCORE'}</small><h3>${c.brand} ${c.model}</h3><div class="v16-score-val"><b>${gs[i].toFixed(1)}</b><span>/10</span></div></div>`).join('')}</div>
- <div class="v16-verdict"><div class="v16-verdict-top"><div><small>KARAR ÖZETİ</small><h3>${leadName}</h3><p>${leader>=0?`Seçili önceliklerine göre ${leadName} bu eşleşmede daha dengeli görünüyor.`:'Araçlar seçili önceliklerde birbirine çok yakın.'}</p></div><span class="v16-pick">GARAJ PICK</span></div><div class="v16-reasons">${reasons}</div><div class="v16-personalize"><div>Skoru kendi kullanımına göre ayarla</div><button onclick="openPreferenceModal()">Önceliklerim →</button></div></div></div>`;
+ let scoreGap=leader>=0&&a.length===2?Math.abs(gs[0]-gs[1]).toFixed(1):null;
+ let second=leader>=0&&a.length===2?(leader===0?1:0):-1;
+ let leadCopy=leader>=0
+   ? `${leadName} seçili önceliklerde önde${scoreGap?` · ${scoreGap} puan fark`:''}.`
+   : 'Araçlar seçili önceliklerde birbirine çok yakın.';
+ let h=`<div class="v19-decision">
+   <div class="v19-decision-main">
+     <div>
+       <small>GARAJ PICK</small>
+       <h2>${leadName}</h2>
+       <p>${leadCopy}</p>
+     </div>
+     ${leader>=0?`<div class="v19-main-score"><b>${gs[leader].toFixed(1)}</b><span>/10</span></div>`:''}
+   </div>
+   ${leader>=0&&second>=0?`<div class="v19-score-compare">
+      <span>${a[leader].model} <b>${gs[leader].toFixed(1)}</b></span>
+      <i></i>
+      <span>${a[second].model} <b>${gs[second].toFixed(1)}</b></span>
+   </div>`:''}
+   <div class="v16-reasons">${reasons}</div>
+   <div class="v19-personalize"><span>Skoru kullanımına göre değiştir</span><button onclick="openPreferenceModal()">Önceliklerim →</button></div>
+ </div>`;
  h+=`<div class="v16-data-stage">${v16ControlBar()}<div class="v16-data-body">`;
  if(currentView==='rakam'){
    let col='minmax(112px,1.15fr) '+a.map(()=> 'minmax(82px,1fr)').join(' ');
    h+='<div class="ctable">';
-   h+=`<div class="row head" style="grid-template-columns:${col}"><div>${currentMode==='teknik'?'Özellik':'Kullanım'}</div>`+a.map(c=>`<div><b>${c.brand}</b><br><small>${c.model}</small></div>`).join('')+'</div>';
-   ks.forEach(k=>{let vs=a.map(c=>val(c,k)),best=vs.every(v=>typeof v==='number'&&v!==0)?(HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined):undefined;
-     h+=`<div class="row" style="grid-template-columns:${col}"><div>${k}</div>`+a.map(c=>{let v=val(c,k),w=best!==undefined&&v===best;return `<div class="${w?'win':''}">${(v===0&&(k==='Motor (cc)'||k==='Tüketim (L/100)'))?'—':v}</div>`}).join('')+'</div>'});
+   h+=`<div class="row head" style="grid-template-columns:${col}"><div>Özellik</div>`+a.map(c=>`<div><b>${c.brand}</b><br><small>${c.model}</small></div>`).join('')+'</div>';
+   h+=v20Rows(a);
    h+='</div>';
  } else if(currentView==='bar'){
    h+='<div class="bars">';
@@ -491,6 +997,7 @@ function renderCompare(){
    h+='</div>';
  } else h+=radar(a,ks);
  h+='</div></div>';
+ h+=v21LifeSection(a);
  if(currentMode==='gundelik')h+=`<div class="v16-daily-note"><b style="color:var(--text)">Günlük kullanım ne anlatıyor?</b><br>Bu görünüm teknik katalogdan çok; tüketim, bagaj, boyut ve kullanım kolaylığı gibi gerçek hayatta hissedilen farklara odaklanır.</div>`;
  h+=`<div class="v16-why"><details><summary>Detaylı kategori sonucu +</summary><div class="v16-why-body">${cats.map(([n,i])=>`<div class="v16-cat"><small>${n.toUpperCase()}</small><b>${i>=0?a[i].brand+' '+a[i].model:'Başa baş'}</b></div>`).join('')}</div></details></div>`;
  h+=`<div class="v16-savebar"><button onclick="saveCurrentCompareV13()">☆ Bu karşılaştırmayı kaydet</button></div>`;
