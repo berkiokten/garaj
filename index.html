@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V23.7</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V25 Auth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -725,12 +725,61 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v23-mini-link{font-size:9px;color:var(--gold);font-weight:900}
 </style>
 
+
+<style id="v24-garage-style">
+.v24-garage-top{display:flex;align-items:center;justify-content:space-between;margin:4px 0 14px;gap:12px}
+.v24-garage-top small{display:block;color:var(--gold);font-size:8px;font-weight:900;letter-spacing:.16em;margin-bottom:3px}
+.v24-garage-top b{font-size:11px;color:var(--muted);font-weight:700}
+.v24-collapsed-info{margin-left:auto;color:var(--muted);font-size:8px;white-space:nowrap}
+.v24-cost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.v24-cost-grid>div{padding:11px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.v24-cost-grid small{display:block;color:var(--muted);font-size:7px;font-weight:900;letter-spacing:.08em;margin-bottom:5px}
+.v24-cost-grid b{font-size:13px}
+.v24-row-action{margin-left:auto;border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 7px}
+.v24-row-action:hover{color:#e57373}
+.v24-history-actions{display:flex;gap:10px;margin-top:5px}
+.v24-history-actions button{border:0;background:transparent;padding:0;color:var(--muted);font-size:8px;font-weight:800;cursor:pointer}
+.v24-history-actions button:hover{color:var(--gold)}
+@media(max-width:640px){.v24-collapsed-info{display:none}.v24-cost-grid{grid-template-columns:1fr}.v24-garage-top b{display:none}}
+</style>
+
+<style id="v24-1-profile-style">
+.profile-identity{display:flex;align-items:center;gap:14px;margin:20px 0 22px}
+.profile-avatar{width:58px;height:58px;flex:0 0 58px;border-radius:18px;border:1px solid rgba(201,165,101,.34);background:linear-gradient(145deg,rgba(201,165,101,.18),rgba(255,255,255,.025));display:grid;place-items:center;color:var(--gold);font-family:Fraunces,serif;font-size:26px;font-weight:800}
+.profile-identity-copy{min-width:0}.profile-identity-copy small{display:block;color:var(--gold);font-size:8px;font-weight:900;letter-spacing:.16em;margin-bottom:4px}.profile-identity-copy b{display:block;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-identity-copy span{display:block;color:var(--muted);font-size:10px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile-edit-btn{margin-left:auto;border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--text);border-radius:11px;padding:9px 11px;font-size:9px;font-weight:900;cursor:pointer}
+.profile-edit-btn:hover{border-color:rgba(201,165,101,.35);color:var(--gold)}
+.profile-local-note{margin:0 16px 14px;padding:11px 13px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:9px;line-height:1.5;background:rgba(255,255,255,.015)}
+.profile-local-note b{color:var(--text)}
+.profile-complete{margin:0 16px 18px;padding:17px;border:1px dashed rgba(201,165,101,.3);border-radius:17px;background:rgba(201,165,101,.035)}
+.profile-complete b{display:block;font-size:13px;margin-bottom:5px}.profile-complete span{display:block;color:var(--muted);font-size:10px;line-height:1.55;margin-bottom:12px}.profile-complete button{border:0;background:var(--gold);color:#111;border-radius:11px;padding:10px 13px;font-size:9px;font-weight:900;cursor:pointer}
+.profile-form-note{font-size:9px;color:var(--muted);line-height:1.55;margin:10px 0 4px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style id="v25-auth-style">
+.auth-gate{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% -10%,rgba(201,165,101,.14),transparent 38%),var(--bg);display:none;align-items:center;justify-content:center;padding:22px}
+.auth-gate.open{display:flex}
+.auth-card{width:min(100%,430px);border:1px solid var(--line);background:linear-gradient(145deg,var(--surface),var(--surface2));border-radius:26px;padding:24px;box-shadow:var(--shadow)}
+.auth-brand{font:800 25px Manrope;margin-bottom:22px;letter-spacing:-.7px}.auth-brand b{color:var(--gold)}
+.auth-kicker{font-size:8px;letter-spacing:.18em;color:var(--gold);font-weight:900;margin-bottom:6px}
+.auth-card h2{font:800 25px Manrope;margin:0 0 7px}.auth-card>p{color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 18px}
+.auth-tabs{display:flex;padding:4px;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:13px;margin-bottom:16px}
+.auth-tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:9px;border-radius:9px;font-weight:800;font-size:10px}
+.auth-tabs button.active{background:var(--surface2);color:var(--gold)}
+.auth-error{min-height:18px;color:#e57373;font-size:9px;margin-top:8px}.auth-success{color:var(--good)}
+.auth-secondary{width:100%;margin-top:8px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:12px;padding:12px;font-weight:800}
+.auth-setup{font-size:9px;line-height:1.55;color:var(--muted);border:1px dashed rgba(201,165,101,.35);padding:12px;border-radius:12px;margin-top:14px}
+.onboard-picks{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 13px}.onboard-picks button{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:999px;padding:7px 9px;font-size:9px;cursor:pointer}
+.onboard-picks button:hover{border-color:var(--gold);color:var(--gold)}
+.auth-user-chip{display:flex;align-items:center;gap:8px}.auth-signout{border:0;background:transparent;color:var(--muted);font-size:9px;cursor:pointer}
+</style>
 </head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home">
 <div class="v14-home-top">
   <div class="v14-brandrow">
     <div><div class="v14-wordmark">GARAJ</div><div class="v14-date" id="v14HomeDate">PREMIUM AUTOMOTIVE COMPANION</div></div>
-    <button class="v14-profile-dot" onclick="showScreen('profile')" aria-label="Profil"><span>G</span></button>
+    <button class="v14-profile-dot" id="homeProfileDot" onclick="showScreen('profile')" aria-label="Profil"><span>G</span></button>
   </div>
   <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Sahip olduktan sonra da yanında.</em></h1></div>
 </div>
@@ -773,7 +822,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   <div class="tog" id="viewToggle" style="display:none"><button id="view-rakam" class="active" onclick="setView('rakam')">Rakam</button><button id="view-bar" onclick="setView('bar')">Bar</button><button id="view-radar" onclick="setView('radar')">Radar</button></div>
   <div id="compareResult"></div>
 </section>
-<section class="screen" id="screen-detail"><button class="back" onclick="showScreen('home')">← Geri</button><div id="detailContent"></div></section><section class="screen" id="screen-garage"><div class="scr-title">Garajım</div><div class="sub">Aracını ve yaklaşan işleri tek yerde yönet.</div><div id="garageContent"></div></section>
+<section class="screen" id="screen-detail"><button class="back" onclick="showScreen('home')">← Geri</button><div id="detailContent"></div></section><section class="screen" id="screen-garage"><div class="scr-title" id="garagePageTitle">Garajım</div><div class="sub" id="garagePageSub">Aracını ve yaklaşan işleri tek yerde yönet.</div><div id="garageContent"></div></section>
 <section class="screen" id="screen-profile"><div id="profileContent"></div></section></div>
 <div class="v13-toast" id="v13Toast"></div><div class="onboard-back" id="onboardBack">
   <div class="onboard-card" id="onboardCard"></div>
@@ -1260,22 +1309,75 @@ function profileStats(){
  });
  return {expenseCount,alarmCount,total12}
 }
+function garajProfile(){
+ try{return JSON.parse(localStorage.getItem('garajUserProfileV1')||'{}')||{}}catch(e){return{}}
+}
+function garajPossessive(name){
+ name=(name||'').trim();
+ if(!name)return 'Garajım';
+ let low=name.toLocaleLowerCase('tr-TR'),last=low.slice(-1),vowels='aeıioöuü';
+ let lastVowel='';
+ for(let i=low.length-1;i>=0;i--){if(vowels.includes(low[i])){lastVowel=low[i];break}}
+ let suffix=(lastVowel==='a'||lastVowel==='ı')?'ın':(lastVowel==='e'||lastVowel==='i')?'in':(lastVowel==='o'||lastVowel==='u')?'un':'ün';
+ if(vowels.includes(last))suffix='n'+suffix;
+ return `${name}'${suffix} Garajı`;
+}
+function applyProfilePersonalization(){
+ let p=garajProfile(),name=(p.name||'').trim(),garageName=(p.garage_name||'').trim();
+ let dot=document.getElementById('homeProfileDot');
+ if(dot){let sp=dot.querySelector('span');if(sp)sp.textContent=name?name.charAt(0).toLocaleUpperCase('tr-TR'):'G';dot.title=name||'Profil'}
+ let gt=document.getElementById('garagePageTitle');
+ if(gt)gt.textContent=garageName||'Garajım';
+ let gs=document.getElementById('garagePageSub');
+ if(gs)gs.textContent=name?`${name}, aracını ve yaklaşan işleri tek yerde yönet.`:'Aracını ve yaklaşan işleri tek yerde yönet.';
+}
+function openProfileEdit(){
+ let p=garajProfile();
+ modalBody.innerHTML=`<h3>Profilini düzenle</h3>
+   <div class="sub">Garaj'ı sana göre kişiselleştir.</div>
+   <div class="field" style="margin-top:14px"><label>Adın</label><input id="profileNameInput" maxlength="30" placeholder="Örn. Kerem" value="${safeText(p.name||'')}"></div>
+   <div class="field"><label>E-posta <span style="color:var(--muted);font-weight:500">(opsiyonel)</span></label><input id="profileEmailInput" type="email" maxlength="80" placeholder="kerem@example.com" value="${safeText(p.email||'')}"></div>
+   <div class="profile-form-note">Bu sürümde profil bilgileri yalnızca bu tarayıcıda saklanır. Gerçek üyelik sistemi bağlandığında hesap verisine taşınabilir.</div>
+   <button class="full" onclick="saveProfileV241()">Profili kaydet</button>`;
+ modalBack.classList.add('open');
+ setTimeout(()=>document.getElementById('profileNameInput')?.focus(),50);
+}
+function saveProfileV241(){
+ let name=(document.getElementById('profileNameInput')?.value||'').trim();
+ let email=(document.getElementById('profileEmailInput')?.value||'').trim();
+ if(!name){alert('Profil için bir ad gir.');return}
+ localStorage.setItem('garajUserProfileV1',JSON.stringify({name,email}));
+ closeModal();applyProfilePersonalization();renderProfile();
+}
 function renderProfile(){
  let el=document.getElementById('profileContent');if(!el)return;
+ let p=garajProfile(),name=(p.name||'').trim(),email=(p.email||'').trim();
  let st=profileStats(),vehicleText=myCars.length?`${myCars.length} araç`:'Henüz araç yok';
- let plan=IS_PRO?'PRO':'FREE';
+ let plan=IS_PRO?'PRO':'FREE',initial=name?name.charAt(0).toLocaleUpperCase('tr-TR'):'G';
+ let garageName=(p.garage_name||'').trim() || (name?garajPossessive(name):'Senin Garajın');
  el.innerHTML=`<div class="profile-v11">
    <div class="profile-hero">
      <div class="profile-wordmark">GARAJ</div>
      <div class="profile-plan">${plan}</div>
-     <h1>Senin Garajın.</h1>
-     <p>Araç seçimin, sahiplik verilerin ve kişisel tercihlerin tek merkezde.</p>
+     <div class="profile-identity">
+       <div class="profile-avatar">${initial}</div>
+       <div class="profile-identity-copy">
+         <small>${name?'PROFİL':'GARAJ HESABI'}</small>
+         <b>${name?safeText(name):'Profilini oluştur'}</b>
+         <span>${email?safeText(email):name?safeText(garageName):'Adını ekleyerek Garaj’ı kişiselleştir.'}</span>
+       </div>
+       <button class="profile-edit-btn" onclick="openProfileEdit()">${name?'Düzenle':'Oluştur'}</button>
+     </div>
+     <h1>${name?safeText(garageName)+'.':'Senin Garajın.'}</h1>
+     <p>${name?`${safeText(name)}, araçların, sahiplik verilerin ve kişisel tercihlerin tek merkezde.`:'Araç seçimin, sahiplik verilerin ve kişisel tercihlerin tek merkezde.'}</p>
      <div class="profile-statline">
        <div><b>${myCars.length}</b><span>Araç</span></div>
        <div><b>${st.expenseCount}</b><span>Gider</span></div>
        <div><b>${st.alarmCount}</b><span>Takip</span></div>
      </div>
    </div>
+   ${name?'':`<div class="profile-complete"><b>Garajını kişiselleştir</b><span>Adını eklediğinde Profil ve Garajım ekranları sana özel görünür.</span><button onclick="openProfileEdit()">Adımı ekle</button></div>`}
+   <div class="profile-local-note"><b>Profil durumu:</b> Bu prototipte bilgiler cihazında saklanıyor; henüz gerçek kullanıcı hesabı veya giriş sistemi yok.</div>
    <div class="profile-section-title"><div><small>ÜYELİK</small><h2>Garaj Pro</h2></div><span>${IS_PRO?'Aktif':'Free plan'}</span></div>
    <div class="profile-pro-card">
      <div class="pp-top"><div><small>GARAJ PRO</small><h3>Arabanı seçmekten<br>sahip olmaya kadar.</h3></div><div class="pp-mark">G+</div></div>
@@ -1293,19 +1395,19 @@ function renderProfile(){
      <div><small>Garaj</small><b>${vehicleText}</b></div>
      <div><small>Son 12 ay gider</small><b>${st.total12?moneyTR(st.total12):'—'}</b></div>
    </div>
-   <div class="profile-section-title"><div><small>TERCİHLER</small><h2>Uygulama</h2></div></div>
+   <div class="profile-section-title"><div><small>HESAP</small><h2>Profil ve tercihler</h2></div></div>
    <div class="profile-menu">
+     <button onclick="openProfileEdit()"><span class="pm-icon">${initial}</span><span><b>Profil bilgileri</b><small>${name?safeText(name)+(email?' · '+safeText(email):''):'Adını ve hesap bilgilerini ekle'}</small></span><em>›</em></button>
+     <button onclick="changeGarageNameV25()"><span class="pm-icon">G</span><span><b>Garaj adı</b><small>${safeText(garageName)}</small></span><em>›</em></button>
      <button onclick="toggleTheme()"><span class="pm-icon">◐</span><span><b>Görünüm</b><small>Açık / koyu temayı değiştir</small></span><em>›</em></button>
      <button onclick="alert('Bildirim tercihleri sonraki sürümde burada yönetilecek.')"><span class="pm-icon">⌁</span><span><b>Bildirimler</b><small>Hatırlatıcı ve bakım uyarıları</small></span><em>›</em></button>
      <button onclick="alert('Veri dışa aktarma Garaj Pro ile yakında.')"><span class="pm-icon">⇧</span><span><b>Verilerim</b><small>Garaj ve gider kayıtlarını yönet</small></span><em>›</em></button>
+     <button onclick="garajSignOut()"><span class="pm-icon">↪</span><span><b>Çıkış yap</b><small>Bu cihazdaki oturumu kapat</small></span><em>›</em></button>
    </div>
-   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V11</span></div>
+   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V25</span></div>
  </div>`;
+ applyProfilePersonalization();
 }
-
-
-
-
 
 function renderPersonalHomeV13(){
  let el=document.getElementById('personalHomeV13');if(!el)return;
@@ -1528,228 +1630,163 @@ setTimeout(()=>{setupSearchAssist();maybeOnboard();renderCompareEmptyV12();upgra
 
 renderQuick();renderCats();renderSlots();
 </script>
-<script id="v23-garage">
+<script id="v24-garage">
 (function(){
-  let activeVehicle = 0;
+  let activeVehicle=0;
 
-  function realGarageVehicles(){
-    const cars=(typeof CARS!=='undefined'?CARS:[]);
-    return (typeof myCars!=='undefined'?myCars:[]).map((m,idx)=>{
-      const c=cars.find(x=>x.id===m.carId)||{};
-      return {idx,m,c};
-    }).filter(x=>x.c && x.c.id);
+  function vehicles(){
+    const cars=typeof CARS!=='undefined'?CARS:[];
+    return (typeof myCars!=='undefined'?myCars:[]).map((m,idx)=>({idx,m,c:cars.find(x=>x.id===m.carId)||{}})).filter(x=>x.c.id);
   }
-
-  function fmtMoney(v){
-    return typeof moneyTR==='function' ? moneyTR(Number(v||0)) :
-      Number(v||0).toLocaleString('tr-TR',{maximumFractionDigits:0})+' TL';
+  function fmtMoney(v){return typeof moneyTR==='function'?moneyTR(Number(v||0)):Number(v||0).toLocaleString('tr-TR')+' TL'}
+  function alarmName(type){return (typeof alarms!=='undefined'?alarms:[]).find(x=>x[0]===type)?.[1]||type||'Hatırlatıcı'}
+  function alarmStatus(a){
+    const d=daysUntil(a.date);
+    return d<0?{n:Math.abs(d)+' gün',s:'Gecikmiş'}:d===0?{n:'Bugün',s:'Bugün'}:{n:d+' gün',s:formatDate(a.date)};
   }
-
-  function alarmName(type){
-    return (window.alarms||[]).find(x=>x[0]===type)?.[1] || type || 'Hatırlatıcı';
-  }
-
-  function sectionHtml(i,key,icon,title,sub,body,open=false){
+  function section(i,key,icon,title,sub,body,open=false){
     return `<section class="v23-section ${open?'open':''}" data-v23-section="${i}-${key}">
-      <button type="button" class="v23-section-btn" onclick="toggleGarageSectionV23(${i},'${key}');return false;">
+      <button type="button" class="v23-section-btn" onclick="toggleGarageSectionV24(${i},'${key}');return false;">
         <span class="v23-section-title"><span>${icon}</span><span><b>${title}</b><small>${sub}</small></span></span>
         <span class="v23-section-arrow">›</span>
-      </button>
-      <div class="v23-section-body">${body}</div>
-    </section>`;
+      </button><div class="v23-section-body">${body}</div></section>`;
   }
 
-  function importantBody(m,i){
+  function upcomingBody(m,i){
     const arr=[...(m.alarms||[])].sort((a,b)=>new Date(a.date)-new Date(b.date));
-    if(!arr.length){
-      return `<div class="v23-reminder-empty">Henüz yaklaşan işlem yok. Bakım, muayene, sigorta veya vergi tarihi ekleyebilirsin.</div>
-      <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
-    }
-    return `<div class="v23-action-list">${arr.slice(0,5).map(a=>{
-      const d=daysUntil(a.date);
-      const lead=d<0?`${Math.abs(d)} gün`:d===0?'Bugün':`${d} gün`;
-      const sub=d<0?'Gecikmiş':formatDate(a.date);
-      return `<div class="v23-action">
-        <strong>${lead}</strong>
-        <span><b>${alarmName(a.type)}</b><small>${sub}</small></span>
-        <em>›</em>
-      </div>`;
-    }).join('')}</div>
-    <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Yeni hatırlatıcı</button>`;
+    if(!arr.length)return `<div class="v23-reminder-empty">Yaklaşan kayıt yok. Bakım, muayene, sigorta, MTV veya lastik değişimi için tarih ekleyebilirsin.</div>
+      <button class="v23-primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
+    return `<div class="v23-action-list">${arr.map((a,ai)=>{
+      const x=alarmStatus(a);
+      return `<div class="v23-action"><strong>${x.n}</strong><span><b>${alarmName(a.type)}</b><small>${x.s}</small></span>
+        <button class="v24-row-action" onclick="event.stopPropagation();deleteAlarmV24(${i},${ai})" title="Sil">×</button></div>`;
+    }).join('')}</div><button class="v23-primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
   }
 
-  function costBody(m,i){
-    const st=typeof expenseStats==='function'?expenseStats(m):{month:0,year:0,total:0,cats:{},ex:[]};
+  function costsBody(m,i){
+    const st=typeof expenseStats==='function'?expenseStats(m):{month:0,year:0,total:0,cats:{}};
     const cats=Object.entries(st.cats||{}).sort((a,b)=>b[1]-a[1]).slice(0,4);
-    return `<div class="v23-cost-main"><strong>${fmtMoney(st.month)}</strong><small>Bu ay toplam araç gideri</small></div>
-      <div class="v23-cost-break">${
-        cats.length?cats.map(([k,v])=>`<span class="v23-cost-pill">${EXPENSE_TYPES?.[k]?.name||'Diğer'} <b>${fmtMoney(v)}</b></span>`).join('')
-        :'<span class="v23-cost-pill">Henüz gider kaydı yok</span>'
-      }</div>
-      <button class="v23-primary" type="button" onclick="openExpenseModal(${i})">+ Gider ekle</button>`;
+    return `<div class="v24-cost-grid">
+      <div><small>BU AY</small><b>${fmtMoney(st.month)}</b></div>
+      <div><small>SON 12 AY</small><b>${fmtMoney(st.year)}</b></div>
+      <div><small>TOPLAM KAYITLI</small><b>${fmtMoney(st.total)}</b></div>
+    </div>
+    <div class="v23-cost-break">${cats.length?cats.map(([k,v])=>`<span class="v23-cost-pill">${EXPENSE_TYPES?.[k]?.name||'Diğer'} <b>${fmtMoney(v)}</b></span>`).join(''):'<span class="v23-cost-pill">Henüz harcama kaydı yok</span>'}</div>
+    <button class="v23-primary" onclick="openExpenseModal(${i})">+ Harcama ekle</button>`;
   }
 
   function historyBody(m,i){
-    const ex=[...(m.expenses||[])].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6);
-    if(!ex.length){
-      return `<div class="v23-reminder-empty">Henüz geçmiş kaydı yok. İlk yakıt, bakım, sigorta veya diğer giderini eklediğinde burada görünür.</div>
-      <button class="v23-primary" type="button" onclick="openExpenseModal(${i},'maintenance')">+ İlk kaydı ekle</button>`;
-    }
-    return `<div class="v23-timeline">${ex.map(e=>{
+    const ex=[...(m.expenses||[])].sort((a,b)=>new Date(b.date)-new Date(a.date));
+    if(!ex.length)return `<div class="v23-reminder-empty">Bakım, muayene, lastik, sigorta ve diğer işlemleri kaydettikçe aracının geçmişi burada oluşacak.</div>
+      <button class="v23-primary" onclick="openExpenseModal(${i},'maintenance')">+ İlk işlem kaydını ekle</button>`;
+    return `<div class="v23-timeline">${ex.slice(0,8).map(e=>{
       const t=EXPENSE_TYPES?.[e.type]||EXPENSE_TYPES?.other||{name:'Diğer'};
       const extra=[e.km?Number(e.km).toLocaleString('tr-TR')+' km':'',e.note||''].filter(Boolean).join(' · ');
-      return `<div class="v23-event"><b>${t.name} · ${fmtMoney(e.amount)}</b><small>${formatDate(e.date)}${extra?' · '+safeText(extra):''}</small></div>`;
-    }).join('')}</div>
-    <button class="v23-primary" type="button" onclick="openExpenseModal(${i})">+ Geçmişe kayıt ekle</button>`;
-  }
-
-  function remindersBody(m,i){
-    const arr=[...(m.alarms||[])].sort((a,b)=>new Date(a.date)-new Date(b.date));
-    return `${arr.length?`<div class="v23-action-list">${arr.map(a=>{
-      const d=daysUntil(a.date);
-      return `<div class="v23-action"><strong>${d<0?Math.abs(d)+' gün':d===0?'Bugün':d+' gün'}</strong><span><b>${alarmName(a.type)}</b><small>${formatDate(a.date)}</small></span><em>›</em></div>`;
-    }).join('')}</div>`:'<div class="v23-reminder-empty">Araca özel hatırlatıcılarını burada yönetebilirsin.</div>'}
-    <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
+      return `<div class="v23-event"><b>${t.name}${Number(e.amount)>0?' · '+fmtMoney(e.amount):''}</b>
+        <small>${formatDate(e.date)}${extra?' · '+safeText(extra):''}</small>
+        <span class="v24-history-actions"><button onclick="editExpenseV24(${i},${Number(e.id)})">Düzenle</button><button onclick="deleteExpenseV24(${i},${Number(e.id)})">Sil</button></span></div>`;
+    }).join('')}</div><button class="v23-primary" onclick="openExpenseModal(${i},'maintenance')">+ İşlem ekle</button>`;
   }
 
   function vehicleHtml(v){
-    const {idx:i,m,c}=v;
-    const alarmArr=m.alarms||[];
-    const overdue=alarmArr.filter(a=>daysUntil(a.date)<0).length;
-    const soon=alarmArr.filter(a=>{const d=daysUntil(a.date);return d>=0&&d<=30}).length;
+    const {idx:i,m,c}=v, aa=m.alarms||[];
+    const overdue=aa.filter(a=>daysUntil(a.date)<0).length;
+    const soon=aa.filter(a=>{const d=daysUntil(a.date);return d>=0&&d<=30}).length;
     const st=typeof expenseStats==='function'?expenseStats(m):{month:0};
-    const lastExp=[...(m.expenses||[])].sort((a,b)=>new Date(b.date)-new Date(a.date))[0];
+    const next=[...aa].filter(a=>daysUntil(a.date)>=0).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
     const title=[m.year,c.brand,c.model].filter(Boolean).join(' ');
     const km=Number(m.km||0).toLocaleString('tr-TR');
+    const status=overdue?`${overdue} gecikmiş`:soon?`${soon} yaklaşıyor`:next?`${alarmName(next.type)} · ${daysUntil(next.date)} gün`:'Takvim sakin';
 
     return `<article class="v23-car ${i===activeVehicle?'open':''}" data-v23-car="${i}">
-      <button type="button" class="v23-car-head" onclick="toggleVehicleV23(${i});return false;">
-        <span class="v23-car-mark">⌁</span>
-        <span class="v23-car-meta"><b>${title}</b><small>${c.variant||''}${m.plate?' · '+safeText(m.plate):''} · ${km} km</small></span>
-        <span class="v23-car-state">›</span>
+      <button type="button" class="v23-car-head" onclick="toggleVehicleV24(${i});return false;">
+        <span class="v23-car-mark">⌁</span><span class="v23-car-meta"><b>${title}</b><small>${c.variant||''}${m.plate?' · '+safeText(m.plate):''} · ${km} km</small></span>
+        <span class="v24-collapsed-info">${soon+overdue?soon+overdue+' yaklaşan':'Takvim sakin'} · ${fmtMoney(st.month)} bu ay</span><span class="v23-car-state">›</span>
       </button>
       <div class="v23-car-body">
-        <div class="v23-hero">
-          <div class="v23-hero-top">
-            <div><div class="v23-eyebrow">Güncel kilometre</div><div class="v23-km">${km} km</div></div>
-            <span style="display:flex;gap:12px;align-items:center">
-  <span class="v23-edit" onclick="openGarageEditV23(${i})">Düzenle</span>
-  <span class="v23-delete" onclick="deleteGarageCarV23(${i})">Garajdan çıkar</span>
-</span>
-          </div>
-          <div class="v23-health">
-            <span class="v23-chip"><strong>${soon+overdue}</strong> yakın / gecikmiş</span>
-            <span class="v23-chip"><strong>${fmtMoney(st.month)}</strong> bu ay</span>
-            <span class="v23-chip"><strong>${lastExp?'Son kayıt':'Kayıt yok'}</strong>${lastExp?' '+formatDate(lastExp.date):''}</span>
-          </div>
-        </div>
-
-        ${sectionHtml(i,'important','◷','Şu an önemli olanlar',
-          overdue?`${overdue} gecikmiş`:soon?`${soon} yaklaşıyor`:'Takvim sakin',
-          importantBody(m,i),true)}
-
-        ${sectionHtml(i,'cost','₺','Maliyet','Gerçek sahiplik giderleri',costBody(m,i))}
-        ${sectionHtml(i,'history','↺','Araç geçmişi',`${(m.expenses||[]).length} kayıt`,historyBody(m,i))}
-        ${sectionHtml(i,'reminders','⏱','Hatırlatıcılar',`${alarmArr.length} aktif kayıt`,remindersBody(m,i))}
-
+        <div class="v23-hero"><div class="v23-hero-top">
+          <div><div class="v23-eyebrow">Güncel kilometre</div><div class="v23-km">${km} km</div></div>
+          <span style="display:flex;gap:12px;align-items:center"><span class="v23-edit" onclick="openGarageEditV24(${i})">Düzenle</span><span class="v23-delete" onclick="deleteGarageCarV24(${i})">Garajdan çıkar</span></span>
+        </div><div class="v23-health">
+          <span class="v23-chip"><strong>${status}</strong></span>
+          <span class="v23-chip"><strong>${fmtMoney(st.month)}</strong> bu ay</span>
+          <span class="v23-chip"><strong>${(m.expenses||[]).length}</strong> geçmiş kaydı</span>
+        </div></div>
+        ${section(i,'upcoming','◷','Yaklaşanlar',status,upcomingBody(m,i),true)}
+        ${section(i,'cost','₺','Harcamalar',st.month?`${fmtMoney(st.month)} bu ay`:'Henüz kayıt yok',costsBody(m,i))}
+        ${section(i,'history','↺','Araç Geçmişi',`${(m.expenses||[]).length} işlem`,historyBody(m,i))}
         <button class="v23-primary" type="button" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç teknik detayları</button>
-      </div>
-    </article>`;
+      </div></article>`;
   }
 
-  window.toggleVehicleV23=function(index){
-    const target=document.querySelector(`[data-v23-car="${index}"]`);
-    if(!target)return;
-    const wasOpen=target.classList.contains('open');
-    document.querySelectorAll('[data-v23-car]').forEach(el=>el.classList.remove('open'));
-    if(!wasOpen){target.classList.add('open');activeVehicle=index}
-    else activeVehicle=-1;
+  window.toggleVehicleV24=function(i){
+    const t=document.querySelector(`[data-v23-car="${i}"]`); if(!t)return;
+    const was=t.classList.contains('open');
+    document.querySelectorAll('[data-v23-car]').forEach(x=>x.classList.remove('open'));
+    if(!was){t.classList.add('open');activeVehicle=i}else activeVehicle=-1;
+  };
+  window.toggleGarageSectionV24=function(i,key){
+    const s=document.querySelector(`[data-v23-section="${i}-${key}"]`);
+    if(s)s.classList.toggle('open');
   };
 
-  window.toggleGarageSectionV23=function(i,key){
-    const sec=document.querySelector(`[data-v23-section="${i}-${key}"]`);
-    if(sec)sec.classList.toggle('open');
+  window.deleteAlarmV24=function(ci,ai){
+    const m=myCars[ci]; if(!m?.alarms?.[ai])return;
+    if(!confirm('Bu hatırlatıcı silinsin mi?'))return;
+    m.alarms.splice(ai,1);persist();renderGarageV24();
   };
 
-  window.openGarageEditV23=function(i){
-    const m=myCars[i],c=CARS.find(x=>x.id===m.carId);
-    if(!m||!c)return;
-    modalBody.innerHTML=`<h3>${c.brand} ${c.model}</h3>
-      <div class="sub">Araç bilgilerini güncelle.</div>
-      <div class="field" style="margin-top:14px"><label>Model yılı</label><input id="v23EditYear" type="number" value="${m.year||''}"></div>
-      <div class="field"><label>Kilometre</label><input id="v23EditKm" type="number" min="0" value="${m.km||0}"></div>
-      <div class="field"><label>Plaka (opsiyonel)</label><input id="v23EditPlate" value="${safeText(m.plate||'')}"></div>
-      <button class="full" onclick="saveGarageEditV23(${i})">Değişiklikleri kaydet</button>`;
+  window.editExpenseV24=function(ci,id){
+    const m=myCars[ci],e=m?.expenses?.find(x=>Number(x.id)===Number(id));if(!e)return;
+    window.v24EditExpense={ci,id};
+    modalBody.innerHTML=`<h3>Kaydı düzenle</h3>
+      <div class="field"><label>Tutar (TL)</label><input id="v24EA" type="number" min="0" step="0.01" value="${Number(e.amount||0)}"></div>
+      <div class="field"><label>Tarih</label><input id="v24ED" type="date" value="${e.date||''}"></div>
+      <div class="field"><label>Kilometre</label><input id="v24EK" type="number" min="0" value="${e.km??''}"></div>
+      <div class="field"><label>Not</label><input id="v24EN" maxlength="70" value="${safeText(e.note||'')}"></div>
+      <button class="full" onclick="saveExpenseEditV24()">Değişiklikleri kaydet</button>`;
     modalBack.classList.add('open');
   };
-
-  window.saveGarageEditV23=function(i){
-    const m=myCars[i]; if(!m)return;
-    m.year=document.getElementById('v23EditYear').value||m.year;
-    m.km=document.getElementById('v23EditKm').value||m.km;
-    m.plate=document.getElementById('v23EditPlate').value.trim();
-    persist(); closeModal(); renderGarage();
+  window.saveExpenseEditV24=function(){
+    const x=window.v24EditExpense,m=myCars[x?.ci],e=m?.expenses?.find(z=>Number(z.id)===Number(x.id));if(!e)return;
+    const amount=Number(document.getElementById('v24EA').value);if(amount<0)return;
+    e.amount=amount;e.date=document.getElementById('v24ED').value||e.date;
+    const km=document.getElementById('v24EK').value;e.km=km===''?null:Number(km);
+    e.note=document.getElementById('v24EN').value.trim();persist();closeModal();renderGarageV24();
+  };
+  window.deleteExpenseV24=function(ci,id){
+    if(!confirm('Bu geçmiş kaydı silinsin mi?'))return;
+    deleteExpense(ci,id);renderGarageV24();
   };
 
-
-  window.deleteGarageCarV23=function(i){
-    const m=myCars[i];
-    if(!m)return;
-    const c=CARS.find(x=>x.id===m.carId);
-    const name=c?`${c.brand} ${c.model}`:'Bu araç';
-
-    modalBody.innerHTML=`<h3>Garajdan çıkar?</h3>
-      <div class="sub"><b>${name}</b> ve bu araca bağlı gider/hatırlatıcı kayıtları Garaj'dan kaldırılacak.</div>
-      <div style="display:flex;gap:8px;margin-top:18px">
-        <button class="btn" style="flex:1" onclick="closeModal()">Vazgeç</button>
-        <button class="full" style="flex:1;margin:0" onclick="confirmDeleteGarageCarV23(${i})">Garajdan çıkar</button>
-      </div>`;
-    modalBack.classList.add('open');
+  window.openGarageEditV24=function(i){
+    const m=myCars[i],c=CARS.find(x=>x.id===m.carId);if(!m||!c)return;
+    modalBody.innerHTML=`<h3>${c.brand} ${c.model}</h3><div class="sub">Araç bilgilerini güncelle.</div>
+      <div class="field" style="margin-top:14px"><label>Model yılı</label><input id="v24Year" type="number" value="${m.year||''}"></div>
+      <div class="field"><label>Kilometre</label><input id="v24Km" type="number" min="0" value="${m.km||0}"></div>
+      <div class="field"><label>Plaka (opsiyonel)</label><input id="v24Plate" value="${safeText(m.plate||'')}"></div>
+      <button class="full" onclick="saveGarageEditV24(${i})">Değişiklikleri kaydet</button>`;modalBack.classList.add('open');
   };
-
-  window.confirmDeleteGarageCarV23=function(i){
-    if(i<0||i>=myCars.length)return;
-    myCars.splice(i,1);
-    persist();
-    activeVehicle=myCars.length?Math.min(i,myCars.length-1):-1;
-    closeModal();
-    renderGarageV23();
+  window.saveGarageEditV24=function(i){
+    const m=myCars[i];if(!m)return;m.year=document.getElementById('v24Year').value||m.year;m.km=document.getElementById('v24Km').value||m.km;m.plate=document.getElementById('v24Plate').value.trim();persist();closeModal();renderGarageV24();
   };
-
-  window.renderGarageV23=function(){
-    normalizeGarageData();
-    const host=document.getElementById('garageContent');
-    if(!host)return;
-    const vehicles=realGarageVehicles();
-
-    if(!vehicles.length){
-      host.innerHTML=`<div class="v23-garage"><div class="v23-head"><div><small>KİŞİSEL GARAJ</small><h2>Garajım</h2></div></div>
-      <div class="v23-car"><div class="v23-car-body" style="display:block;border-top:0">
-        <div class="v23-reminder-empty">Garajın henüz boş. Bir araç eklediğinde kilometre, gider, geçmiş ve hatırlatıcılar burada yaşayacak.</div>
-        <button class="v23-primary" onclick="openFirstGarageCarV23()">İlk aracını ekle</button>
-      </div></div></div>`;
-      return;
-    }
-
-    if(activeVehicle>=vehicles.length)activeVehicle=0;
-    host.innerHTML=`<div class="v23-garage">
-      <div class="v23-head"><div><small>KİŞİSEL GARAJ</small><h2>Garajım</h2></div>
-      <button type="button" class="v23-addcar" onclick="openGaragePicker()">+ Araç ekle</button></div>
-      <div>${vehicles.map(vehicleHtml).join('')}</div>
-    </div>`;
+  window.deleteGarageCarV24=function(i){
+    const m=myCars[i],c=CARS.find(x=>x.id===m?.carId);if(!m)return;
+    modalBody.innerHTML=`<h3>Garajdan çıkar?</h3><div class="sub"><b>${c?c.brand+' '+c.model:'Bu araç'}</b> ve bu araca bağlı kayıtlar kaldırılacak.</div>
+      <div style="display:flex;gap:8px;margin-top:18px"><button class="btn" style="flex:1" onclick="closeModal()">Vazgeç</button><button class="full" style="flex:1;margin:0" onclick="confirmDeleteGarageCarV24(${i})">Garajdan çıkar</button></div>`;modalBack.classList.add('open');
   };
+  window.confirmDeleteGarageCarV24=function(i){myCars.splice(i,1);persist();activeVehicle=myCars.length?Math.min(i,myCars.length-1):-1;closeModal();renderGarageV24()};
 
-  window.renderGarage=window.renderGarageV23;
-
-  document.addEventListener('click',function(e){
-    const el=e.target.closest?.('[onclick*="showScreen"]');
-    if(el&&(el.getAttribute('onclick')||'').includes('garage'))setTimeout(window.renderGarageV23,0);
-  },true);
-
-  setTimeout(()=>{
-    const screen=document.getElementById('screen-garage');
-    if(screen&&screen.classList.contains('active'))window.renderGarageV23();
-  },0);
+  window.renderGarageV24=function(){
+    normalizeGarageData();const host=document.getElementById('garageContent');if(!host)return;const vv=vehicles();
+    if(!vv.length){host.innerHTML=`<div class="v23-garage"><div class="v24-garage-top"><div><small>KİŞİSEL GARAJ</small><b>Aracını ekle, gerisini Garaj takip etsin.</b></div></div>
+      <div class="v23-car"><div class="v23-car-body" style="display:block;border-top:0"><div class="v23-reminder-empty">Kilometre, yaklaşan işler, harcamalar ve araç geçmişi tek yerde tutulur.</div><button class="v23-primary" onclick="openFirstGarageCarV23()">İlk aracını ekle</button></div></div></div>`;return}
+    if(activeVehicle>=vv.length)activeVehicle=0;
+    host.innerHTML=`<div class="v23-garage"><div class="v24-garage-top"><div><small>KİŞİSEL GARAJ</small><b>${vv.length} araç kayıtlı</b></div><button type="button" class="v23-addcar" onclick="openGaragePicker()">+ Araç ekle</button></div><div>${vv.map(vehicleHtml).join('')}</div></div>`;
+  };
+  window.renderGarage=window.renderGarageV24;
+  document.addEventListener('click',e=>{const el=e.target.closest?.('[onclick*="showScreen"]');if(el&&(el.getAttribute('onclick')||'').includes('garage'))setTimeout(renderGarageV24,0)},true);
+  setTimeout(()=>{if(document.getElementById('screen-garage')?.classList.contains('active'))renderGarageV24()},0);
 })();
 </script>
 
@@ -1835,6 +1872,166 @@ window.saveFirstGarageCarV23=function(id){
   if(typeof renderGarageV23==='function')renderGarageV23();
   else if(typeof renderGarage==='function')renderGarage();
 };
+
+setTimeout(applyProfilePersonalization,0);
+
+// ================= V25 REAL AUTH / SUPABASE =================
+// Fill these two public values from Supabase Project Settings > API.
+// Never put a service_role key in browser code.
+const GARAJ_SUPABASE_URL='https://scltlifdclvzlqdkyxln.supabase.co';
+const GARAJ_SUPABASE_PUBLISHABLE_KEY='sb_publishable_WILVEmPcvF0eFDWhW4tLpQ_Q360oDru';
+
+let garajSb=null, garajSession=null, authMode='login';
+
+function garajSupabaseConfigured(){
+  return GARAJ_SUPABASE_URL.startsWith('https://') &&
+         !GARAJ_SUPABASE_URL.includes('PASTE_') &&
+         !GARAJ_SUPABASE_PUBLISHABLE_KEY.includes('PASTE_');
+}
+function getLocalProfile(){ return garajProfile(); }
+function setLocalProfile(p){ localStorage.setItem('garajUserProfileV1',JSON.stringify(p||{})); }
+
+function renderAuthGate(mode='login',msg=''){
+  authMode=mode;
+  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
+  if(!gate||!card)return;
+  gate.classList.add('open');
+  const configured=garajSupabaseConfigured();
+
+  if(!configured){
+    card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
+      <div class="auth-kicker">GERÇEK ÜYELİK ALTYAPISI HAZIR</div>
+      <h2>Supabase bağlantısını tamamla.</h2>
+      <p>Kayıt olma, giriş, oturum ve kullanıcıya özel garaj adı hazır. Çalışması için yalnızca Supabase proje URL'i ve publishable key gerekiyor.</p>
+      <div class="auth-setup">Dosyada <b>GARAJ_SUPABASE_URL</b> ve <b>GARAJ_SUPABASE_PUBLISHABLE_KEY</b> alanlarını doldur. Ardından yanında verdiğim SQL dosyasını Supabase SQL Editor'da bir kez çalıştır.</div>
+      <button class="auth-secondary" onclick="document.getElementById('authGate').classList.remove('open')">Şimdilik uygulamayı görüntüle</button>`;
+    return;
+  }
+
+  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
+    <div class="auth-kicker">${mode==='signup'?'YENİ HESAP':'TEKRAR HOŞ GELDİN'}</div>
+    <h2>${mode==='signup'?'Garaj hesabını oluştur.':'Hesabına giriş yap.'}</h2>
+    <p>${mode==='signup'?'Araçların, harcamaların ve hatırlatıcıların hesabına bağlanacak.':'Kişisel garajına kaldığın yerden devam et.'}</p>
+    <div class="auth-tabs">
+      <button class="${mode==='login'?'active':''}" onclick="renderAuthGate('login')">Giriş yap</button>
+      <button class="${mode==='signup'?'active':''}" onclick="renderAuthGate('signup')">Kayıt ol</button>
+    </div>
+    ${mode==='signup'?`<div class="field"><label>Adın</label><input id="authName" autocomplete="name" placeholder="Kerem"></div>`:''}
+    <div class="field"><label>E-posta</label><input id="authEmail" type="email" autocomplete="email" placeholder="ornek@mail.com"></div>
+    <div class="field"><label>Şifre</label><input id="authPassword" type="password" autocomplete="${mode==='signup'?'new-password':'current-password'}" placeholder="En az 6 karakter"></div>
+    <button class="full" onclick="${mode==='signup'?'garajSignUp()':'garajSignIn()'}">${mode==='signup'?'Hesap oluştur':'Giriş yap'}</button>
+    <div id="authMessage" class="auth-error ${msg.includes('gönderildi')?'auth-success':''}">${safeText(msg)}</div>`;
+}
+async function garajSignUp(){
+  const name=(document.getElementById('authName')?.value||'').trim();
+  const email=(document.getElementById('authEmail')?.value||'').trim();
+  const password=document.getElementById('authPassword')?.value||'';
+  const m=document.getElementById('authMessage');
+  if(!name||!email||password.length<6){m.textContent='Ad, geçerli e-posta ve en az 6 karakter şifre gir.';return}
+  m.textContent='Hesap oluşturuluyor…';
+  const {data,error}=await garajSb.auth.signUp({email,password,options:{data:{name}}});
+  if(error){m.textContent=error.message;return}
+  if(data.session){
+    garajSession=data.session;
+    await ensureProfileRow(data.user,name);
+    await loadRemoteProfile();
+    renderGarageOnboardingIfNeeded();
+  }else{
+    m.textContent='Doğrulama e-postası gönderildi. E-postanı onayladıktan sonra giriş yap.';
+    m.classList.add('auth-success');
+  }
+}
+async function garajSignIn(){
+  const email=(document.getElementById('authEmail')?.value||'').trim();
+  const password=document.getElementById('authPassword')?.value||'';
+  const m=document.getElementById('authMessage');m.textContent='Giriş yapılıyor…';
+  const {data,error}=await garajSb.auth.signInWithPassword({email,password});
+  if(error){m.textContent=error.message;return}
+  garajSession=data.session;
+  await loadRemoteProfile();
+  renderGarageOnboardingIfNeeded();
+}
+async function garajSignOut(){
+  if(!garajSb)return;
+  await garajSb.auth.signOut();
+  garajSession=null;
+  localStorage.removeItem('garajUserProfileV1');
+  applyProfilePersonalization();
+  renderAuthGate('login');
+}
+async function ensureProfileRow(user,fallbackName=''){
+  if(!user)return;
+  const name=(user.user_metadata?.name||fallbackName||'').trim();
+  await garajSb.from('profiles').upsert({user_id:user.id,name},{onConflict:'user_id'});
+}
+async function loadRemoteProfile(){
+  if(!garajSession?.user)return;
+  await ensureProfileRow(garajSession.user);
+  const {data,error}=await garajSb.from('profiles').select('name,garage_name,avatar_url').eq('user_id',garajSession.user.id).maybeSingle();
+  if(!error&&data){
+    setLocalProfile({name:data.name||garajSession.user.user_metadata?.name||'',email:garajSession.user.email||'',garage_name:data.garage_name||'',avatar_url:data.avatar_url||''});
+  }
+  document.getElementById('authGate')?.classList.remove('open');
+  applyProfilePersonalization();
+  if(typeof renderProfile==='function')renderProfile();
+}
+function renderGarageOnboardingIfNeeded(){
+  const p=getLocalProfile();
+  if((p.garage_name||'').trim()){document.getElementById('authGate')?.classList.remove('open');return}
+  const name=(p.name||'').trim()||'Garaj';
+  const suggestions=[garajPossessive(name),'My Garage','Blackline Garage','Weekend Garage'];
+  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
+  gate.classList.add('open');
+  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
+    <div class="auth-kicker">SON BİR ADIM</div>
+    <h2>Garajına bir isim ver.</h2>
+    <p>Bu isim tamamen sana ait. İstersen daha sonra Profil'den değiştirebilirsin.</p>
+    <div class="field"><label>Garaj adı</label><input id="garageNameOnboard" maxlength="40" value="${safeText(suggestions[0])}"></div>
+    <div class="onboard-picks">${suggestions.map(x=>`<button onclick="document.getElementById('garageNameOnboard').value='${safeText(x)}'">${safeText(x)}</button>`).join('')}</div>
+    <button class="full" onclick="saveGarageNameOnboarding()">Garajımı oluştur</button>
+    <div id="authMessage" class="auth-error"></div>`;
+}
+async function saveGarageNameOnboarding(){
+  const garage_name=(document.getElementById('garageNameOnboard')?.value||'').trim();
+  const m=document.getElementById('authMessage');
+  if(garage_name.length<2){m.textContent='Garaj adı en az 2 karakter olmalı.';return}
+  const uid=garajSession?.user?.id;if(!uid)return;
+  const {error}=await garajSb.from('profiles').update({garage_name}).eq('user_id',uid);
+  if(error){m.textContent=error.message;return}
+  const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);
+  document.getElementById('authGate').classList.remove('open');
+  applyProfilePersonalization();renderProfile();if(typeof renderGarageV24==='function')renderGarageV24();
+}
+async function changeGarageNameV25(){
+  const p=getLocalProfile();
+  modalBody.innerHTML=`<h3>Garaj adını değiştir</h3><div class="sub">Garajın sana ait; adını istediğin zaman değiştirebilirsin.</div>
+    <div class="field" style="margin-top:14px"><label>Garaj adı</label><input id="garageNameEdit" maxlength="40" value="${safeText(p.garage_name||'')}"></div>
+    <button class="full" onclick="saveGarageNameV25()">Kaydet</button>`;
+  modalBack.classList.add('open');
+}
+async function saveGarageNameV25(){
+  const garage_name=(document.getElementById('garageNameEdit')?.value||'').trim();
+  if(garage_name.length<2)return alert('Garaj adı en az 2 karakter olmalı.');
+  if(garajSb&&garajSession){
+    const {error}=await garajSb.from('profiles').update({garage_name}).eq('user_id',garajSession.user.id);
+    if(error)return alert(error.message);
+  }
+  const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);closeModal();applyProfilePersonalization();renderProfile();
+}
+async function initGarajAuth(){
+  if(!garajSupabaseConfigured()){renderAuthGate('login');return}
+  garajSb=window.supabase.createClient(GARAJ_SUPABASE_URL,GARAJ_SUPABASE_PUBLISHABLE_KEY);
+  const {data}=await garajSb.auth.getSession();
+  garajSession=data.session;
+  garajSb.auth.onAuthStateChange(async(_event,session)=>{
+    garajSession=session;
+    if(session){await loadRemoteProfile();renderGarageOnboardingIfNeeded()}
+  });
+  if(!garajSession){renderAuthGate('login');return}
+  await loadRemoteProfile();renderGarageOnboardingIfNeeded();
+}
+window.addEventListener('load',initGarajAuth);
+
 </script>
 
 </body></html>
