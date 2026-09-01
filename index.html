@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V28.9 Greeting In Hero |  — Premium V24</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V29.5 Category Toggle Load Fix |  — Premium V24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -1228,6 +1228,292 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 }
 </style>
 
+
+<style id="v29-find-compare-css">
+/* V29 — arama ve karşılaştırma tek, anlaşılır giriş alanı */
+#screen-home .v29-find-compare{
+  margin:18px 16px 0;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(145deg,var(--surface),var(--surface2));
+}
+#screen-home .v29-find-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+#screen-home .v29-find-head small{
+  display:block;
+  margin-bottom:4px;
+  color:var(--gold);
+  font-size:8px;
+  line-height:1;
+  font-weight:850;
+  letter-spacing:.18em;
+}
+#screen-home .v29-find-head strong{
+  display:block;
+  font-size:16px;
+  line-height:1.2;
+  letter-spacing:-.02em;
+}
+#screen-home .v29-command{
+  margin:0!important;
+}
+#screen-home .v29-command .v14-search{
+  min-height:50px;
+  background:rgba(255,255,255,.018)!important;
+  border-radius:14px!important;
+}
+#screen-home .v29-command .v14-filter{
+  border-radius:14px!important;
+}
+#screen-home .v29-compare-row{
+  width:100%;
+  margin-top:11px;
+  padding:13px 12px;
+  border:0;
+  border-top:1px solid var(--line);
+  background:transparent;
+  color:var(--text);
+  display:grid;
+  grid-template-columns:36px 1fr 24px;
+  gap:11px;
+  align-items:center;
+  text-align:left;
+  cursor:pointer;
+}
+#screen-home .v29-compare-icon{
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:rgba(199,166,97,.13);
+  color:var(--gold);
+  font-size:16px;
+  font-weight:800;
+}
+#screen-home .v29-compare-copy strong{
+  display:block;
+  font-size:13px;
+  line-height:1.2;
+  font-weight:850;
+}
+#screen-home .v29-compare-copy small{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:9px;
+}
+#screen-home .v29-arrow{
+  justify-self:end;
+  color:var(--gold);
+  font-size:16px;
+  transition:transform .18s ease;
+}
+#screen-home .v29-compare-row:hover .v29-arrow{
+  transform:translateX(2px);
+}
+#screen-home .v15-primary-actions{
+  display:none!important;
+}
+#screen-home .v14-chips{
+  margin-top:8px;
+}
+[data-theme="light"] #screen-home .v29-find-compare{
+  background:linear-gradient(145deg,var(--surface),rgba(174,132,55,.035));
+}
+@media(max-width:650px){
+  #screen-home .v29-find-compare{
+    margin-left:0;
+    margin-right:0;
+    padding:15px;
+    border-radius:18px;
+  }
+}
+</style>
+
+
+<style id="v292-test-pro-css">
+/* V29.2 — development-only Pro toggle */
+.v292-dev-pro{
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px dashed rgba(199,166,97,.45);
+  border-radius:14px;
+  background:rgba(199,166,97,.055);
+}
+.v292-dev-pro small{
+  display:block;
+  margin-bottom:7px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.v292-dev-pro button{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:10px 12px;
+  background:var(--surface2);
+  color:var(--text);
+  font:inherit;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+.v292-dev-pro button[data-pro="1"]{
+  color:var(--gold);
+  border-color:rgba(199,166,97,.4);
+}
+</style>
+
+
+<style id="v294-multi-compare-css">
+/* V29.4 — 3/4 araç karşılaştırma düzeni */
+#screen-compare.v294-count-3 .v16-slots{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+#screen-compare.v294-count-4 .v16-slots{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+#screen-compare.v294-count-3 .v16-slots .slot,
+#screen-compare.v294-count-4 .v16-slots .slot{
+  grid-column:auto!important;
+  min-height:76px!important;
+  height:76px!important;
+  flex-direction:column!important;
+  gap:0!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+}
+#screen-compare.v294-count-3 .v16-slots .slot .model,
+#screen-compare.v294-count-4 .v16-slots .slot .model{
+  font-size:14px!important;
+  max-width:calc(100% - 18px);
+}
+#screen-compare.v294-count-4 .v16-slots .slot{
+  padding:10px!important;
+}
+#screen-compare.v294-count-4 .v16-slots .slot .model{
+  font-size:12px!important;
+}
+.v294-widebar{
+  display:none;
+  margin:0 16px 12px;
+}
+#screen-compare.v294-count-4 .v294-widebar{display:flex}
+.v294-widebar button{
+  width:100%;
+  border:1px solid rgba(201,165,101,.32);
+  border-radius:13px;
+  background:rgba(201,165,101,.07);
+  color:var(--text);
+  padding:11px 13px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:9px;
+  font-weight:850;
+}
+.v294-widebar button span:last-child{color:var(--gold)}
+/* 3 araç: tek ekranda üç kolon */
+#screen-compare.v294-count-3 .v16-data-body .row{
+  grid-template-columns:minmax(105px,1.05fr) repeat(3,minmax(74px,1fr))!important;
+}
+/* 4 araç portrait fallback: yatay scroll, asla wrap etme */
+#screen-compare.v294-count-4 .v16-data-body .ctable{overflow-x:auto!important}
+#screen-compare.v294-count-4 .v16-data-body .row{
+  min-width:660px!important;
+  grid-template-columns:120px repeat(4,130px)!important;
+}
+/* Geniş görünüm: comparison workspace */
+body.v294-wide{overflow:hidden}
+body.v294-wide #screen-compare{
+  position:fixed!important;
+  inset:0!important;
+  z-index:1000!important;
+  display:block!important;
+  overflow:auto!important;
+  padding:18px 26px 34px!important;
+  background:var(--bg)!important;
+}
+body.v294-wide .header,
+body.v294-wide .premium-nav{display:none!important}
+body.v294-wide #screen-compare .v16-compare-head{
+  padding:0 0 12px!important;
+}
+body.v294-wide #screen-compare .v21-compare-pickhint{margin-left:0!important}
+body.v294-wide #screen-compare .v16-slots{
+  margin-left:0!important;
+  margin-right:0!important;
+  grid-template-columns:repeat(4,minmax(150px,1fr))!important;
+}
+body.v294-wide #screen-compare .v294-widebar{
+  margin-left:0!important;
+  margin-right:0!important;
+}
+body.v294-wide #screen-compare .v294-widebar button{
+  width:auto;
+  margin-left:auto;
+  min-width:150px;
+}
+body.v294-wide #screen-compare .v16-data-head{
+  padding-left:0!important;
+  padding-right:0!important;
+}
+body.v294-wide #screen-compare .v16-data-body{
+  padding-left:0!important;
+  padding-right:0!important;
+}
+body.v294-wide #screen-compare .v16-data-body .ctable{
+  overflow:visible!important;
+}
+body.v294-wide #screen-compare .v16-data-body .row{
+  min-width:0!important;
+  grid-template-columns:minmax(150px,1.05fr) repeat(4,minmax(145px,1fr))!important;
+}
+body.v294-wide #screen-compare .v19-decision,
+body.v294-wide #screen-compare .v21-life,
+body.v294-wide #screen-compare .v16-why,
+body.v294-wide #screen-compare .v16-savebar{
+  max-width:none!important;
+}
+@media(max-width:650px){
+  #screen-compare.v294-count-3 .v16-slots{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #screen-compare.v294-count-3 .v16-slots .slot{
+    padding:8px!important;
+  }
+  #screen-compare.v294-count-3 .v16-slots .slot .model{font-size:11px!important}
+  #screen-compare.v294-count-3 .v16-data-body .ctable{overflow-x:auto!important}
+  #screen-compare.v294-count-3 .v16-data-body .row{
+    min-width:520px!important;
+    grid-template-columns:110px repeat(3,130px)!important;
+  }
+}
+</style>
+
+
+<style id="v295-fixes-css">
+/* V29.5 — hero yüklenme flash'ını kaldır */
+html:not(.v295-auth-ready) #screen-home .v28-hero{
+  visibility:visible!important;
+  opacity:1!important;
+}
+
+/* Kategori detayında tıklama hissi daha stabil */
+#screen-compare [data-v295-detail-open="1"]{
+  overflow:visible!important;
+}
+</style>
+
 </head><body data-theme="dark">
 <div class="v26-auth-overlay" id="v26AuthOverlay" aria-hidden="true">
   <div class="v26-auth-card" id="v26AuthCard"></div>
@@ -1244,13 +1530,33 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Aracın her aşamasında yanında.</em></h1></div>
 </div>
 <div class="v14-select" id="v14Select"></div>
-<div class="v14-command">
-  <div class="search v14-search"><span>⌕</span><input id="homeSearch" placeholder="Marka, model veya gövde tipi ara" oninput="homeSearchInput(this.value)"></div>
-  <button class="v14-filter" onclick="openV14Discovery()" aria-label="Keşfet filtreleri"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg></button>
-</div>
-<div class="v15-primary-actions">
-  <button class="v15-compare-cta" onclick="showScreen('compare')"><span><small>ANA ARAÇ</small>Karşılaştırmaya başla</span><b>⇄</b></button>
-</div>
+<section class="v29-find-compare" aria-label="Araç bul ve karşılaştır">
+  <div class="v29-find-head">
+    <div>
+      <small>ARAÇLAR</small>
+      <strong>Bul veya karşılaştır</strong>
+    </div>
+  </div>
+
+  <div class="v14-command v29-command">
+    <div class="search v14-search">
+      <span>⌕</span>
+      <input id="homeSearch" placeholder="Marka veya model ara" oninput="homeSearchInput(this.value)">
+    </div>
+    <button class="v14-filter" onclick="openV14Discovery()" aria-label="Araç filtreleri">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+    </button>
+  </div>
+
+  <button class="v29-compare-row" onclick="showScreen('compare')">
+    <span class="v29-compare-icon">⇄</span>
+    <span class="v29-compare-copy">
+      <strong>Araç karşılaştır</strong>
+      <small>2–4 aracı yan yana incele</small>
+    </span>
+    <span class="v29-arrow">→</span>
+  </button>
+</section>
 <div class="chips v14-chips" id="quickChips"></div>
 <div id="personalHomeV13"></div>
 <div id="v14Ownership"></div>
@@ -1277,7 +1583,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
     <div class="sub">Araçları yan yana koy. Farkı tek bakışta gör.</div>
   </div>
   <div class="v21-compare-pickhint">ÖNCE ARAÇLARINI SEÇ</div>
-  <div class="slots v16-slots" id="slots"></div>
+  <div class="slots v16-slots" id="slots"></div><div class="v294-widebar" id="v294WideBar"><button onclick="toggleWideCompareV294()"><span id="v294WideLabel">↻ Geniş görünüm</span><span>4 araç için</span></button></div>
   <div class="tog" id="modeToggle" style="display:none"><button id="mode-teknik" class="active" onclick="setMode('teknik')">Teknik</button><button id="mode-gundelik" onclick="setMode('gundelik')">Gündelik</button></div>
   <div class="tog" id="viewToggle" style="display:none"><button id="view-rakam" class="active" onclick="setView('rakam')">Rakam</button><button id="view-bar" onclick="setView('bar')">Bar</button><button id="view-radar" onclick="setView('radar')">Radar</button></div>
   <div id="compareResult"></div>
@@ -1308,7 +1614,7 @@ if(localStorage.getItem('garajV236GarageCleanup')!=='1'){
   localStorage.removeItem('garajCarsV2');
   localStorage.setItem('garajV236GarageCleanup','1');
 }
-const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4495, "trunk": 425, "cons": 5.4, "id": 1}, {"brand": "Audi", "model": "A4", "variant": "2.0 TDI 190 bg", "body": "Sedan", "power": 190, "torque": 400, "engine": 1968, "zero": 7.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4762, "trunk": 460, "cons": 4.6, "id": 2}, {"brand": "Audi", "model": "Q3", "variant": "1.5 TFSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4485, "trunk": 530, "cons": 6.1, "id": 3}, {"brand": "BMW", "model": "3 Serisi", "variant": "320i M Sport 184 bg", "body": "Sedan", "power": 184, "torque": 300, "engine": 1998, "zero": 7.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4713, "trunk": 480, "cons": 6.0, "id": 4}, {"brand": "BMW", "model": "2 Serisi", "variant": "218i 156 bg", "body": "Sedan", "power": 156, "torque": 250, "engine": 1499, "zero": 8.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4526, "trunk": 430, "cons": 5.8, "id": 5}, {"brand": "BMW", "model": "X1", "variant": "sDrive18i 136 bg", "body": "SUV", "power": 136, "torque": 230, "engine": 1499, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 540, "cons": 6.3, "id": 6}, {"brand": "Citroen", "model": "C3", "variant": "1.2 PureTech 110 bg", "body": "Hatchback", "power": 110, "torque": 205, "engine": 1199, "zero": 10.9, "fuel": "Benzin", "gear": "Otomatik", "length": 3981, "trunk": 300, "cons": 5.6, "id": 7}, {"brand": "Citroen", "model": "C5 Aircross", "variant": "1.5 BlueHDi 130 bg", "body": "SUV", "power": 130, "torque": 300, "engine": 1499, "zero": 10.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4500, "trunk": 580, "cons": 4.7, "id": 8}, {"brand": "Dacia", "model": "Duster", "variant": "1.3 TCe 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1332, "zero": 10.4, "fuel": "Benzin", "gear": "Manuel", "length": 4341, "trunk": 478, "cons": 6.0, "id": 9}, {"brand": "Dacia", "model": "Sandero", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 11.7, "fuel": "Benzin", "gear": "Manuel", "length": 4088, "trunk": 328, "cons": 5.4, "id": 10}, {"brand": "Fiat", "model": "Egea", "variant": "1.6 Multijet 130 bg", "body": "Sedan", "power": 130, "torque": 320, "engine": 1598, "zero": 9.8, "fuel": "Dizel", "gear": "Manuel", "length": 4532, "trunk": 520, "cons": 4.3, "id": 11}, {"brand": "Fiat", "model": "Egea Cross", "variant": "1.5 Hybrid 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1469, "zero": 9.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4381, "trunk": 448, "cons": 5.0, "id": 12}, {"brand": "Ford", "model": "Focus", "variant": "1.5 EcoBoost 150 bg", "body": "Hatchback", "power": 150, "torque": 240, "engine": 1497, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4378, "trunk": 375, "cons": 5.9, "id": 13}, {"brand": "Ford", "model": "Puma", "variant": "1.0 EcoBoost 125 bg", "body": "SUV", "power": 125, "torque": 210, "engine": 999, "zero": 9.8, "fuel": "Benzin", "gear": "Otomatik", "length": 4186, "trunk": 456, "cons": 5.7, "id": 14}, {"brand": "Honda", "model": "Civic", "variant": "1.5 VTEC 182 bg", "body": "Sedan", "power": 182, "torque": 240, "engine": 1498, "zero": 8.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4551, "trunk": 519, "cons": 6.4, "id": 15}, {"brand": "Honda", "model": "HR-V", "variant": "1.5 e:HEV 131 bg", "body": "SUV", "power": 131, "torque": 253, "engine": 1498, "zero": 10.6, "fuel": "Hibrit", "gear": "Otomatik", "length": 4340, "trunk": 335, "cons": 5.4, "id": 16}, {"brand": "Hyundai", "model": "i20", "variant": "1.4 MPI 100 bg", "body": "Hatchback", "power": 100, "torque": 133, "engine": 1368, "zero": 11.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4040, "trunk": 352, "cons": 6.2, "id": 17}, {"brand": "Hyundai", "model": "Bayon", "variant": "1.4 MPI 100 bg", "body": "SUV", "power": 100, "torque": 133, "engine": 1368, "zero": 12.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4180, "trunk": 411, "cons": 6.4, "id": 18}, {"brand": "Hyundai", "model": "Tucson", "variant": "1.6 T-GDi 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1598, "zero": 9.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 620, "cons": 6.6, "id": 19}, {"brand": "Kia", "model": "Ceed", "variant": "1.5 T-GDi 160 bg", "body": "Hatchback", "power": 160, "torque": 253, "engine": 1482, "zero": 8.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4310, "trunk": 395, "cons": 6.0, "id": 20}, {"brand": "Kia", "model": "Sportage", "variant": "1.6 CRDi 136 bg", "body": "SUV", "power": 136, "torque": 320, "engine": 1598, "zero": 11.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4515, "trunk": 587, "cons": 5.3, "id": 21}, {"brand": "Mercedes-Benz", "model": "A-Serisi", "variant": "A180 136 bg", "body": "Hatchback", "power": 136, "torque": 200, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4419, "trunk": 370, "cons": 5.6, "id": 22}, {"brand": "Mercedes-Benz", "model": "C-Serisi", "variant": "C200 204 bg", "body": "Sedan", "power": 204, "torque": 300, "engine": 1496, "zero": 7.3, "fuel": "Benzin", "gear": "Otomatik", "length": 4751, "trunk": 455, "cons": 6.2, "id": 23}, {"brand": "Nissan", "model": "Qashqai", "variant": "1.3 DIG-T 158 bg", "body": "SUV", "power": 158, "torque": 270, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4425, "trunk": 504, "cons": 6.3, "id": 24}, {"brand": "Opel", "model": "Corsa", "variant": "1.2 Turbo 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4060, "trunk": 309, "cons": 5.5, "id": 25}, {"brand": "Opel", "model": "Astra", "variant": "1.2 Turbo 130 bg", "body": "Hatchback", "power": 130, "torque": 230, "engine": 1199, "zero": 9.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4374, "trunk": 422, "cons": 5.6, "id": 26}, {"brand": "Peugeot", "model": "208", "variant": "1.2 PureTech 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4055, "trunk": 311, "cons": 5.4, "id": 27}, {"brand": "Peugeot", "model": "2008", "variant": "1.2 PureTech 130 bg", "body": "SUV", "power": 130, "torque": 230, "engine": 1199, "zero": 9.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4300, "trunk": 434, "cons": 5.7, "id": 28}, {"brand": "Renault", "model": "Clio", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 12.2, "fuel": "Benzin", "gear": "Manuel", "length": 4053, "trunk": 391, "cons": 5.2, "id": 29}, {"brand": "Renault", "model": "Megane", "variant": "1.3 TCe 140 bg", "body": "Sedan", "power": 140, "torque": 260, "engine": 1332, "zero": 9.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4359, "trunk": 384, "cons": 5.8, "id": 30}, {"brand": "Renault", "model": "Captur", "variant": "1.3 TCe 140 bg", "body": "SUV", "power": 140, "torque": 260, "engine": 1332, "zero": 9.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4227, "trunk": 422, "cons": 5.9, "id": 31}, {"brand": "Skoda", "model": "Octavia", "variant": "1.5 TSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4689, "trunk": 600, "cons": 5.4, "id": 32}, {"brand": "Skoda", "model": "Kamiq", "variant": "1.0 TSI 110 bg", "body": "SUV", "power": 110, "torque": 200, "engine": 999, "zero": 10.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4241, "trunk": 400, "cons": 5.6, "id": 33}, {"brand": "Togg", "model": "T10X", "variant": "Uzun Menzil 218 bg", "body": "SUV", "power": 218, "torque": 350, "engine": 0, "zero": 7.6, "fuel": "Elektrik", "gear": "Otomatik", "length": 4599, "trunk": 405, "cons": 0, "id": 34}, {"brand": "Toyota", "model": "Corolla", "variant": "1.8 Hybrid 140 bg", "body": "Sedan", "power": 140, "torque": 185, "engine": 1798, "zero": 10.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4630, "trunk": 471, "cons": 4.5, "id": 35}, {"brand": "Toyota", "model": "C-HR", "variant": "1.8 Hybrid 140 bg", "body": "SUV", "power": 140, "torque": 190, "engine": 1798, "zero": 11.0, "fuel": "Hibrit", "gear": "Otomatik", "length": 4360, "trunk": 388, "cons": 4.9, "id": 36}, {"brand": "Volkswagen", "model": "Golf", "variant": "1.5 eTSI 150 bg", "body": "Hatchback", "power": 150, "torque": 250, "engine": 1498, "zero": 8.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4284, "trunk": 381, "cons": 5.5, "id": 37}, {"brand": "Volkswagen", "model": "Passat", "variant": "1.5 eTSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4767, "trunk": 586, "cons": 5.6, "id": 38}, {"brand": "Volkswagen", "model": "T-Roc", "variant": "1.5 TSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4234, "trunk": 445, "cons": 5.9, "id": 39}];const IS_PRO=false;let slots=[null,null],currentMode='teknik',currentView='rakam',modalCtx=null,myCars=JSON.parse(localStorage.getItem('garajCarsV2')||'[]');
+const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4495, "trunk": 425, "cons": 5.4, "id": 1}, {"brand": "Audi", "model": "A4", "variant": "2.0 TDI 190 bg", "body": "Sedan", "power": 190, "torque": 400, "engine": 1968, "zero": 7.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4762, "trunk": 460, "cons": 4.6, "id": 2}, {"brand": "Audi", "model": "Q3", "variant": "1.5 TFSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4485, "trunk": 530, "cons": 6.1, "id": 3}, {"brand": "BMW", "model": "3 Serisi", "variant": "320i M Sport 184 bg", "body": "Sedan", "power": 184, "torque": 300, "engine": 1998, "zero": 7.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4713, "trunk": 480, "cons": 6.0, "id": 4}, {"brand": "BMW", "model": "2 Serisi", "variant": "218i 156 bg", "body": "Sedan", "power": 156, "torque": 250, "engine": 1499, "zero": 8.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4526, "trunk": 430, "cons": 5.8, "id": 5}, {"brand": "BMW", "model": "X1", "variant": "sDrive18i 136 bg", "body": "SUV", "power": 136, "torque": 230, "engine": 1499, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 540, "cons": 6.3, "id": 6}, {"brand": "Citroen", "model": "C3", "variant": "1.2 PureTech 110 bg", "body": "Hatchback", "power": 110, "torque": 205, "engine": 1199, "zero": 10.9, "fuel": "Benzin", "gear": "Otomatik", "length": 3981, "trunk": 300, "cons": 5.6, "id": 7}, {"brand": "Citroen", "model": "C5 Aircross", "variant": "1.5 BlueHDi 130 bg", "body": "SUV", "power": 130, "torque": 300, "engine": 1499, "zero": 10.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4500, "trunk": 580, "cons": 4.7, "id": 8}, {"brand": "Dacia", "model": "Duster", "variant": "1.3 TCe 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1332, "zero": 10.4, "fuel": "Benzin", "gear": "Manuel", "length": 4341, "trunk": 478, "cons": 6.0, "id": 9}, {"brand": "Dacia", "model": "Sandero", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 11.7, "fuel": "Benzin", "gear": "Manuel", "length": 4088, "trunk": 328, "cons": 5.4, "id": 10}, {"brand": "Fiat", "model": "Egea", "variant": "1.6 Multijet 130 bg", "body": "Sedan", "power": 130, "torque": 320, "engine": 1598, "zero": 9.8, "fuel": "Dizel", "gear": "Manuel", "length": 4532, "trunk": 520, "cons": 4.3, "id": 11}, {"brand": "Fiat", "model": "Egea Cross", "variant": "1.5 Hybrid 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1469, "zero": 9.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4381, "trunk": 448, "cons": 5.0, "id": 12}, {"brand": "Ford", "model": "Focus", "variant": "1.5 EcoBoost 150 bg", "body": "Hatchback", "power": 150, "torque": 240, "engine": 1497, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4378, "trunk": 375, "cons": 5.9, "id": 13}, {"brand": "Ford", "model": "Puma", "variant": "1.0 EcoBoost 125 bg", "body": "SUV", "power": 125, "torque": 210, "engine": 999, "zero": 9.8, "fuel": "Benzin", "gear": "Otomatik", "length": 4186, "trunk": 456, "cons": 5.7, "id": 14}, {"brand": "Honda", "model": "Civic", "variant": "1.5 VTEC 182 bg", "body": "Sedan", "power": 182, "torque": 240, "engine": 1498, "zero": 8.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4551, "trunk": 519, "cons": 6.4, "id": 15}, {"brand": "Honda", "model": "HR-V", "variant": "1.5 e:HEV 131 bg", "body": "SUV", "power": 131, "torque": 253, "engine": 1498, "zero": 10.6, "fuel": "Hibrit", "gear": "Otomatik", "length": 4340, "trunk": 335, "cons": 5.4, "id": 16}, {"brand": "Hyundai", "model": "i20", "variant": "1.4 MPI 100 bg", "body": "Hatchback", "power": 100, "torque": 133, "engine": 1368, "zero": 11.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4040, "trunk": 352, "cons": 6.2, "id": 17}, {"brand": "Hyundai", "model": "Bayon", "variant": "1.4 MPI 100 bg", "body": "SUV", "power": 100, "torque": 133, "engine": 1368, "zero": 12.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4180, "trunk": 411, "cons": 6.4, "id": 18}, {"brand": "Hyundai", "model": "Tucson", "variant": "1.6 T-GDi 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1598, "zero": 9.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 620, "cons": 6.6, "id": 19}, {"brand": "Kia", "model": "Ceed", "variant": "1.5 T-GDi 160 bg", "body": "Hatchback", "power": 160, "torque": 253, "engine": 1482, "zero": 8.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4310, "trunk": 395, "cons": 6.0, "id": 20}, {"brand": "Kia", "model": "Sportage", "variant": "1.6 CRDi 136 bg", "body": "SUV", "power": 136, "torque": 320, "engine": 1598, "zero": 11.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4515, "trunk": 587, "cons": 5.3, "id": 21}, {"brand": "Mercedes-Benz", "model": "A-Serisi", "variant": "A180 136 bg", "body": "Hatchback", "power": 136, "torque": 200, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4419, "trunk": 370, "cons": 5.6, "id": 22}, {"brand": "Mercedes-Benz", "model": "C-Serisi", "variant": "C200 204 bg", "body": "Sedan", "power": 204, "torque": 300, "engine": 1496, "zero": 7.3, "fuel": "Benzin", "gear": "Otomatik", "length": 4751, "trunk": 455, "cons": 6.2, "id": 23}, {"brand": "Nissan", "model": "Qashqai", "variant": "1.3 DIG-T 158 bg", "body": "SUV", "power": 158, "torque": 270, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4425, "trunk": 504, "cons": 6.3, "id": 24}, {"brand": "Opel", "model": "Corsa", "variant": "1.2 Turbo 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4060, "trunk": 309, "cons": 5.5, "id": 25}, {"brand": "Opel", "model": "Astra", "variant": "1.2 Turbo 130 bg", "body": "Hatchback", "power": 130, "torque": 230, "engine": 1199, "zero": 9.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4374, "trunk": 422, "cons": 5.6, "id": 26}, {"brand": "Peugeot", "model": "208", "variant": "1.2 PureTech 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4055, "trunk": 311, "cons": 5.4, "id": 27}, {"brand": "Peugeot", "model": "2008", "variant": "1.2 PureTech 130 bg", "body": "SUV", "power": 130, "torque": 230, "engine": 1199, "zero": 9.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4300, "trunk": 434, "cons": 5.7, "id": 28}, {"brand": "Renault", "model": "Clio", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 12.2, "fuel": "Benzin", "gear": "Manuel", "length": 4053, "trunk": 391, "cons": 5.2, "id": 29}, {"brand": "Renault", "model": "Megane", "variant": "1.3 TCe 140 bg", "body": "Sedan", "power": 140, "torque": 260, "engine": 1332, "zero": 9.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4359, "trunk": 384, "cons": 5.8, "id": 30}, {"brand": "Renault", "model": "Captur", "variant": "1.3 TCe 140 bg", "body": "SUV", "power": 140, "torque": 260, "engine": 1332, "zero": 9.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4227, "trunk": 422, "cons": 5.9, "id": 31}, {"brand": "Skoda", "model": "Octavia", "variant": "1.5 TSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4689, "trunk": 600, "cons": 5.4, "id": 32}, {"brand": "Skoda", "model": "Kamiq", "variant": "1.0 TSI 110 bg", "body": "SUV", "power": 110, "torque": 200, "engine": 999, "zero": 10.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4241, "trunk": 400, "cons": 5.6, "id": 33}, {"brand": "Togg", "model": "T10X", "variant": "Uzun Menzil 218 bg", "body": "SUV", "power": 218, "torque": 350, "engine": 0, "zero": 7.6, "fuel": "Elektrik", "gear": "Otomatik", "length": 4599, "trunk": 405, "cons": 0, "id": 34}, {"brand": "Toyota", "model": "Corolla", "variant": "1.8 Hybrid 140 bg", "body": "Sedan", "power": 140, "torque": 185, "engine": 1798, "zero": 10.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4630, "trunk": 471, "cons": 4.5, "id": 35}, {"brand": "Toyota", "model": "C-HR", "variant": "1.8 Hybrid 140 bg", "body": "SUV", "power": 140, "torque": 190, "engine": 1798, "zero": 11.0, "fuel": "Hibrit", "gear": "Otomatik", "length": 4360, "trunk": 388, "cons": 4.9, "id": 36}, {"brand": "Volkswagen", "model": "Golf", "variant": "1.5 eTSI 150 bg", "body": "Hatchback", "power": 150, "torque": 250, "engine": 1498, "zero": 8.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4284, "trunk": 381, "cons": 5.5, "id": 37}, {"brand": "Volkswagen", "model": "Passat", "variant": "1.5 eTSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4767, "trunk": 586, "cons": 5.6, "id": 38}, {"brand": "Volkswagen", "model": "T-Roc", "variant": "1.5 TSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4234, "trunk": 445, "cons": 5.9, "id": 39}];let IS_PRO=localStorage.getItem('garajDevProV292')==='1';let slots=[null,null],currentMode='teknik',currentView='rakam',modalCtx=null,myCars=JSON.parse(localStorage.getItem('garajCarsV2')||'[]');
 const MODES={teknik:['Güç (bg)','Tork (Nm)','Motor (cc)','0-100 (sn)','Şanzıman'],gundelik:['Tüketim (L/100)','Bagaj (L)','Uzunluk (mm)','Yakıt','Şanzıman']};const HIGH=['Güç (bg)','Tork (Nm)','Bagaj (L)'],LOW=['0-100 (sn)','Tüketim (L/100)'];const QUICK=['Sedan','SUV','Hatchback','Elektrik','Hibrit','Dizel'];
 const cats=[['En güçlüler','Yüksek beygir',c=>-c.power],['En ekonomikler','Düşük tüketim',c=>c.cons===0?99:c.cons],['Geniş bagaj','En çok hacim',c=>-c.trunk],['En hızlılar','0-100 sprint',c=>c.zero]];const alarms=[['muayene','Muayene'],['sigorta','Sigorta / Kasko'],['yag','Yağ değişimi'],['lastik','Lastik'],['bakim','Genel bakım'],['mtv','MTV / Vergi']];
 function val(c,k){return {'Güç (bg)':c.power,'Tork (Nm)':c.torque,'Motor (cc)':c.engine,'0-100 (sn)':c.zero,'Yakıt':c.fuel,'Şanzıman':c.gear,'Uzunluk (mm)':c.length,'Bagaj (L)':c.trunk,'Tüketim (L/100)':c.cons}[k]}
@@ -1666,7 +1972,7 @@ function togglePreference(k,el){comparePrefs[k]=!comparePrefs[k];el.classList.to
 function applyPreferences(){if(!Object.values(comparePrefs).some(Boolean)){comparePrefs.performance=comparePrefs.economy=comparePrefs.practicality=true}closeModal();renderCompare()}
 function renderCompareLegacyV15(){let a=slots.filter(Boolean),res=compareResult;if(a.length<2){res.innerHTML='';return}let ks=MODES[currentMode],scores=a.map(()=>0);ks.forEach(k=>{let vs=a.map(c=>val(c,k));if(vs.every(v=>typeof v==='number'&&v!==0)){let b=HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined;if(b!==undefined)a.forEach((c,i)=>{if(val(c,k)===b)scores[i]++})}});let m=Math.max(...scores),wi=scores.filter(x=>x===m).length===1?scores.indexOf(m):-1;let h=decisionLayer(a);h+=`<div class="winner"><b>${wi>=0?a[wi].brand+' '+a[wi].model+' önde':'Başa baş'}</b><div>${wi>=0?(currentMode==='teknik'?'Teknik':'Gündelik')+' modda '+m+' kategoride üstün':'Bu modda araçlar dengeli'}</div></div>`;if(currentView==='rakam'){let col='minmax(100px,1.1fr) '+a.map(()=> 'minmax(78px,1fr)').join(' ');h+='<div class="ctable">';h+=`<div class="row head" style="grid-template-columns:${col}"><div>${currentMode}</div>`+a.map(c=>`<div><b>${c.brand}</b><br><small>${c.model}</small></div>`).join('')+'</div>';ks.forEach(k=>{let vs=a.map(c=>val(c,k)),best=vs.every(v=>typeof v==='number'&&v!==0)?(HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined):undefined;h+=`<div class="row" style="grid-template-columns:${col}"><div>${k}</div>`+a.map(c=>{let v=val(c,k),w=best!==undefined&&v===best;return `<div class="${w?'win':''}">${(v===0&&(k==='Motor (cc)'||k==='Tüketim (L/100)'))?'—':v}</div>`}).join('')+'</div>'});h+='</div>'}else if(currentView==='bar'){h+='<div class="bars">';ks.filter(k=>a.every(c=>typeof val(c,k)==='number'&&val(c,k)!==0)).forEach(k=>{let vs=a.map(c=>val(c,k)),mx=Math.max(...vs),best=HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined;h+=`<div class="baritem"><div class="barlabel">${k}</div>`+a.map(c=>{let v=val(c,k),pct=Math.max(12,Math.round(v/mx*100));return `<div class="brow"><div class="bname">${c.model}</div><div class="track"><div class="fill ${v===best?'best':''}" style="width:${pct}%">${v}</div></div></div>`}).join('')+'</div>'});h+='</div>'}else h+=radar(a,ks);res.innerHTML=h;decorateCompareV13()}
 function radar(a,ks){let nk=ks.filter(k=>a.every(c=>typeof val(c,k)==='number'&&val(c,k)!==0));if(nk.length<3)return '<div class="radar"><div class="sub">Radar için en az 3 sayısal özellik gerekir.</div></div>';let cx=140,cy=130,R=95,n=nk.length,colors=['#d6b46a','#63d3ad','#7aa2ff','#ef8d73'],svg='<svg viewBox="0 0 280 285" style="width:100%">';for(let r=1;r<=3;r++){let p=[];for(let i=0;i<n;i++){let g=Math.PI*2*i/n-Math.PI/2;p.push(`${cx+Math.cos(g)*R*r/3},${cy+Math.sin(g)*R*r/3}`)}svg+=`<polygon points="${p.join(' ')}" fill="none" stroke="var(--line)"/>`}nk.forEach((k,i)=>{let g=Math.PI*2*i/n-Math.PI/2,x=cx+Math.cos(g)*R,y=cy+Math.sin(g)*R;svg+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line)"/><text x="${cx+Math.cos(g)*(R+17)}" y="${cy+Math.sin(g)*(R+17)}" fill="var(--muted)" font-size="9" text-anchor="middle">${k.split(' ')[0]}</text>`});a.forEach((c,ci)=>{let p=nk.map((k,i)=>{let vs=a.map(x=>val(x,k)),mn=Math.min(...vs),mx=Math.max(...vs),z=mx===mn?1:(val(c,k)-mn)/(mx-mn);if(LOW.includes(k))z=1-z;z=.25+.75*z;let g=Math.PI*2*i/n-Math.PI/2;return `${cx+Math.cos(g)*R*z},${cy+Math.sin(g)*R*z}`});svg+=`<polygon points="${p.join(' ')}" fill="${colors[ci]}" fill-opacity=".14" stroke="${colors[ci]}" stroke-width="2"/>`});svg+='</svg><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+a.map((c,i)=>`<span style="font-size:10px"><b style="color:${colors[i]}">●</b> ${c.model}</span>`).join('')+'</div>';return `<div class="radar">${svg}</div>`}
-function openPicker(i){modalCtx={type:'compare',slot:i};renderBrands();document.getElementById('modalBack').classList.add('open')}function closeModal(){document.getElementById('modalBack').classList.remove('open')}function renderBrands(){let bs=[...new Set(CARS.map(c=>c.brand))].sort();const body=document.getElementById('modalBody');if(!body)return;body.innerHTML='<h3>Marka seç</h3><div class="field"><input id="garageBrandSearch" placeholder="Marka ara..." oninput="filterBrands(this.value)"></div><div id="brandList"></div>';drawBrands(bs)}function drawBrands(bs){const list=document.getElementById('brandList');if(!list)return;list.innerHTML=bs.map(b=>{const enc=encodeURIComponent(b);return `<div class="brand-row" onclick="selectBrand(decodeURIComponent('${enc}'))"><b>${b}</b><small>${CARS.filter(c=>c.brand===b).length} model ›</small></div>`}).join('')}function filterBrands(q){const x=(q||'').toLocaleLowerCase('tr-TR');drawBrands([...new Set(CARS.map(c=>c.brand))].sort().filter(b=>b.toLocaleLowerCase('tr-TR').includes(x)))}function selectBrand(b){let ms=CARS.filter(c=>c.brand===b);const body=document.getElementById('modalBody');if(!body)return;body.innerHTML=`<h3 onclick="renderBrands()" style="cursor:pointer">← ${b}</h3><div class="sub" style="margin-bottom:10px">Garajına eklemek istediğin aracı seç.</div>`+ms.map(c=>`<div class="car-card" onclick="chooseCar(${c.id})">${card(c)}</div>`).join('')}function chooseCar(id){let c=CARS.find(x=>x.id===id);if(!c)return;if(modalCtx&&modalCtx.type==='compare'){slots[modalCtx.slot]=c;closeModal();renderSlots();renderCompare()}else openAddCarForm(c)}function openProModal(){
+function openPicker(i){modalCtx={type:'compare',slot:i};renderBrands();document.getElementById('modalBack').classList.add('open')}function closeModal(){document.getElementById('modalBack').classList.remove('open')}function renderBrands(){let bs=[...new Set(CARS.map(c=>c.brand))].sort();const body=document.getElementById('modalBody');if(!body)return;body.innerHTML='<h3>Marka seç</h3><div class="field"><input id="garageBrandSearch" placeholder="Marka ara..." oninput="filterBrands(this.value)"></div><div id="brandList"></div>';drawBrands(bs)}function drawBrands(bs){const list=document.getElementById('brandList');if(!list)return;list.innerHTML=bs.map(b=>{const enc=encodeURIComponent(b);return `<div class="brand-row" onclick="selectBrand(decodeURIComponent('${enc}'))"><b>${b}</b><small>${CARS.filter(c=>c.brand===b).length} model ›</small></div>`}).join('')}function filterBrands(q){const x=(q||'').toLocaleLowerCase('tr-TR');drawBrands([...new Set(CARS.map(c=>c.brand))].sort().filter(b=>b.toLocaleLowerCase('tr-TR').includes(x)))}function selectBrand(b){let ms=CARS.filter(c=>c.brand===b);const body=document.getElementById('modalBody');if(!body)return;body.innerHTML=`<h3 onclick="renderBrands()" style="cursor:pointer">← ${b}</h3><div class="sub" style="margin-bottom:10px">Garajına eklemek istediğin aracı seç.</div>`+ms.map(c=>`<div class="car-card" onclick="chooseCar(${c.id})">${card(c)}</div>`).join('')}function chooseCar(id){let c=CARS.find(x=>x.id===id);if(!c)return;if(modalCtx&&modalCtx.type==='compare'){let duplicate=slots.some((x,i)=>x&&x.id===c.id&&i!==modalCtx.slot);if(duplicate){try{showToastV13('Bu araç zaten karşılaştırmada.')}catch(e){alert('Bu araç zaten karşılaştırmada.')}return}slots[modalCtx.slot]=c;closeModal();renderSlots();renderCompare()}else openAddCarForm(c)}function openProModal(){
  modalBody.innerHTML=`<div class="pro-modal">
    <div class="pro-modal-kicker">GARAJ PRO</div>
    <h3>Arabanı seçmekten<br>sahip olmaya kadar.</h3>
@@ -3572,6 +3878,332 @@ window.addEventListener('load',()=>{
   if(home) _v289Observer.observe(home,{childList:true,subtree:true});
 });
 
+</script>
+
+
+<script id="v291-auth-garage-isolation">
+/* V29.1 — auth/garage isolation
+   Guest users never see persisted garage vehicle data.
+   Existing local garage data is namespaced per authenticated user on first use.
+*/
+(function(){
+  const LEGACY_KEY='garajCarsV2';
+  const ACTIVE_KEY='garajCarsV2_active_owner';
+
+  function sessionUserV291(){
+    try{
+      if(typeof sessionV26!=='undefined' && sessionV26 && sessionV26.user) return sessionV26.user;
+    }catch(e){}
+    try{
+      if(window.currentUserV26) return window.currentUserV26;
+      if(window.garajCurrentUser) return window.garajCurrentUser;
+      if(window.supabaseUserV26) return window.supabaseUserV26;
+    }catch(e){}
+    return null;
+  }
+
+  function userKeyV291(uid){ return `garajCarsV2_user_${uid}`; }
+
+  function readCarsV291(key){
+    try{
+      const x=JSON.parse(localStorage.getItem(key)||'[]');
+      return Array.isArray(x)?x:[];
+    }catch(e){ return []; }
+  }
+
+  function writeCarsV291(key,cars){
+    try{ localStorage.setItem(key,JSON.stringify(Array.isArray(cars)?cars:[])); }catch(e){}
+  }
+
+  function replaceRuntimeCarsV291(cars){
+    try{
+      if(typeof myCars!=='undefined' && Array.isArray(myCars)){
+        myCars.splice(0,myCars.length,...cars);
+      }
+    }catch(e){}
+  }
+
+  function syncGarageOwnerV291(){
+    const user=sessionUserV291();
+
+    // Guest: runtime garage must be empty. Do not destroy saved account data.
+    if(!user || !user.id){
+      replaceRuntimeCarsV291([]);
+      try{ localStorage.removeItem(ACTIVE_KEY); }catch(e){}
+      try{ if(typeof renderV28Hero==='function') renderV28Hero(); }catch(e){}
+      try{ if(typeof renderGarage==='function') renderGarage(); }catch(e){}
+      try{ if(typeof renderGreetingV283==='function') renderGreetingV283(); }catch(e){}
+      return;
+    }
+
+    const uid=String(user.id);
+    const key=userKeyV291(uid);
+    let cars=readCarsV291(key);
+
+    // One-time migration: claim legacy local data only if it has not already
+    // been assigned to another authenticated account on this browser.
+    const owner=localStorage.getItem(ACTIVE_KEY);
+    if(!localStorage.getItem(key) && (!owner || owner===uid)){
+      const legacy=readCarsV291(LEGACY_KEY);
+      if(legacy.length){
+        cars=legacy;
+        writeCarsV291(key,cars);
+      }
+    }
+
+    localStorage.setItem(ACTIVE_KEY,uid);
+    replaceRuntimeCarsV291(cars);
+
+    try{ if(typeof renderV28Hero==='function') renderV28Hero(); }catch(e){}
+    try{ if(typeof renderGarage==='function') renderGarage(); }catch(e){}
+    try{ if(typeof renderGreetingV283==='function') renderGreetingV283(); }catch(e){}
+  }
+
+  // Keep existing persist() behavior, then mirror garage data into the
+  // authenticated user's namespace. Guest changes are never persisted as garage data.
+  try{
+    if(typeof persist==='function'){
+      const _persistV291=persist;
+      persist=function(){
+        const user=sessionUserV291();
+        if(!user || !user.id) return;
+        const result=_persistV291.apply(this,arguments);
+        try{
+          writeCarsV291(userKeyV291(String(user.id)), Array.isArray(myCars)?myCars:[]);
+          localStorage.setItem(ACTIVE_KEY,String(user.id));
+        }catch(e){}
+        return result;
+      };
+    }
+  }catch(e){}
+
+  window.syncGarageOwnerV291=syncGarageOwnerV291;
+
+  // Supabase auth changes are async; listen directly when client is available.
+  function bindAuthV291(){
+    try{
+      const client =
+        (typeof supabaseClientV26!=='undefined' && supabaseClientV26) ||
+        window.supabaseClientV26 ||
+        window.sbV26 ||
+        null;
+      if(client?.auth?.onAuthStateChange && !window.__v291AuthBound){
+        window.__v291AuthBound=true;
+        client.auth.onAuthStateChange(()=>setTimeout(syncGarageOwnerV291,60));
+      }
+    }catch(e){}
+  }
+
+  window.addEventListener('load',()=>{
+    bindAuthV291();
+    setTimeout(syncGarageOwnerV291,250);
+    setTimeout(syncGarageOwnerV291,900);
+    setTimeout(syncGarageOwnerV291,1600);
+  });
+
+  // Also re-sync when returning to the tab.
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden) setTimeout(syncGarageOwnerV291,80);
+  });
+})();
+</script>
+
+
+<style id="v291-auth-garage-isolation-css">
+html:not(.v291-auth-ready) #screen-home .v28-hero{visibility:hidden}
+</style>
+<script id="v291-ready">
+window.addEventListener('DOMContentLoaded',()=>document.documentElement.classList.add('v291-auth-ready'));
+</script>
+
+
+<script id="v292-test-pro-js">
+(function(){
+  const KEY='garajDevProV292';
+
+  function isDevProV292(){
+    return localStorage.getItem(KEY)==='1';
+  }
+
+  function applyDevProV292(){
+    const v=isDevProV292();
+
+    // Override the app's current Pro flag where possible.
+    try{ IS_PRO=v; }catch(e){}
+    try{ window.IS_PRO=v; }catch(e){}
+
+    // Re-render comparison/account areas if those helpers exist.
+    try{ if(typeof renderSlots==='function') renderSlots(); }catch(e){}
+    try{ if(typeof renderCompare==='function') renderCompare(); }catch(e){}
+    try{ if(typeof renderAccountV26==='function') renderAccountV26(); }catch(e){}
+    try{ if(typeof renderProfileV24==='function') renderProfileV24(); }catch(e){}
+
+    const btn=document.getElementById('v292DevProBtn');
+    if(btn){
+      btn.dataset.pro=v?'1':'0';
+      btn.textContent=v?'Test Pro aktif — Free’ye dön':'Test: Pro’ya geç';
+    }
+  }
+
+  function toggleDevProV292(){
+    localStorage.setItem(KEY,isDevProV292()?'0':'1');
+    applyDevProV292();
+  }
+  window.toggleDevProV292=toggleDevProV292;
+
+  function injectDevProV292(){
+    // Only show this development control to authenticated users.
+    let logged=false;
+    try{ logged=typeof loggedInV26==='function' && loggedInV26(); }catch(e){}
+    const old=document.getElementById('v292DevProBox');
+    if(!logged){
+      if(old) old.remove();
+      return;
+    }
+
+    const account=document.getElementById('screen-account') || document.getElementById('screen-profile');
+    if(!account) return;
+    if(old){ applyDevProV292(); return; }
+
+    const box=document.createElement('div');
+    box.id='v292DevProBox';
+    box.className='v292-dev-pro';
+    box.innerHTML='<small>GELİŞTİRME MODU</small><button id="v292DevProBtn" onclick="toggleDevProV292()">Test: Pro’ya geç</button>';
+
+    const target=account.querySelector('.scr-body,.account-body,.profile-body') || account;
+    target.appendChild(box);
+    applyDevProV292();
+  }
+
+  window.injectDevProV292=injectDevProV292;
+
+  window.addEventListener('load',()=>{
+    setTimeout(injectDevProV292,600);
+    setTimeout(injectDevProV292,1400);
+    applyDevProV292();
+  });
+
+  document.addEventListener('click',()=>{
+    setTimeout(injectDevProV292,120);
+  });
+})();
+</script>
+
+
+<script id="v294-multi-compare-js">
+(function(){
+  function syncCountV294(){
+    const screen=document.getElementById('screen-compare');
+    if(!screen)return;
+    screen.classList.remove('v294-count-2','v294-count-3','v294-count-4');
+    const n=slots.filter(Boolean).length;
+    screen.classList.add('v294-count-'+Math.max(2,n));
+    if(n<4 && document.body.classList.contains('v294-wide')) toggleWideCompareV294(false);
+  }
+  window.syncCountV294=syncCountV294;
+
+  const oldRenderSlots=renderSlots;
+  renderSlots=function(){
+    const r=oldRenderSlots.apply(this,arguments);
+    syncCountV294();
+    return r;
+  };
+
+  const oldRenderCompare=renderCompare;
+  renderCompare=function(){
+    const r=oldRenderCompare.apply(this,arguments);
+    syncCountV294();
+    return r;
+  };
+
+  window.toggleWideCompareV294=function(force){
+    const on=typeof force==='boolean'?force:!document.body.classList.contains('v294-wide');
+    document.body.classList.toggle('v294-wide',on);
+    const label=document.getElementById('v294WideLabel');
+    if(label)label.textContent=on?'× Geniş görünümü kapat':'↻ Geniş görünüm';
+
+    // Mobile-app direction: request landscape when supported, but never depend on it.
+    try{
+      if(on && screen.orientation?.lock) screen.orientation.lock('landscape').catch(()=>{});
+      if(!on && screen.orientation?.unlock) screen.orientation.unlock();
+    }catch(e){}
+  };
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&document.body.classList.contains('v294-wide'))toggleWideCompareV294(false);
+  });
+
+  window.addEventListener('load',()=>setTimeout(syncCountV294,500));
+})();
+</script>
+
+
+<script id="v295-fixes-js">
+(function(){
+
+  /* --- 1. Detaylı Kategori Sonucu: çift tetiklenme / bubbling fix --- */
+  function bindCategoryDetailFixV295(){
+    const root=document.getElementById('screen-compare');
+    if(!root || root.__v295Bound) return;
+    root.__v295Bound=true;
+
+    root.addEventListener('click',function(e){
+      const trigger=e.target.closest('button,a,[role="button"]');
+      if(!trigger) return;
+
+      const txt=(trigger.textContent||'').replace(/\s+/g,' ').trim().toLocaleLowerCase('tr-TR');
+      if(!txt.includes('detaylı kategori sonucu')) return;
+
+      // Parent accordion/card click handler'ın aynı click'i yeniden işlemesini engelle.
+      e.stopPropagation();
+
+      // Existing onclick already handles the intended open/close.
+      // Mark nearest section only for stable state/debug styling.
+      const section=trigger.closest('.category-result,.v19-category,.v20-category,.v21-category,.card,section,article,div');
+      if(section){
+        setTimeout(()=>{
+          const expanded=trigger.getAttribute('aria-expanded');
+          section.dataset.v295DetailOpen=(expanded==='false')?'0':'1';
+        },0);
+      }
+    },true);
+  }
+
+  /* --- 2. Home hero: 1sn geç açılma fix --- */
+  function markAuthReadyV295(){
+    document.documentElement.classList.add('v291-auth-ready','v295-auth-ready');
+  }
+
+  // İlk frame'de guest-safe state göster; auth geldikçe mevcut sync fonksiyonu doldurur.
+  function fastHeroSyncV295(){
+    markAuthReadyV295();
+    try{
+      if(typeof syncGarageOwnerV291==='function') syncGarageOwnerV291();
+    }catch(e){}
+    try{
+      if(typeof renderV28Hero==='function') renderV28Hero();
+    }catch(e){}
+    try{
+      if(typeof renderGreetingV283==='function') renderGreetingV283();
+    }catch(e){}
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>{
+      bindCategoryDetailFixV295();
+      requestAnimationFrame(fastHeroSyncV295);
+    },{once:true});
+  }else{
+    bindCategoryDetailFixV295();
+    requestAnimationFrame(fastHeroSyncV295);
+  }
+
+  window.addEventListener('load',()=>{
+    bindCategoryDetailFixV295();
+    fastHeroSyncV295();
+  },{once:true});
+
+})();
 </script>
 
 </body></html>
