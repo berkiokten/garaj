@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V26.1 Garage Name |  — Premium V24</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V28.9 Greeting In Hero |  — Premium V24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -779,18 +779,469 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v26-account-row button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:8px 10px;font-size:9px;font-weight:800;cursor:pointer}
 .v26-signout{margin-top:20px;width:100%;border:1px solid rgba(220,100,100,.24);background:transparent;color:#df8d8d;border-radius:12px;padding:12px;font-weight:800;cursor:pointer}
 </style>
+
+<style id="v263-spending-chart-css">
+.v263-spend-wrap{margin-top:16px;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px}
+.v263-spend-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.v263-spend-head small{display:block;font-size:8px;font-weight:900;letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+.v263-spend-head h3{margin:0;font-size:14px}
+.v263-spend-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.v263-stat{border:1px solid var(--line);background:var(--surface2);border-radius:12px;padding:10px}
+.v263-stat small{display:block;color:var(--muted);font-size:8px;margin-bottom:4px}
+.v263-stat b{font-size:12px}
+.v263-chart{height:170px;display:flex;align-items:flex-end;gap:8px;padding-top:8px}
+.v263-col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:7px;cursor:pointer}
+.v263-barbox{height:126px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.v263-bar{width:min(28px,72%);min-height:3px;border-radius:7px 7px 3px 3px;background:rgba(160,160,160,.26);border:1px solid rgba(180,180,180,.12);transition:.18s ease}
+.v263-col:hover .v263-bar{background:rgba(180,180,180,.38)}
+.v263-col.active .v263-bar{background:var(--gold);border-color:rgba(201,165,101,.48);box-shadow:0 7px 20px rgba(201,165,101,.16)}
+.v263-month{font-size:8px;color:var(--muted);font-weight:800}
+.v263-col.active .v263-month{color:var(--gold)}
+.v263-breakdown{margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}
+.v263-breakdown-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px}
+.v263-breakdown-top b{font-size:10px}
+.v263-breakdown-top span{font-size:9px;color:var(--muted)}
+.v263-cat{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:9px}
+.v263-cat+.v263-cat{border-top:1px solid var(--line)}
+.v263-cat span{color:var(--muted)}
+.v263-empty{height:122px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:10px;line-height:1.6}
+@media(max-width:640px){
+  .v263-spend-summary{grid-template-columns:1fr}
+  .v263-chart{gap:5px}
+  .v263-bar{width:min(24px,76%)}
+}
+</style>
+
+<style id="v264-vehicle-spend-css">
+.v264-list{margin-top:10px}
+.v264-expense{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:10px 0}
+.v264-expense+.v264-expense{border-top:1px solid var(--line)}
+.v264-expense-main b{display:block;font-size:10px}
+.v264-expense-main span{display:block;color:var(--muted);font-size:8px;margin-top:3px}
+.v264-expense-amount{font-size:10px;font-weight:900;white-space:nowrap}
+.v264-car-summary{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.v264-car-summary>small{display:block;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.12em;margin-bottom:7px}
+.v264-car-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 0}
+.v264-car-row span{font-size:9px;color:var(--muted)}
+.v264-car-row b{font-size:9px}
+</style>
+
+<style id="v265-cost-analysis-css">
+.v265-filter{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:2px 0 14px}
+.v265-filter button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:7px 10px;font-size:8px;font-weight:800;cursor:pointer}
+.v265-filter button.on{border-color:rgba(201,165,101,.46);background:rgba(201,165,101,.10);color:var(--gold)}
+.v265-delta{display:block;margin-top:4px;font-size:8px!important;font-weight:800}
+.v265-delta.up{color:#d98585!important}
+.v265-delta.down{color:#6cb88b!important}
+.v265-delta.flat{color:var(--muted)!important}
+.v265-cpk-note{display:block;margin-top:4px;color:var(--muted);font-size:7px}
+.v263-spend-summary.v265-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:760px){.v263-spend-summary.v265-four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<style id="v266-spend-clean-css">
+.v266-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.v266-section-title small{font-size:8px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+.v266-section-title span{font-size:9px;color:var(--muted)}
+.v266-tx-toggle{margin-top:12px;width:100%;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:9px;font-size:9px;font-weight:800;cursor:pointer}
+.v266-tx-toggle:hover{color:var(--text);border-color:rgba(201,165,101,.3)}
+.v266-tx-list{display:none;margin-top:6px}
+.v266-tx-list.open{display:block}
+</style>
+
+<style id="v267-upcoming-css">
+.v267-upcoming{margin:14px 0;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px}
+.v267-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.v267-head small{display:block;font-size:8px;font-weight:900;letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+.v267-head h3{margin:0;font-size:14px}
+.v267-summary{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid rgba(201,165,101,.22);background:rgba(201,165,101,.055);border-radius:13px;padding:12px 13px;margin-bottom:11px}
+.v267-summary small{display:block;color:var(--muted);font-size:8px;margin-bottom:3px}
+.v267-summary b{font-size:11px}
+.v267-summary strong{font-size:11px;color:var(--gold);white-space:nowrap}
+.v267-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 2px}
+.v267-item+.v267-item{border-top:1px solid var(--line)}
+.v267-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);box-shadow:0 0 0 4px rgba(150,150,150,.08)}
+.v267-dot.soon{background:var(--gold);box-shadow:0 0 0 4px rgba(201,165,101,.10)}
+.v267-dot.urgent{background:#d98585;box-shadow:0 0 0 4px rgba(217,133,133,.10)}
+.v267-copy b{display:block;font-size:10px}
+.v267-copy span{display:block;color:var(--muted);font-size:8px;margin-top:3px}
+.v267-right{text-align:right}
+.v267-right b{display:block;font-size:9px}
+.v267-right span{display:block;color:var(--muted);font-size:8px;margin-top:3px}
+.v267-empty{padding:15px 2px;color:var(--muted);font-size:9px;line-height:1.55}
+</style>
+
+<style id="v268-home-upcoming-css">
+#screen-home #v267Upcoming{max-width:1100px;margin:14px auto 0}
+#screen-home .v267-upcoming{margin:0}
+</style>
+
+<style id="v269-home-clean-css">
+/* V26.9 — cleaner home hierarchy */
+#screen-home .v269-hide{display:none!important}
+#screen-home .v269-home-personal{max-width:1100px;margin:18px auto 0}
+#screen-home .v269-personal-card{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:14px 16px}
+#screen-home .v269-personal-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#screen-home .v269-personal-top small{font-size:8px;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+#screen-home .v269-personal-top button{border:0;background:transparent;color:var(--gold);font-size:8px;font-weight:900;cursor:pointer}
+#screen-home .v269-personal-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-top:9px}
+#screen-home .v269-personal-main b{display:block;font-size:11px}
+#screen-home .v269-personal-main span{display:block;font-size:8px;color:var(--muted);margin-top:4px}
+#screen-home .v269-personal-spend{text-align:right}
+#screen-home .v269-personal-spend b{display:block;font-size:12px}
+#screen-home .v269-personal-spend span{display:block;font-size:7px;color:var(--muted);margin-top:3px;letter-spacing:.08em}
+#screen-home .v269-personal-empty{margin-top:8px;color:var(--muted);font-size:8px}
+#screen-home #v267Upcoming{display:none!important}
+</style>
+
+<style id="v27-home-reset-css">
+/* V27 — Ana sayfa sadeleştirme */
+#screen-home #v14Ownership,
+#screen-home #v269HomePersonal,
+#screen-home #v267Upcoming,
+#screen-home .v14-chips{display:none!important}
+
+/* Üst alan */
+#screen-home .v14-home-top{padding-bottom:12px}
+#screen-home .v14-date,
+#screen-home .v14-greeting > small{display:none!important}
+#screen-home .v14-greeting h1{margin-top:8px}
+
+/* Seçili araç ana odak olarak kalsın */
+#screen-home .v14-select{margin-top:10px}
+
+/* Arama ve ana aksiyon birbirine yakın */
+#screen-home .v14-command{margin-top:14px}
+#screen-home .v15-primary-actions{margin-top:8px}
+
+/* Son bakılanlar: tek başlık, kart içi tekrar etmesin */
+#screen-home #personalHomeV13 .v13-home-head small{display:none!important}
+#screen-home #personalHomeV13 .v13-home-head h3{font-size:12px;margin:0}
+#screen-home #personalHomeV13 .vm-k{display:none!important}
+#screen-home #personalHomeV13{margin-top:18px}
+#screen-home .v13-mini{min-height:auto!important;padding-top:12px!important;padding-bottom:12px!important}
+
+/* Hesaplamaları daha sessiz hale getir */
+#screen-home #homeDefault{margin-top:18px}
+#screen-home #homeDefault .hsh-icon,
+#screen-home #homeDefault .hsh-line,
+#screen-home #homeDefault .hsh-copy small,
+#screen-home #homeDefault .hsh-copy p{display:none!important}
+#screen-home #homeDefault .home-section-head{min-height:auto;margin-bottom:10px}
+#screen-home #homeDefault .hsh-copy h2{font-size:12px;margin:0}
+
+/* Eğer yaklaşan gerçek bir kayıt varsa hero ile son bakılanlar arasında tek satır göster */
+#screen-home .v27-next{max-width:1100px;margin:14px auto 0}
+#screen-home .v27-next-card{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:11px 2px
+}
+#screen-home .v27-next-copy small{display:block;font-size:7px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin-bottom:4px}
+#screen-home .v27-next-copy b{font-size:10px}
+#screen-home .v27-next-copy span{font-size:8px;color:var(--muted);margin-left:7px}
+#screen-home .v27-next-card button{border:0;background:transparent;color:var(--gold);font-size:8px;font-weight:900;cursor:pointer;white-space:nowrap}
+</style>
+
+<style id="v271-header-clean-css">
+/* V27.1 — tek satırlık üst bar */
+#screen-home .v14-home-top{
+  position:relative;
+  min-height:0!important;
+  padding-top:0!important;
+}
+#screen-home .v14-greeting{
+  display:block!important;
+  margin-top:10px!important;
+}
+/* Profil/avatarı ana üst bara taşı */
+.v271-top-profile{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--surface);
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+</style>
+
+<style id="v272-header-final-css">
+.v272-header{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+}
+.v272-header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.v272-header .v272-profile{
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+}
+#screen-home .v14-home-top{
+  padding-top:8px!important;
+}
+#screen-home .v14-greeting > small{
+  display:none!important;
+}
+#screen-home .v14-greeting h1{
+  margin:0!important;
+}
+</style>
+
+<style id="v28-personal-hero-css">
+/* V28 — ana hero artık kullanıcının durumuna göre */
+#screen-home .v28-hero{margin:18px 16px 14px;position:relative;min-height:300px;border:1px solid rgba(201,165,101,.25);border-radius:27px;overflow:hidden;background:radial-gradient(circle at 82% 12%,rgba(201,165,101,.14),transparent 34%),linear-gradient(150deg,#151a22,#080a0e 70%);box-shadow:0 26px 70px rgba(0,0,0,.28)}
+#screen-home .v28-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
+#screen-home .v28-inner{position:relative;z-index:1;padding:23px}
+#screen-home .v28-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#screen-home .v28-kicker{font-size:8px;letter-spacing:.18em;color:var(--gold);font-weight:900}
+#screen-home .v28-state{font-size:8px;color:var(--muted)}
+#screen-home .v28-copy{margin-top:44px;max-width:620px}
+#screen-home .v28-brand{font-size:10px;letter-spacing:.16em;color:var(--muted);font-weight:800}
+#screen-home .v28-copy h2{font-family:Fraunces,serif;font-size:36px;line-height:1;margin:6px 0 8px;letter-spacing:-.035em}
+#screen-home .v28-copy h2 span{display:block;color:var(--gold);font-size:18px;margin-top:8px}
+#screen-home .v28-copy p{max-width:420px;color:var(--muted);font-size:11px;line-height:1.55;margin:0}
+#screen-home .v28-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);margin-top:26px;border-radius:14px;overflow:hidden}
+#screen-home .v28-stat{background:rgba(8,10,14,.68);padding:14px 12px}
+#screen-home .v28-stat b{display:block;font-size:14px;font-variant-numeric:tabular-nums}
+#screen-home .v28-stat small{display:block;font-size:7px;color:var(--muted);letter-spacing:.06em;margin-top:5px}
+#screen-home .v28-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+#screen-home .v28-foot-note{font-size:8px;color:var(--muted)}
+#screen-home .v28-actions{display:flex;gap:8px}
+#screen-home .v28-btn{border:1px solid var(--line);border-radius:11px;padding:10px 13px;background:rgba(255,255,255,.025);color:var(--text);font-size:9px;font-weight:850;cursor:pointer}
+#screen-home .v28-btn.primary{border-color:rgba(201,165,101,.35);color:var(--gold)}
+#screen-home .v28-empty h2{max-width:520px}
+#screen-home .v28-empty .v28-copy p{max-width:470px}
+[data-theme="light"] #screen-home .v28-hero{background:radial-gradient(circle at 82% 12%,rgba(174,132,55,.13),transparent 32%),linear-gradient(150deg,#fff,#f0ede6);box-shadow:0 22px 55px rgba(20,20,20,.08)}
+[data-theme="light"] #screen-home .v28-stats{background:rgba(0,0,0,.07)}
+[data-theme="light"] #screen-home .v28-stat{background:rgba(255,255,255,.72)}
+@media(max-width:650px){
+ #screen-home .v28-copy{margin-top:32px}
+ #screen-home .v28-copy h2{font-size:31px}
+ #screen-home .v28-stats{grid-template-columns:1fr}
+ #screen-home .v28-foot{align-items:flex-start;flex-direction:column}
+}
+</style>
+
+<style id="v281-smart-hero-css">
+#screen-home .v281-km-click{cursor:pointer;transition:.18s ease}
+#screen-home .v281-km-click:hover{background:rgba(201,165,101,.075)}
+#screen-home .v281-km-click:hover b{color:var(--gold)}
+#screen-home .v281-alert{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:13px;padding:10px 12px;border:1px solid rgba(201,165,101,.20);
+  border-radius:11px;background:rgba(201,165,101,.045)
+}
+#screen-home .v281-alert-copy b{display:block;font-size:9px}
+#screen-home .v281-alert-copy span{display:block;font-size:8px;color:var(--muted);margin-top:3px}
+#screen-home .v281-alert button{border:0;background:transparent;color:var(--gold);font-size:8px;font-weight:900;cursor:pointer;white-space:nowrap}
+#screen-home .v281-switch{display:flex;align-items:center;gap:7px}
+#screen-home .v281-switch button{width:25px;height:25px;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.025);color:var(--text);cursor:pointer;font-size:11px}
+#screen-home .v281-switch small{font-size:8px;color:var(--muted);min-width:28px;text-align:center}
+.v281-km-modal{max-width:380px;margin:auto}
+.v281-km-modal small{display:block;font-size:8px;letter-spacing:.12em;color:var(--gold);font-weight:900}
+.v281-km-modal h3{margin:8px 0 5px;font-size:19px}
+.v281-km-modal p{font-size:9px;color:var(--muted);line-height:1.5;margin:0 0 16px}
+.v281-km-modal input{width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--text);padding:13px;font-size:18px;font-weight:800;outline:none}
+.v281-km-modal input:focus{border-color:rgba(201,165,101,.55)}
+.v281-km-modal .v281-save{width:100%;margin-top:10px;border:1px solid rgba(201,165,101,.35);border-radius:11px;background:rgba(201,165,101,.08);color:var(--gold);font-weight:900;padding:11px;cursor:pointer}
+</style>
+
+<style id="v282-no-slogan-css">
+/* V28.2 — slogan alanı tamamen kaldırıldı */
+#screen-home .v14-greeting{display:none!important}
+#screen-home .v14-home-top{padding:0!important;margin:0!important;min-height:0!important}
+#screen-home .v28-hero{margin-top:22px!important}
+</style>
+
+<style id="v283-greeting-compact-css">
+/* V28.3 — sade karşılama + daha kompakt kişisel hero */
+#screen-home .v283-greeting{
+  margin:20px 16px 8px;
+  font-family:Fraunces,serif;
+  font-size:22px;
+  line-height:1.1;
+  letter-spacing:-.025em;
+  font-weight:600;
+}
+#screen-home .v28-hero{
+  min-height:0!important;
+  margin-top:12px!important;
+}
+#screen-home .v28-inner{padding:18px 22px!important}
+#screen-home .v28-copy{margin-top:28px!important}
+#screen-home .v28-copy h2{font-size:33px!important;margin:5px 0 6px!important}
+#screen-home .v28-copy h2 span{font-size:16px!important;margin-top:6px!important}
+#screen-home .v28-copy p{font-size:10px!important;line-height:1.45!important}
+#screen-home .v28-stats{margin-top:18px!important}
+#screen-home .v28-stat{padding:11px 12px!important}
+#screen-home .v28-foot{margin-top:13px!important}
+#screen-home .v281-alert{margin-top:10px!important;padding:8px 11px!important}
+@media(max-width:650px){
+  #screen-home .v283-greeting{font-size:20px;margin-top:17px}
+  #screen-home .v28-inner{padding:17px!important}
+  #screen-home .v28-copy{margin-top:23px!important}
+  #screen-home .v28-copy h2{font-size:29px!important}
+}
+</style>
+
+<style id="v286-home-polish-css">
+/* V28.6 — hero sıkılaştırma + recent cards ikincil ağırlık */
+#screen-home .v28-hero{
+  min-height:0!important;
+}
+#screen-home .v28-inner{
+  padding:15px 22px 14px!important;
+}
+#screen-home .v28-copy{
+  margin-top:18px!important;
+}
+#screen-home .v28-copy h2{
+  margin:4px 0 4px!important;
+}
+#screen-home .v28-copy p{
+  display:none!important;
+}
+#screen-home .v28-stats{
+  margin-top:14px!important;
+}
+#screen-home .v28-stat{
+  padding:9px 12px!important;
+}
+#screen-home .v28-foot{
+  margin-top:10px!important;
+  min-height:0!important;
+}
+#screen-home .v28-foot > :first-child{
+  display:none!important;
+}
+#screen-home .v28-actions{
+  margin-left:auto!important;
+}
+#screen-home .v281-alert{
+  margin-top:8px!important;
+}
+
+/* Kaldığın yerden devam et alanını biraz daha ikincil yap */
+#screen-home .recent-grid,
+#screen-home .v14-recent-grid{
+  gap:10px!important;
+}
+#screen-home .recent-card,
+#screen-home .v14-recent-card{
+  min-height:0!important;
+  padding:14px 15px!important;
+}
+#screen-home .recent-card h3,
+#screen-home .v14-recent-card h3{
+  font-size:18px!important;
+}
+#screen-home .recent-card p,
+#screen-home .v14-recent-card p{
+  font-size:11px!important;
+}
+
+/* Greeting ile hero arası daha kontrollü */
+#screen-home .v283-greeting{
+  margin-bottom:6px!important;
+}
+#screen-home .v28-hero{
+  margin-top:8px!important;
+}
+
+@media(max-width:650px){
+  #screen-home .v28-inner{
+    padding:14px 16px 13px!important;
+  }
+  #screen-home .v28-copy{
+    margin-top:16px!important;
+  }
+  #screen-home .v28-stats{
+    margin-top:12px!important;
+  }
+}
+</style>
+
+
+<style id="v287-greeting-aligned-css">
+/* V28.7 — greeting hero kartının sol çizgisiyle aynı hizada */
+#screen-home .v283-greeting{
+  margin-left:64px!important;
+  margin-right:64px!important;
+}
+@media(max-width:650px){
+  #screen-home .v283-greeting{
+    margin-left:16px!important;
+    margin-right:16px!important;
+  }
+}
+</style>
+
+
+<style id="v288-greeting-content-aligned-css">
+/* V28.8 — greeting, hero içeriğinin başladığı dikey çizgiyle hizalı */
+#screen-home .v283-greeting{
+  margin-left:104px!important;
+}
+@media(max-width:650px){
+  #screen-home .v283-greeting{
+    margin-left:32px!important;
+  }
+}
+</style>
+
+
+<style id="v289-greeting-in-hero-css">
+/* V28.9 — selamlama artık hero'nun parçası */
+#screen-home > .v283-greeting,
+#screen-home .v283-greeting:not(.v289-hero-greeting){
+  display:none!important;
+}
+#screen-home .v289-hero-greeting{
+  display:block!important;
+  margin:0 0 8px!important;
+  font-family:Fraunces,serif;
+  font-size:19px;
+  line-height:1.15;
+  letter-spacing:-.02em;
+  font-weight:600;
+  color:rgba(255,255,255,.72);
+}
+#screen-home .v28-copy{
+  margin-top:14px!important;
+}
+@media(max-width:650px){
+  #screen-home .v289-hero-greeting{
+    font-size:18px;
+    margin-bottom:7px!important;
+  }
+}
+</style>
+
 </head><body data-theme="dark">
 <div class="v26-auth-overlay" id="v26AuthOverlay" aria-hidden="true">
   <div class="v26-auth-card" id="v26AuthCard"></div>
 </div>
-<div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
+<div class="wrap"><header class="header v272-header">
+  <div class="logo">Garaj<b>.</b></div>
+  <div class="v272-header-actions">
+    <button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button>
+    <button class="v14-profile-dot v272-profile" onclick="openAccountV26()" aria-label="Hesap"><span>G</span></button>
+  </div>
+</header>
 <section class="screen active" id="screen-home">
 <div class="v14-home-top">
-  <div class="v14-brandrow">
-    <div><div class="v14-wordmark">GARAJ</div><div class="v14-date" id="v14HomeDate">PREMIUM AUTOMOTIVE COMPANION</div></div>
-    <button class="v14-profile-dot" onclick="openAccountV26()" aria-label="Hesap"><span>G</span></button>
-  </div>
-  <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Sahip olduktan sonra da yanında.</em></h1></div>
+  <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Aracın her aşamasında yanında.</em></h1></div>
 </div>
 <div class="v14-select" id="v14Select"></div>
 <div class="v14-command">
@@ -1971,8 +2422,13 @@ function openAccountV26(){
   showScreen('profile');
 }
 function openGarageV26(){
-  if(!loggedInV26()){pendingV26=()=>showScreen('garage');openAuthV26('login');return}
+  if(!loggedInV26()){
+    pendingV26=()=>{showScreen('garage');setTimeout(applyGarageNameV261,0)};
+    openAuthV26('login');
+    return;
+  }
   showScreen('garage');
+  setTimeout(applyGarageNameV261,0);
 }
 async function signOutV26(){
   if(sbV26)await sbV26.auth.signOut();
@@ -2056,10 +2512,19 @@ async function initAuthV26(){
     sbV26=window.supabase.createClient(GARAJ_SUPABASE_URL_V26,GARAJ_SUPABASE_KEY_V26);
     const {data}=await sbV26.auth.getSession();
     sessionV26=data.session;
-    if(sessionV26)await loadProfileV26();
+    if(sessionV26){
+      const p=await loadProfileV26();
+      if(!(p.garage_name||'').trim()) setTimeout(showGarageNameV26,100);
+      else setTimeout(applyGarageNameV261,0);
+    }
     sbV26.auth.onAuthStateChange(async(_event,session)=>{
       sessionV26=session;
-      if(session){await loadProfileV26();renderAccountV26();}
+      if(session){
+        const p=await loadProfileV26();
+        renderAccountV26();
+        if(!(p.garage_name||'').trim()) setTimeout(showGarageNameV26,100);
+        else setTimeout(applyGarageNameV261,0);
+      }
     });
   }catch(e){ console.error('V26 auth init',e); }
 }
@@ -2071,17 +2536,12 @@ function applyGarageNameV261(){
   const garageName=(p.garage_name||'').trim();
   if(!garageName)return;
 
-  // Main garage title candidates
-  const ids=['garageTitle','garagePageTitle','myGarageTitle'];
-  ids.forEach(id=>{
-    const el=document.getElementById(id);
-    if(el)el.textContent=garageName;
-  });
-
-  // Replace only prominent standalone "Garajım" headings inside garage screen.
-  const garageScreen=document.getElementById('screen-garage') || document.getElementById('garage');
+  const garageScreen=document.getElementById('screen-garage');
   if(garageScreen){
-    garageScreen.querySelectorAll('h1,h2,h3,.page-title,.garage-title').forEach(el=>{
+    const mainTitle=garageScreen.querySelector(':scope > .scr-title');
+    if(mainTitle) mainTitle.textContent=garageName;
+
+    garageScreen.querySelectorAll('h1,h2,h3,.page-title,.garage-title,.scr-title').forEach(el=>{
       if((el.textContent||'').trim()==='Garajım') el.textContent=garageName;
     });
   }
@@ -2103,6 +2563,1014 @@ if(typeof window.renderGarageV24==='function'){
     return r;
   };
 }
+
+
+// ================= V26.3 SPENDING CHART =================
+
+function carLabelV264(expense){
+  let garageCar=null, catalogCar=null;
+  try{
+    const list=typeof myCars!=='undefined'?myCars:[];
+    if(Number.isInteger(expense?.__carIndex) && list?.[expense.__carIndex]) garageCar=list[expense.__carIndex];
+    if(!garageCar){
+      const cid=expense?.carId ?? expense?.vehicleId ?? expense?.garageVehicleId ?? expense?.car_id;
+      if(cid!=null) garageCar=(list||[]).find(c=>String(c?.id??c?.carId??c?.vehicleId)===String(cid));
+    }
+    const catalog=typeof CARS!=='undefined'?CARS:[];
+    const catalogId=garageCar?.carId ?? garageCar?.id ?? expense?.carId ?? expense?.vehicleId;
+    if(catalogId!=null) catalogCar=(catalog||[]).find(c=>String(c.id)===String(catalogId));
+  }catch(e){}
+  const make=catalogCar?.brand||garageCar?.brand||garageCar?.make||expense?.carBrand||expense?.brand||'';
+  const model=catalogCar?.model||garageCar?.model||expense?.carModel||expense?.model||'';
+  const trim=catalogCar?.trim||catalogCar?.version||garageCar?.trim||garageCar?.version||expense?.trim||'';
+  const plate=garageCar?.plate||garageCar?.licensePlate||expense?.plate||'';
+  const base=[make,model,trim].filter(Boolean).join(' ').trim();
+  const fallback=garageCar?.carName||expense?.carName||expense?.vehicleName||'Araç';
+  const name=base || fallback;
+  return plate ? `${name} · ${plate}` : name;
+}
+
+let selectedSpendMonthV263 = null;
+let selectedSpendCarV265 = 'all';
+
+function moneyV263(n){
+  try{return new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(Math.round(Number(n)||0))+' ₺'}
+  catch(e){return Math.round(Number(n)||0)+' ₺'}
+}
+function parseExpenseDateV263(x){
+  const raw=x?.date||x?.expenseDate||x?.createdAt||x?.created_at||'';
+  if(!raw)return null;
+  const d=new Date(raw);
+  return isNaN(d)?null:d;
+}
+function expenseAmountV263(x){
+  return Number(x?.amount ?? x?.price ?? x?.cost ?? x?.tutar ?? 0) || 0;
+}
+function expenseCategoryV263(x){
+  const raw=(x?.type||x?.category||x?.kind||x?.expenseType||'Diğer').toString().toLowerCase();
+  const map={
+    fuel:'Yakıt', yakit:'Yakıt', yakıt:'Yakıt',
+    maintenance:'Bakım', bakım:'Bakım', bakim:'Bakım', service:'Bakım',
+    insurance:'Sigorta', sigorta:'Sigorta',
+    tax:'Vergi', vergi:'Vergi', mtv:'Vergi',
+    parking:'Otopark', otopark:'Otopark',
+    toll:'Geçiş', gecis:'Geçiş', geçiş:'Geçiş',
+    repair:'Onarım', onarim:'Onarım', onarım:'Onarım'
+  };
+  return map[raw] || (raw.charAt(0).toUpperCase()+raw.slice(1));
+}
+function allExpensesV263(){
+  // Works with the current localStorage-backed Garage data and tolerates different legacy shapes.
+  const pools=[];
+  try{
+    const m=typeof myCars!=='undefined'?myCars:[];
+    (m||[]).forEach((car,ci)=>{
+      const ex=car?.expenses||car?.expenseHistory||[];
+      (ex||[]).forEach(e=>pools.push({...e,__carIndex:ci}));
+    });
+  }catch(e){}
+  try{
+    const keys=['garajExpenses','garajExpensesV2','expenses'];
+    keys.forEach(k=>{
+      const a=JSON.parse(localStorage.getItem(k)||'[]');
+      if(Array.isArray(a)) a.forEach(e=>pools.push(e));
+    });
+  }catch(e){}
+  // de-dupe common repeats
+  const seen=new Set();
+  return pools.filter(e=>{
+    const key=[e.__carIndex??e.carId??e.vehicleId??'',e.id||'',e.date||e.expenseDate||'',expenseAmountV263(e),e.type||e.category||''].join('|');
+    if(seen.has(key))return false;
+    seen.add(key);return true;
+  });
+}
+function monthKeyV263(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')}
+function monthLabelV263(d){return d.toLocaleDateString('tr-TR',{month:'short'}).replace('.','')}
+function monthLongV263(d){return d.toLocaleDateString('tr-TR',{month:'long',year:'numeric'})}
+function lastMonthsV263(count=6){
+  const now=new Date(), arr=[];
+  for(let i=count-1;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    arr.push({date:d,key:monthKeyV263(d),label:monthLabelV263(d)});
+  }
+  return arr;
+}
+
+function garageCarsV265(){
+  try{
+    const list=typeof myCars!=='undefined'?myCars:[];
+    return (list||[]).map((m,i)=>{
+      const c=(typeof CARS!=='undefined'?CARS:[]).find(x=>String(x.id)===String(m.carId));
+      const label=[c?.brand,c?.model].filter(Boolean).join(' ') || m.carName || `Araç ${i+1}`;
+      return {index:i,label,plate:m.plate||''};
+    });
+  }catch(e){return []}
+}
+function expenseBelongsV265(e,filter){
+  if(filter==='all')return true;
+  const idx=Number(filter);
+  if(Number.isInteger(e?.__carIndex))return e.__carIndex===idx;
+  try{
+    const list=typeof myCars!=='undefined'?myCars:[];
+    const m=list?.[idx]; if(!m)return false;
+    const cid=e?.carId??e?.vehicleId??e?.garageVehicleId??e?.car_id;
+    return cid!=null && String(cid)===String(m.carId??m.id??m.vehicleId);
+  }catch(err){return false}
+}
+function filteredExpensesV265(){
+  return allExpensesV263().filter(e=>expenseBelongsV265(e,selectedSpendCarV265));
+}
+function previousMonthDeltaV265(current,previous){
+  if(previous<=0 && current<=0)return {text:'Değişim yok',cls:'flat'};
+  if(previous<=0 && current>0)return {text:'Önceki ay kayıt yok',cls:'flat'};
+  const pct=((current-previous)/previous)*100;
+  if(Math.abs(pct)<1)return {text:'Önceki ayla aynı',cls:'flat'};
+  return {
+    text:`Önceki aya göre %${Math.abs(Math.round(pct))} ${pct>0?'daha fazla':'daha az'}`,
+    cls:pct>0?'up':'down'
+  };
+}
+function costPerKmV265(){
+  let totalCost=0,totalKm=0;
+  try{
+    const list=typeof myCars!=='undefined'?myCars:[];
+    const indices=selectedSpendCarV265==='all'
+      ? (list||[]).map((_,i)=>i)
+      : [Number(selectedSpendCarV265)];
+
+    indices.forEach(i=>{
+      const m=list?.[i]; if(!m)return;
+      const ex=(m.expenses||[]).filter(e=>Number.isFinite(Number(e.km))&&Number(e.km)>0);
+      if(ex.length<2)return;
+      const kms=ex.map(e=>Number(e.km));
+      const min=Math.min(...kms),max=Math.max(...kms),delta=max-min;
+      if(delta<=0)return;
+      const relevant=(m.expenses||[]).filter(e=>{
+        const km=Number(e.km);
+        return Number.isFinite(km)&&km>=min&&km<=max;
+      }).reduce((a,e)=>a+(Number(e.amount)||0),0);
+      totalCost+=relevant; totalKm+=delta;
+    });
+  }catch(e){}
+  return totalKm>0?totalCost/totalKm:null;
+}
+function setSpendCarV265(v){
+  selectedSpendCarV265=String(v);
+  selectedSpendMonthV263=null;
+  renderSpendChartV263();
+}
+
+function spendDataV263(){
+  const ex=filteredExpensesV265();
+  const months=lastMonthsV263(6);
+  const byMonth={};
+  ex.forEach(e=>{
+    const d=parseExpenseDateV263(e); if(!d)return;
+    const k=monthKeyV263(d);
+    (byMonth[k]??=[]).push(e);
+  });
+  const now=new Date();
+  const thisKey=monthKeyV263(new Date(now.getFullYear(),now.getMonth(),1));
+  const start12=new Date(now.getFullYear(),now.getMonth()-11,1);
+  const end12=new Date(now.getFullYear(),now.getMonth()+1,1);
+  let total12=0;
+  ex.forEach(e=>{
+    const d=parseExpenseDateV263(e);
+    if(d && d>=start12 && d<end12) total12+=expenseAmountV263(e);
+  });
+  const thisMonth=(byMonth[thisKey]||[]).reduce((a,e)=>a+expenseAmountV263(e),0);
+  const prevDate=new Date(now.getFullYear(),now.getMonth()-1,1);
+  const prevKey=monthKeyV263(prevDate);
+  const previousMonth=(byMonth[prevKey]||[]).reduce((a,e)=>a+expenseAmountV263(e),0);
+  return {ex,months,byMonth,thisMonth,previousMonth,total12,avg:total12/12,cpk:costPerKmV265()};
+}
+function renderSpendChartV263(){
+  const host=document.getElementById('v263SpendingChart');
+  if(!host)return;
+  const d=spendDataV263();
+  if(!selectedSpendMonthV263) selectedSpendMonthV263=d.months[d.months.length-1].key;
+  const values=d.months.map(m=>(d.byMonth[m.key]||[]).reduce((a,e)=>a+expenseAmountV263(e),0));
+  const max=Math.max(1,...values);
+
+  const bars=d.months.map((m,i)=>{
+    const v=values[i], h=Math.max(v?5:2, Math.round((v/max)*100));
+    return `<div class="v263-col ${selectedSpendMonthV263===m.key?'active':''}" onclick="selectedSpendMonthV263='${m.key}';renderSpendChartV263()">
+      <div class="v263-barbox"><div class="v263-bar" style="height:${h}%"></div></div>
+      <div class="v263-month">${m.label}</div>
+    </div>`;
+  }).join('');
+
+  const selectedDate=d.months.find(m=>m.key===selectedSpendMonthV263)?.date || new Date();
+  const selectedItems=d.byMonth[selectedSpendMonthV263]||[];
+  const cats={};
+  selectedItems.forEach(e=>{const c=expenseCategoryV263(e);cats[c]=(cats[c]||0)+expenseAmountV263(e)});
+  const selectedTotal=selectedItems.reduce((a,e)=>a+expenseAmountV263(e),0);
+  const catRows=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="v263-cat"><span>${safeText(k)}</span><b>${moneyV263(v)}</b></div>`).join('');
+
+  const vehicleTotals={};
+  const expenseRows=[...selectedItems]
+    .sort((a,b)=>(parseExpenseDateV263(b)?.getTime()||0)-(parseExpenseDateV263(a)?.getTime()||0))
+    .map(e=>{
+      const car=carLabelV264(e), cat=expenseCategoryV263(e), amt=expenseAmountV263(e);
+      vehicleTotals[car]=(vehicleTotals[car]||0)+amt;
+      const d=parseExpenseDateV263(e);
+      const dateText=d?d.toLocaleDateString('tr-TR',{day:'2-digit',month:'short'}):'';
+      return `<div class="v264-expense">
+        <div class="v264-expense-main"><b>${safeText(cat)}</b><span>${safeText(car)}${dateText?' · '+safeText(dateText):''}</span></div>
+        <div class="v264-expense-amount">${moneyV263(amt)}</div>
+      </div>`;
+    }).join('');
+
+  const vehicleRows=Object.entries(vehicleTotals)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([car,total])=>`<div class="v264-car-row"><span>${safeText(car)}</span><b>${moneyV263(total)}</b></div>`)
+    .join('');
+
+  const isAllCars=selectedSpendCarV265==='all';
+  const allCarsBreakdown=isAllCars && selectedItems.length ? `
+    <div class="v266-section-title"><small>ARAÇLARA GÖRE</small><span>${selectedItems.length} işlem</span></div>
+    <div class="v264-car-summary" style="margin-top:0;padding-top:0;border-top:0">${vehicleRows}</div>
+    <div class="v266-section-title"><small>KATEGORİLERE GÖRE</small></div>
+    ${catRows||'<div class="v263-cat"><span>Bu ay kayıt yok</span><b>0 ₺</b></div>'}
+    <button class="v266-tx-toggle" onclick="const x=document.getElementById('v266TxList');x.classList.toggle('open');this.textContent=x.classList.contains('open')?'İşlemleri gizle':'Tüm işlemleri göster'">Tüm işlemleri göster</button>
+    <div id="v266TxList" class="v266-tx-list">${expenseRows}</div>` : '';
+
+  const singleCarBreakdown=!isAllCars ? `
+    <div class="v266-section-title"><small>KATEGORİLERE GÖRE</small></div>
+    ${catRows||'<div class="v263-cat"><span>Bu ay kayıt yok</span><b>0 ₺</b></div>'}
+    ${selectedItems.length?`<div class="v266-section-title"><small>İŞLEMLER</small><span>${selectedItems.length} kayıt</span></div><div class="v264-list">${expenseRows}</div>`:''}` : '';
+
+  const cars=garageCarsV265();
+  const delta=previousMonthDeltaV265(d.thisMonth,d.previousMonth);
+  const filters=`<div class="v265-filter">
+    <button class="${selectedSpendCarV265==='all'?'on':''}" onclick="setSpendCarV265('all')">Tüm Araçlar</button>
+    ${cars.map(c=>`<button class="${selectedSpendCarV265===String(c.index)?'on':''}" onclick="setSpendCarV265('${c.index}')">${safeText(c.label)}${c.plate?' · '+safeText(c.plate):''}</button>`).join('')}
+  </div>`;
+
+  host.innerHTML=`<div class="v263-spend-wrap">
+    <div class="v263-spend-head"><div><small>HARCAMALAR</small><h3>Son 6 Ay Harcamalarım</h3></div></div>
+    ${filters}
+    <div class="v263-spend-summary v265-four">
+      <div class="v263-stat"><small>BU AY</small><b>${moneyV263(d.thisMonth)}</b><span class="v265-delta ${delta.cls}">${delta.text}</span></div>
+      <div class="v263-stat"><small>SON 12 AY</small><b>${moneyV263(d.total12)}</b></div>
+      <div class="v263-stat"><small>AYLIK ORTALAMA</small><b>${moneyV263(d.avg)}</b></div>
+      <div class="v263-stat"><small>KM BAŞINA</small><b>${d.cpk!==null?moneyV263(d.cpk).replace(' ₺','')+' ₺/km':'—'}</b><span class="v265-cpk-note">${d.cpk!==null?'KM kayıtlı giderlerden hesaplandı':'Hesap için en az 2 KM kayıtlı gider gerekli'}</span></div>
+    </div>
+    ${d.ex.length?`<div class="v263-chart">${bars}</div>`:`<div class="v263-empty">Henüz harcama kaydı yok.<br>Harcama ekledikçe son 6 ay burada görünecek.</div>`}
+    ${d.ex.length?`<div class="v263-breakdown">
+      <div class="v263-breakdown-top"><b>${monthLongV263(selectedDate)}</b><span>${moneyV263(selectedTotal)}</span></div>
+      ${isAllCars?allCarsBreakdown:singleCarBreakdown}
+    </div>`:''}
+  </div>`;
+}
+function injectSpendChartV263(){
+  const screen=document.getElementById('screen-garage');
+  if(!screen)return;
+  let host=document.getElementById('v263SpendingChart');
+  if(!host){
+    host=document.createElement('div');
+    host.id='v263SpendingChart';
+    const target=screen.querySelector('.garage-v24,.garage-wrap,.garage-content') || screen;
+    // Put it before vehicle history if possible, otherwise at the end of the Garage content.
+    const history=[...target.children].find(el=>/Araç Geçmişi/i.test(el.textContent||''));
+    if(history) target.insertBefore(host,history);
+    else target.appendChild(host);
+  }
+  renderSpendChartV263();
+}
+
+// Re-render after Garage draws and after expense changes.
+(function(){
+  if(typeof window.renderGarageV24==='function'){
+    const orig=window.renderGarageV24;
+    window.renderGarageV24=function(){
+      const r=orig.apply(this,arguments);
+      setTimeout(()=>{applyGarageNameV261?.();injectSpendChartV263()},0);
+      return r;
+    };
+  }
+  if(typeof window.renderGarage==='function'){
+    const orig2=window.renderGarage;
+    window.renderGarage=function(){
+      const r=orig2.apply(this,arguments);
+      setTimeout(injectSpendChartV263,0);
+      return r;
+    };
+  }
+  if(typeof window.saveExpense==='function'){
+    const origSave=window.saveExpense;
+    window.saveExpense=function(){
+      const r=origSave.apply(this,arguments);
+      setTimeout(injectSpendChartV263,80);
+      return r;
+    };
+  }
+  if(typeof window.deleteExpense==='function'){
+    const origDel=window.deleteExpense;
+    window.deleteExpense=function(){
+      const r=origDel.apply(this,arguments);
+      setTimeout(injectSpendChartV263,80);
+      return r;
+    };
+  }
+})();
+window.addEventListener('load',()=>setTimeout(injectSpendChartV263,350));
+
+
+// ================= V26.7 UPCOMING =================
+function reminderDateV267(r){
+  const raw=r?.date||r?.dueDate||r?.reminderDate||r?.nextDate||r?.targetDate||'';
+  if(!raw)return null;
+  const d=new Date(raw);
+  return isNaN(d)?null:d;
+}
+function reminderTitleV267(r){
+  return r?.title||r?.name||r?.type||r?.category||'Hatırlatıcı';
+}
+function reminderCostV267(r){
+  const min=Number(r?.estimatedMin??r?.costMin??r?.minCost??0)||0;
+  const max=Number(r?.estimatedMax??r?.costMax??r?.estimatedCost??r?.cost??0)||0;
+  return {min,max:max||min};
+}
+function upcomingItemsV267(){
+  const now=new Date(); now.setHours(0,0,0,0);
+  const rows=[];
+  try{
+    const list=typeof myCars!=='undefined'?myCars:[];
+    (list||[]).forEach((m,ci)=>{
+      const catalog=(typeof CARS!=='undefined'?CARS:[]).find(c=>String(c.id)===String(m.carId));
+      const car=[catalog?.brand,catalog?.model].filter(Boolean).join(' ')||m.carName||`Araç ${ci+1}`;
+      const reminders=m.reminders||m.alarms||m.alerts||[];
+      (reminders||[]).forEach(r=>{
+        const d=reminderDateV267(r); if(!d)return;
+        d.setHours(0,0,0,0);
+        const days=Math.ceil((d-now)/86400000);
+        if(days<0)return;
+        rows.push({r,d,days,car,cost:reminderCostV267(r)});
+      });
+    });
+  }catch(e){}
+  return rows.sort((a,b)=>a.days-b.days);
+}
+function formatUpcomingCostV267(c){
+  if(!c||(!c.min&&!c.max))return '';
+  if(c.min&&c.max&&c.min!==c.max)return `${moneyV263(c.min)} – ${moneyV263(c.max)}`;
+  return moneyV263(c.max||c.min);
+}
+function renderUpcomingV267(){
+  const host=document.getElementById('v267Upcoming');
+  if(!host)return;
+  const items=upcomingItemsV267();
+  const next60=items.filter(x=>x.days<=60);
+  const min60=next60.reduce((a,x)=>a+(x.cost.min||0),0);
+  const max60=next60.reduce((a,x)=>a+(x.cost.max||0),0);
+  const summaryCost=(min60||max60)?(min60!==max60?`${moneyV263(min60)} – ${moneyV263(max60)}`:moneyV263(max60)):'Tahmin yok';
+
+  const rows=items.slice(0,5).map(x=>{
+    const cls=x.days<=7?'urgent':x.days<=30?'soon':'';
+    const when=x.days===0?'Bugün':x.days===1?'Yarın':`${x.days} gün kaldı`;
+    const cost=formatUpcomingCostV267(x.cost);
+    return `<div class="v267-item">
+      <div class="v267-dot ${cls}"></div>
+      <div class="v267-copy"><b>${safeText(reminderTitleV267(x.r))}</b><span>${safeText(x.car)} · ${x.d.toLocaleDateString('tr-TR',{day:'2-digit',month:'long',year:'numeric'})}</span></div>
+      <div class="v267-right"><b>${when}</b>${cost?`<span>${cost}</span>`:''}</div>
+    </div>`;
+  }).join('');
+
+  host.innerHTML=`<div class="v267-upcoming">
+    <div class="v267-head"><div><small>YAKLAŞANLAR</small><h3>Sırada ne var?</h3></div><button onclick="openGarageV26()" style="border:0;background:transparent;color:var(--gold);font-size:8px;font-weight:900;cursor:pointer">Tümünü gör →</button></div>
+    <div class="v267-summary" style="cursor:pointer" onclick="openGarageV26()">
+      <div><small>ÖNÜMÜZDEKİ 60 GÜN</small><b>${next60.length} işlem</b></div>
+      <strong>${summaryCost}</strong>
+    </div>
+    ${rows||'<div class="v267-empty">Yaklaşan kayıt yok. Muayene, bakım, sigorta veya diğer hatırlatıcıları eklediğinde burada göreceksin.</div>'}
+  </div>`;
+}
+function injectUpcomingV267(){
+  const screen=document.getElementById('screen-home'); if(!screen)return;
+  let host=document.getElementById('v267Upcoming');
+  if(!host){
+    host=document.createElement('div'); host.id='v267Upcoming';
+    // Place after the main search/hero area, before lower home content.
+    const candidates=[
+      screen.querySelector('.home-search'),
+      screen.querySelector('.hero-search'),
+      screen.querySelector('.search-wrap'),
+      screen.querySelector('.hero'),
+      screen.querySelector('.home-hero')
+    ].filter(Boolean);
+    const anchor=candidates[0];
+    if(anchor && anchor.parentNode){
+      anchor.parentNode.insertBefore(host,anchor.nextSibling);
+    }else{
+      screen.insertBefore(host,screen.children[1]||null);
+    }
+  }
+  renderUpcomingV267();
+}
+window.addEventListener('load',()=>setTimeout(injectUpcomingV267,420));
+(function(){
+  if(typeof window.saveAlarm==='function'){
+    const origSaveAlarm=window.saveAlarm;
+    window.saveAlarm=function(){
+      const r=origSaveAlarm.apply(this,arguments);
+      setTimeout(injectUpcomingV267,80);
+      return r;
+    };
+  }
+})();
+
+
+// ================= V26.9 HOME CLEANUP =================
+function moneyV269(n){
+  try{return new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(Number(n)||0)+' ₺'}catch(e){return (Number(n)||0)+' ₺'}
+}
+function nearestUpcomingV269(){
+  try{
+    const now=new Date(); now.setHours(0,0,0,0);
+    let best=null;
+    (typeof myCars!=='undefined'?myCars:[]).forEach((m,ci)=>{
+      const catalog=(typeof CARS!=='undefined'?CARS:[]).find(c=>String(c.id)===String(m.carId));
+      const car=[catalog?.brand,catalog?.model].filter(Boolean).join(' ')||m.carName||`Araç ${ci+1}`;
+      const reminders=m.reminders||m.alarms||m.alerts||[];
+      reminders.forEach(r=>{
+        const raw=r?.date||r?.dueDate||r?.reminderDate||r?.nextDate||r?.targetDate;
+        if(!raw)return;
+        const d=new Date(raw); if(isNaN(d))return; d.setHours(0,0,0,0);
+        const days=Math.ceil((d-now)/86400000);
+        if(days<0)return;
+        if(!best||days<best.days) best={days,car,title:r?.title||r?.name||r?.type||r?.category||'Hatırlatıcı'};
+      });
+    });
+    return best;
+  }catch(e){return null}
+}
+function thisMonthSpendV269(){
+  try{
+    const now=new Date(), y=now.getFullYear(), m=now.getMonth();
+    let total=0;
+    (typeof myCars!=='undefined'?myCars:[]).forEach(car=>{
+      (car.expenses||[]).forEach(e=>{
+        const raw=e?.date||e?.expenseDate||e?.createdAt;
+        const d=raw?new Date(raw):null;
+        if(!d||isNaN(d))return;
+        if(d.getFullYear()===y&&d.getMonth()===m) total+=Number(e.amount??e.cost??e.price??0)||0;
+      })
+    });
+    return total;
+  }catch(e){return 0}
+}
+function injectPersonalHomeV269(){
+  const screen=document.getElementById('screen-home'); if(!screen)return;
+
+  // remove older standalone upcoming block
+  const old=document.getElementById('v267Upcoming');
+  if(old) old.style.display='none';
+
+  let host=document.getElementById('v269HomePersonal');
+  if(!host){
+    host=document.createElement('div');
+    host.id='v269HomePersonal';
+    host.className='v269-home-personal';
+
+    const anchors=[
+      screen.querySelector('.home-search'),
+      screen.querySelector('.hero-search'),
+      screen.querySelector('.search-wrap'),
+      screen.querySelector('.hero'),
+      screen.querySelector('.home-hero')
+    ].filter(Boolean);
+    const anchor=anchors[0];
+    if(anchor?.parentNode) anchor.parentNode.insertBefore(host,anchor.nextSibling);
+    else screen.insertBefore(host,screen.children[1]||null);
+  }
+
+  const next=nearestUpcomingV269();
+  const spend=thisMonthSpendV269();
+  const signedIn=!!(window.currentUserV26||localStorage.getItem('garajUserProfileV26'));
+  if(!signedIn){
+    host.innerHTML='';
+    host.style.display='none';
+    return;
+  }
+  host.style.display='block';
+
+  let main;
+  if(next){
+    const when=next.days===0?'Bugün':next.days===1?'Yarın':`${next.days} gün kaldı`;
+    main=`<div class="v269-personal-main"><b>${safeText(next.title)}</b><span>${safeText(next.car)} · ${when}</span></div>`;
+  }else{
+    main=`<div class="v269-personal-main"><b>Yaklaşan işlem yok</b><span>Garajın sakin görünüyor</span></div>`;
+  }
+
+  host.innerHTML=`<div class="v269-personal-card">
+    <div class="v269-personal-top"><small>GARAJINDA BUGÜN</small><button onclick="openGarageV26()">Garaja git →</button></div>
+    <div class="v269-personal-grid">
+      ${main}
+      <div class="v269-personal-spend"><b>${moneyV269(spend)}</b><span>BU AY GİDER</span></div>
+    </div>
+  </div>`;
+}
+function simplifyHomeLabelsV269(){
+  const screen=document.getElementById('screen-home'); if(!screen)return;
+  const texts=['2 EYLÜL · GARAJ','BUGÜN GARAJINDA','GARAJ SELECT / 01','SENİN ALANIN','GARAJIM / BUGÜN','HIZLI ARAÇLAR'];
+  [...screen.querySelectorAll('*')].forEach(el=>{
+    const t=(el.textContent||'').trim();
+    if(texts.includes(t)) el.classList.add('v269-hide');
+  });
+}
+function applyHomeCleanV269(){
+  simplifyHomeLabelsV269();
+  injectPersonalHomeV269();
+}
+window.addEventListener('load',()=>setTimeout(applyHomeCleanV269,500));
+setTimeout(applyHomeCleanV269,1000);
+
+
+// ================= V27 HOME RESET =================
+function injectNextV27(){
+  const screen=document.getElementById('screen-home'); if(!screen)return;
+
+  // Önce eski/tekrarlı kişisel alanları kesin olarak kapat.
+  ['v14Ownership','v269HomePersonal','v267Upcoming'].forEach(id=>{
+    const x=document.getElementById(id); if(x)x.style.display='none';
+  });
+
+  let host=document.getElementById('v27Next');
+  if(!host){
+    host=document.createElement('div');
+    host.id='v27Next';
+    host.className='v27-next';
+    const actions=screen.querySelector('.v15-primary-actions');
+    if(actions?.parentNode) actions.parentNode.insertBefore(host,actions.nextSibling);
+  }
+
+  // Boş durum ana sayfada gösterilmez.
+  const next=(typeof nearestUpcomingV269==='function')?nearestUpcomingV269():null;
+  if(!next){
+    host.innerHTML='';
+    host.style.display='none';
+    return;
+  }
+
+  host.style.display='block';
+  const when=next.days===0?'Bugün':next.days===1?'Yarın':`${next.days} gün kaldı`;
+  host.innerHTML=`<div class="v27-next-card">
+    <div class="v27-next-copy">
+      <small>YAKLAŞAN</small>
+      <b>${safeText(next.title)}</b><span>${safeText(next.car)} · ${when}</span>
+    </div>
+    <button onclick="openGarageV26()">Garaja git →</button>
+  </div>`;
+}
+
+function simplifyRecentV27(){
+  const head=document.querySelector('#personalHomeV13 .v13-home-head h3');
+  if(head) head.textContent='Son baktıkların';
+}
+
+function applyHomeV27(){
+  injectNextV27();
+  simplifyRecentV27();
+}
+window.addEventListener('load',()=>setTimeout(applyHomeV27,650));
+setTimeout(applyHomeV27,1200);
+
+// Eski renderer tekrar ownership basarsa yine sakla.
+if(typeof window.renderV14Ownership==='function'){
+  window.renderV14Ownership=function(){
+    const el=document.getElementById('v14Ownership');
+    if(el){el.innerHTML='';el.style.display='none'}
+  };
+}
+
+
+// ================= V27.2 HEADER FIX =================
+function syncHeaderProfileV272(){
+  const btn=document.querySelector('.v272-profile span');
+  if(!btn)return;
+  let letter='G';
+  try{
+    const p=JSON.parse(localStorage.getItem('garajUserProfileV26')||'{}');
+    const n=(p.name||p.full_name||'').trim();
+    if(n) letter=n.charAt(0).toLocaleUpperCase('tr-TR');
+  }catch(e){}
+  btn.textContent=letter;
+}
+window.addEventListener('load',()=>setTimeout(syncHeaderProfileV272,350));
+setTimeout(syncHeaderProfileV272,800);
+
+
+// ================= V28 PERSONAL HERO =================
+function v28CurrentMonthSpend(m){
+  const n=new Date();
+  return (m?.expenses||[]).filter(e=>{
+    const d=new Date(e.date);
+    return !isNaN(d)&&d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear();
+  }).reduce((a,e)=>a+(Number(e.amount)||0),0);
+}
+function v28NextText(m){
+  const next=typeof garageNextAlarm==='function'?garageNextAlarm(m):null;
+  if(!next)return {value:'—',label:'YAKLAŞAN İŞLEM'};
+  const nd=typeof daysUntil==='function'?daysUntil(next.date):null;
+  const title=(typeof alarms!=='undefined'&&alarms.find(x=>x[0]===next.type)?.[1])||next.type||'Hatırlatıcı';
+  let value=nd===0?'Bugün':nd===1?'Yarın':nd<0?`${Math.abs(nd)} gün gecikti`:`${nd} gün`;
+  return {value,label:String(title).toUpperCase()};
+}
+function v28SignedIn(){
+  try{
+    return !!(window.currentUserV26||localStorage.getItem('garajUserProfileV26'));
+  }catch(e){return false}
+}
+function renderV28Hero(){
+  const el=document.getElementById('v14Select'); if(!el)return;
+  try{ if(typeof normalizeGarageData==='function') normalizeGarageData(); }catch(e){}
+  const cars=(typeof myCars!=='undefined'?myCars:[]);
+  const signed=v28SignedIn();
+
+  if(signed && cars.length){
+    const m=cars[0];
+    const c=(typeof CARS!=='undefined'?CARS:[]).find(x=>String(x.id)===String(m.carId));
+    if(c){
+      const spend=v28CurrentMonthSpend(m);
+      const next=v28NextText(m);
+      const km=Number(m.km)||0;
+      el.className='v28-hero';
+      el.innerHTML=`<div class="v28-inner">
+        <div class="v28-top"><div class="v28-kicker">SENİN ARACIN</div><div class="v28-state">${safeText(c.body)} · ${safeText(c.fuel)}</div></div>
+        <div class="v28-copy">
+          <div class="v28-brand">${safeText(c.brand).toUpperCase()}</div>
+          <h2>${safeText(c.model)}<span>${safeText(c.variant)}${m.year?' · '+safeText(m.year):''}</span></h2>
+          <p></p>
+        </div>
+        <div class="v28-stats">
+          <div class="v28-stat"><b>${km?km.toLocaleString('tr-TR'):'—'}</b><small>GÜNCEL KM</small></div>
+          <div class="v28-stat"><b>${safeText(next.value)}</b><small>${safeText(next.label)}</small></div>
+          <div class="v28-stat"><b>${spend?moneyTR(spend):'—'}</b><small>BU AY GİDER</small></div>
+        </div>
+        <div class="v28-foot"><div class="v28-foot-note">${m.plate?safeText(m.plate):'Garajında kayıtlı ana araç'}</div><div class="v28-actions"><button class="v28-btn" onclick="event.stopPropagation();openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayları</button><button class="v28-btn primary" onclick="event.stopPropagation();openGarageV26()">Garajıma git →</button></div></div>
+      </div>`;
+      return;
+    }
+  }
+
+  el.className='v28-hero v28-empty';
+  const title=signed?'Aracını Garaj’a ekle.':'Hangi araç sana göre?';
+  const desc=signed?'Bakım, gider, kilometre ve yaklaşan işlemlerini tek yerde takip et.':'Araçları teknik veriler ve günlük kullanım farklarıyla karşılaştır.';
+  const primary=signed?`<button class="v28-btn primary" onclick="openGaragePicker()">Aracımı ekle →</button>`:`<button class="v28-btn primary" onclick="document.getElementById('homeSearch')?.focus()">Araç ara →</button>`;
+  el.innerHTML=`<div class="v28-inner">
+    <div class="v28-top"><div class="v28-kicker">${signed?'GARAJINI OLUŞTUR':'ARAÇ KARARI'}</div><div class="v28-state">${signed?'İlk aracını ekle':'Ara · İncele · Karşılaştır'}</div></div>
+    <div class="v28-copy"><h2>${title}</h2><p>${desc}</p></div>
+    <div class="v28-foot"><div class="v28-foot-note">${signed?'Kayıtların sana özel saklanır.':'Karar vermeden önce farkı gör.'}</div><div class="v28-actions">${primary}<button class="v28-btn" onclick="showScreen('compare')">Karşılaştır →</button></div></div>
+  </div>`;
+}
+function renderV14Select(){ renderV28Hero(); }
+function renderV14Home(){ renderV28Hero(); }
+window.addEventListener('load',()=>setTimeout(renderV28Hero,550));
+setTimeout(renderV28Hero,1100);
+
+
+// ================= V28.1 SMART PERSONAL HERO =================
+let v281HeroCarIndex=0;
+
+function v281ProfileName(){
+  try{
+    const p=JSON.parse(localStorage.getItem('garajUserProfileV26')||'{}');
+    return String(p.name||p.full_name||'').trim().split(/\s+/)[0]||'';
+  }catch(e){return ''}
+}
+function v281Greeting(){
+  const h=new Date().getHours();
+  return h<12?'Günaydın':h<18?'İyi günler':'İyi akşamlar';
+}
+function v281HeroReminder(m){
+  try{
+    const reminders=m?.reminders||m?.alarms||m?.alerts||[];
+    const now=new Date(); now.setHours(0,0,0,0);
+    let best=null;
+    reminders.forEach(r=>{
+      const raw=r?.date||r?.dueDate||r?.reminderDate||r?.nextDate||r?.targetDate;
+      if(!raw)return;
+      const d=new Date(raw); if(isNaN(d))return; d.setHours(0,0,0,0);
+      const days=Math.ceil((d-now)/86400000);
+      if(days<0)return;
+      if(!best||days<best.days)best={r,d,days};
+    });
+    return best;
+  }catch(e){return null}
+}
+function v281ReminderTitle(r){
+  return r?.title||r?.name||r?.type||r?.category||'Hatırlatıcı';
+}
+function v281OpenKm(index){
+  const m=(typeof myCars!=='undefined'?myCars:[])[index]; if(!m)return;
+  const body=document.getElementById('modalBody'), back=document.getElementById('modalBack');
+  if(!body||!back)return;
+  body.innerHTML=`<div class="v281-km-modal">
+    <small>KİLOMETRE GÜNCELLE</small>
+    <h3>Güncel kilometre</h3>
+    <p>Güncel kilometre; bakım takibi ve kilometre başına maliyet hesabını daha doğru hale getirir.</p>
+    <input id="v281KmInput" type="number" inputmode="numeric" min="0" step="1" value="${Number(m.km)||''}" placeholder="Örn. 86450">
+    <button class="v281-save" onclick="v281SaveKm(${index})">Kaydet</button>
+  </div>`;
+  back.classList.add('open');
+  setTimeout(()=>document.getElementById('v281KmInput')?.focus(),80);
+}
+function v281SaveKm(index){
+  const val=Math.round(Number(document.getElementById('v281KmInput')?.value));
+  if(!Number.isFinite(val)||val<0)return;
+  if(typeof myCars==='undefined'||!myCars[index])return;
+  myCars[index].km=val;
+  if(typeof persist==='function')persist();
+  else localStorage.setItem('garajCarsV2',JSON.stringify(myCars));
+  document.getElementById('modalBack')?.classList.remove('open');
+  renderV28Hero();
+}
+function v281SwitchHero(delta){
+  const cars=(typeof myCars!=='undefined'?myCars:[]);
+  if(!cars.length)return;
+  v281HeroCarIndex=(v281HeroCarIndex+delta+cars.length)%cars.length;
+  renderV28Hero();
+}
+function renderV28Hero(){
+  const el=document.getElementById('v14Select'); if(!el)return;
+  try{if(typeof normalizeGarageData==='function')normalizeGarageData()}catch(e){}
+  const cars=(typeof myCars!=='undefined'?myCars:[]);
+  const signed=typeof v28SignedIn==='function'?v28SignedIn():false;
+
+  if(signed&&cars.length){
+    if(v281HeroCarIndex>=cars.length)v281HeroCarIndex=0;
+    const m=cars[v281HeroCarIndex];
+    const c=(typeof CARS!=='undefined'?CARS:[]).find(x=>String(x.id)===String(m.carId));
+    if(c){
+      const spend=typeof v28CurrentMonthSpend==='function'?v28CurrentMonthSpend(m):0;
+      const reminder=v281HeroReminder(m);
+      const km=Number(m.km)||0;
+      const name=v281ProfileName();
+      let reminderValue='—', reminderLabel='YAKLAŞAN İŞLEM', alert='';
+      if(reminder){
+        reminderValue=reminder.days===0?'Bugün':reminder.days===1?'Yarın':`${reminder.days} gün`;
+        reminderLabel=String(v281ReminderTitle(reminder.r)).toUpperCase();
+        if(reminder.days<=30){
+          const lead=reminder.days===0?'Bugün':reminder.days===1?'Yarın':`${reminder.days} gün sonra`;
+          alert=`<div class="v281-alert"><div class="v281-alert-copy"><b>${safeText(v281ReminderTitle(reminder.r))} yaklaşıyor</b><span>${lead} · ${safeText(c.brand)} ${safeText(c.model)}</span></div><button onclick="event.stopPropagation();openGarageV26()">Detayları gör →</button></div>`;
+        }
+      }
+
+      const switcher=cars.length>1?`<div class="v281-switch"><button onclick="event.stopPropagation();v281SwitchHero(-1)">‹</button><small>${v281HeroCarIndex+1} / ${cars.length}</small><button onclick="event.stopPropagation();v281SwitchHero(1)">›</button></div>`:`<div class="v28-state">${safeText(c.body)} · ${safeText(c.fuel)}</div>`;
+
+      el.className='v28-hero';
+      el.innerHTML=`<div class="v28-inner">
+        <div class="v28-top"><div class="v28-kicker">SENİN ARACIN</div>${switcher}</div>
+        <div class="v28-copy">
+          <div class="v28-brand">${safeText(c.brand).toUpperCase()}</div>
+          <h2>${safeText(c.model)}<span>${safeText(c.variant)}${m.year?' · '+safeText(m.year):''}</span></h2>
+          <p>${reminder&&reminder.days<=30?'Yaklaşan bir işlem var. Garajın seni önceden haberdar ediyor.':''}</p>
+        </div>
+        <div class="v28-stats">
+          <div class="v28-stat v281-km-click" onclick="event.stopPropagation();v281OpenKm(${v281HeroCarIndex})" title="Kilometreyi güncelle"><b>${km?km.toLocaleString('tr-TR'):'—'}</b><small>GÜNCEL KM · DÜZENLE</small></div>
+          <div class="v28-stat"><b>${safeText(reminderValue)}</b><small>${safeText(reminderLabel)}</small></div>
+          <div class="v28-stat"><b>${spend?moneyTR(spend):'—'}</b><small>BU AY GİDER</small></div>
+        </div>
+        ${alert}
+        <div class="v28-foot"><div class="v28-foot-note">${m.plate?safeText(m.plate):''}</div><div class="v28-actions"><button class="v28-btn" onclick="event.stopPropagation();openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayları</button><button class="v28-btn primary" onclick="event.stopPropagation();openGarageV26()">Garajıma git →</button></div></div>
+      </div>`;
+      return;
+    }
+  }
+
+  el.className='v28-hero v28-empty';
+  const title=signed?'Aracını Garaj’a ekle.':'Hangi araç sana göre?';
+  const desc=signed?'Bakım, gider, kilometre ve yaklaşan işlemlerini tek yerde takip et.':'Araçları teknik veriler ve günlük kullanım farklarıyla karşılaştır.';
+  const primary=signed?`<button class="v28-btn primary" onclick="openGaragePicker()">Aracımı ekle →</button>`:`<button class="v28-btn primary" onclick="document.getElementById('homeSearch')?.focus()">Araç ara →</button>`;
+  el.innerHTML=`<div class="v28-inner">
+    <div class="v28-top"><div class="v28-kicker">${signed?'GARAJINI OLUŞTUR':'ARAÇ KARARI'}</div><div class="v28-state">${signed?'İlk aracını ekle':'Ara · İncele · Karşılaştır'}</div></div>
+    <div class="v28-copy"><h2>${title}</h2><p>${desc}</p></div>
+    <div class="v28-foot"><div class="v28-foot-note">${signed?'Kayıtların sana özel saklanır.':'Karar vermeden önce farkı gör.'}</div><div class="v28-actions">${primary}<button class="v28-btn" onclick="showScreen('compare')">Karşılaştır →</button></div></div>
+  </div>`;
+}
+window.renderV28Hero=renderV28Hero;
+
+
+// ================= V28.3 GREETING + COMPACT HERO =================
+function v283GreetingText(){
+  const h=new Date().getHours();
+  const base=h<6?'İyi geceler':h<12?'Günaydın':h<18?'İyi günler':h<23?'İyi akşamlar':'İyi geceler';
+  let name='';
+  try{
+    const p=JSON.parse(localStorage.getItem('garajUserProfileV26')||'{}');
+    name=String(p.name||p.full_name||'').trim().split(/\s+/)[0]||'';
+  }catch(e){}
+  return name?`${base}, ${name}.`:`${base}.`;
+}
+function renderGreetingV283(){
+  const home=document.getElementById('screen-home'); if(!home)return;
+  let el=document.getElementById('v283Greeting');
+  if(!el){
+    el=document.createElement('div');
+    el.id='v283Greeting';
+    el.className='v283-greeting';
+    const hero=document.getElementById('v14Select');
+    if(hero?.parentNode) hero.parentNode.insertBefore(el,hero);
+    else home.prepend(el);
+  }
+  el.textContent=v283GreetingText();
+}
+window.addEventListener('load',()=>setTimeout(renderGreetingV283,420));
+setTimeout(renderGreetingV283,900);
+
+
+// ================= V28.4 GUEST GREETING FIX =================
+function v284IsSignedIn(){
+  try{
+    // current Supabase session/user is the source of truth.
+    if(window.currentUserV26) return true;
+    if(window.garajCurrentUser) return true;
+    if(window.supabaseUserV26) return true;
+    return false;
+  }catch(e){return false}
+}
+
+function renderGreetingV283(){
+  const home=document.getElementById('screen-home'); if(!home)return;
+  let el=document.getElementById('v283Greeting');
+
+  // Misafir kullanıcıda kişisel selamlama hiç görünmez.
+  if(!v284IsSignedIn()){
+    if(el) el.remove();
+    return;
+  }
+
+  if(!el){
+    el=document.createElement('div');
+    el.id='v283Greeting';
+    el.className='v283-greeting';
+    const hero=document.getElementById('v14Select');
+    if(hero?.parentNode) hero.parentNode.insertBefore(el,hero);
+    else home.prepend(el);
+  }
+  el.textContent=v283GreetingText();
+}
+
+// Auth durumu değişince selamlamayı tekrar senkronize et.
+function syncGreetingAuthV284(){
+  setTimeout(renderGreetingV283,80);
+  setTimeout(renderGreetingV283,350);
+}
+
+if(typeof window.signOutV26==='function'){
+  const _signOutV26=window.signOutV26;
+  window.signOutV26=async function(){
+    const r=await _signOutV26.apply(this,arguments);
+    syncGreetingAuthV284();
+    return r;
+  };
+}
+if(typeof window.logoutV26==='function'){
+  const _logoutV26=window.logoutV26;
+  window.logoutV26=async function(){
+    const r=await _logoutV26.apply(this,arguments);
+    syncGreetingAuthV284();
+    return r;
+  };
+}
+window.addEventListener('load',()=>setTimeout(renderGreetingV283,700));
+
+
+// ================= V28.5 GREETING ALWAYS =================
+function v285BaseGreeting(){
+  const h=new Date().getHours();
+  return h<6?'İyi geceler':h<12?'Günaydın':h<18?'İyi günler':h<23?'İyi akşamlar':'İyi geceler';
+}
+function renderGreetingV283(){
+  const home=document.getElementById('screen-home'); if(!home)return;
+  let el=document.getElementById('v283Greeting');
+  if(!el){
+    el=document.createElement('div');
+    el.id='v283Greeting';
+    el.className='v283-greeting';
+    const hero=document.getElementById('v14Select');
+    if(hero?.parentNode) hero.parentNode.insertBefore(el,hero);
+    else home.prepend(el);
+  }
+
+  let name='';
+  try{
+    // Gerçek auth durumu sessionV26 üzerinden kontrol edilir.
+    if(typeof loggedInV26==='function' && loggedInV26()){
+      const p=typeof localProfileV26==='function'?localProfileV26():{};
+      name=String(p?.name||'').trim().split(/\s+/)[0]||'';
+    }
+  }catch(e){}
+
+  el.textContent=name ? `${v285BaseGreeting()}, ${name}.` : `${v285BaseGreeting()}.`;
+}
+
+function syncGreetingV285(){
+  setTimeout(renderGreetingV283,30);
+  setTimeout(renderGreetingV283,250);
+  setTimeout(renderGreetingV283,700);
+}
+
+if(typeof window.signInV26==='function'){
+  const _v285SignIn=window.signInV26;
+  window.signInV26=async function(){
+    const r=await _v285SignIn.apply(this,arguments);
+    syncGreetingV285();
+    return r;
+  };
+}
+if(typeof window.signOutV26==='function'){
+  const _v285SignOut=window.signOutV26;
+  window.signOutV26=async function(){
+    const r=await _v285SignOut.apply(this,arguments);
+    syncGreetingV285();
+    return r;
+  };
+}
+if(typeof window.finishAuthV26==='function'){
+  const _v285Finish=window.finishAuthV26;
+  window.finishAuthV26=function(){
+    const r=_v285Finish.apply(this,arguments);
+    syncGreetingV285();
+    return r;
+  };
+}
+
+window.addEventListener('load',()=>{
+  syncGreetingV285();
+  // Supabase session restore/loadProfile async olduğu için bir kez daha senkronize et.
+  setTimeout(renderGreetingV283,1400);
+});
+
+
+// ================= V28.6 HOME POLISH CLEANUP =================
+function v286CleanHeroRedundancy(){
+  const hero = document.querySelector('#screen-home .v28-hero');
+  if(!hero) return;
+  hero.querySelectorAll('*').forEach(el=>{
+    const t=(el.textContent||'').trim();
+    if(t==='Aracının kilometresi, yaklaşan işlemleri ve giderleri tek bakışta.' ||
+       t==='Garajında kayıtlı araç'){
+      el.style.display='none';
+    }
+  });
+}
+window.addEventListener('load',()=>setTimeout(v286CleanHeroRedundancy,500));
+setTimeout(v286CleanHeroRedundancy,1200);
+
+
+// ================= V28.9 GREETING INSIDE HERO =================
+function renderGreetingV283(){
+  const home=document.getElementById('screen-home');
+  if(!home) return;
+
+  // Önce eski dış selamlama varsa kaldır.
+  const old=document.querySelector('#screen-home > #v283Greeting');
+  if(old) old.remove();
+
+  const hero=document.querySelector('#screen-home .v28-hero');
+  if(!hero) return;
+
+  const inner=hero.querySelector('.v28-inner') || hero;
+  let el=hero.querySelector('.v289-hero-greeting');
+  if(!el){
+    el=document.createElement('div');
+    el.id='v283Greeting';
+    el.className='v289-hero-greeting';
+    inner.insertBefore(el, inner.firstChild);
+  }
+
+  let name='';
+  try{
+    if(typeof loggedInV26==='function' && loggedInV26()){
+      const p=typeof localProfileV26==='function' ? localProfileV26() : {};
+      name=String(p?.name||'').trim().split(/\s+/)[0]||'';
+    }
+  }catch(e){}
+
+  const greeting=(typeof v285BaseGreeting==='function') ? v285BaseGreeting() : 'Merhaba';
+  el.textContent=name ? `${greeting}, ${name}.` : `${greeting}.`;
+}
+
+function syncGreetingV289(){
+  setTimeout(renderGreetingV283,40);
+  setTimeout(renderGreetingV283,300);
+  setTimeout(renderGreetingV283,900);
+}
+
+window.addEventListener('load',syncGreetingV289);
+
+// Hero yeniden render edilirse selamlamayı tekrar içine yerleştir.
+const _v289Observer=new MutationObserver(()=>{
+  if(document.querySelector('#screen-home .v28-hero') && !document.querySelector('#screen-home .v28-hero .v289-hero-greeting')){
+    renderGreetingV283();
+  }
+});
+window.addEventListener('load',()=>{
+  const home=document.getElementById('screen-home');
+  if(home) _v289Observer.observe(home,{childList:true,subtree:true});
+});
 
 </script>
 
