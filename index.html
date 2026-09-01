@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V26 Clean Auth |  — Premium V24</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V26.1 Garage Name |  — Premium V24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -1888,6 +1888,7 @@ async function loadProfileV26(){
     avatar_url:data?.avatar_url||''
   };
   saveLocalProfileV26(p);
+  setTimeout(applyGarageNameV261,0);
   return p;
 }
 async function signUpV26(){
@@ -1950,6 +1951,7 @@ async function saveGarageNameV26(){
   const {error}=await sbV26.from('profiles').update({garage_name:name}).eq('user_id',sessionV26.user.id);
   if(error){m.textContent=error.message;return}
   const p=localProfileV26();p.garage_name=name;saveLocalProfileV26(p);
+  setTimeout(applyGarageNameV261,0);
   finishAuthV26();
 }
 function finishAuthV26(){
@@ -1991,7 +1993,7 @@ async function saveGarageEditV26(){
   const {error}=await sbV26.from('profiles').update({garage_name}).eq('user_id',sessionV26.user.id);
   if(error){alert(error.message);return}
   const p=localProfileV26();p.garage_name=garage_name;saveLocalProfileV26(p);
-  closeModal();renderAccountV26();
+  closeModal();renderAccountV26();setTimeout(applyGarageNameV261,0);
 }
 function renderAccountV26(){
   const el=document.getElementById('profileContent');
@@ -2062,6 +2064,45 @@ async function initAuthV26(){
   }catch(e){ console.error('V26 auth init',e); }
 }
 window.addEventListener('load',initAuthV26);
+
+
+function applyGarageNameV261(){
+  const p=localProfileV26();
+  const garageName=(p.garage_name||'').trim();
+  if(!garageName)return;
+
+  // Main garage title candidates
+  const ids=['garageTitle','garagePageTitle','myGarageTitle'];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=garageName;
+  });
+
+  // Replace only prominent standalone "Garajım" headings inside garage screen.
+  const garageScreen=document.getElementById('screen-garage') || document.getElementById('garage');
+  if(garageScreen){
+    garageScreen.querySelectorAll('h1,h2,h3,.page-title,.garage-title').forEach(el=>{
+      if((el.textContent||'').trim()==='Garajım') el.textContent=garageName;
+    });
+  }
+}
+
+const originalRenderGarageV261 = window.renderGarage;
+if(typeof originalRenderGarageV261==='function'){
+  window.renderGarage=function(){
+    const r=originalRenderGarageV261.apply(this,arguments);
+    setTimeout(applyGarageNameV261,0);
+    return r;
+  };
+}
+if(typeof window.renderGarageV24==='function'){
+  const originalRenderGarageV24V261=window.renderGarageV24;
+  window.renderGarageV24=function(){
+    const r=originalRenderGarageV24V261.apply(this,arguments);
+    setTimeout(applyGarageNameV261,0);
+    return r;
+  };
+}
 
 </script>
 
