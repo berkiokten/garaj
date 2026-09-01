@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V21.6</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V23.7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -659,6 +659,72 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .home-search-empty{padding:16px 12px;color:var(--muted);font-size:13px}
 </style>
 
+
+
+<style id="v23-garage-design">
+#garageContent{padding:0 16px 110px}
+.v23-garage{max-width:760px;margin:0 auto}
+.v23-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:12px 0 18px}
+.v23-head small{display:block;font-size:8px;font-weight:900;letter-spacing:.18em;color:var(--gold);margin-bottom:5px}
+.v23-head h2{margin:0;font-size:27px;letter-spacing:-.045em}
+.v23-addcar{border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--text);border-radius:12px;padding:10px 12px;font-size:11px;font-weight:900;cursor:pointer}
+
+.v23-car{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));overflow:hidden;margin-bottom:10px}
+.v23-car-head{width:100%;border:0;background:transparent;color:var(--text);padding:15px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer}
+.v23-car-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(201,169,98,.20);background:rgba(201,169,98,.07);font-size:18px;flex:0 0 auto}
+.v23-car-meta{flex:1;min-width:0}
+.v23-car-meta b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v23-car-meta small{display:block;color:var(--muted);font-size:9px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v23-car-state{font-size:18px;color:var(--muted);transition:.18s}
+.v23-car.open .v23-car-state{transform:rotate(90deg);color:var(--gold)}
+.v23-car-body{display:none;border-top:1px solid var(--line);padding:12px}
+.v23-car.open .v23-car-body{display:block}
+
+.v23-hero{padding:8px 4px 14px}
+.v23-hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.v23-eyebrow{font-size:8px;letter-spacing:.14em;font-weight:900;color:var(--muted);text-transform:uppercase}
+.v23-km{font-size:28px;font-weight:950;letter-spacing:-.05em;margin-top:2px}
+.v23-edit{font-size:10px;color:var(--gold);font-weight:900;cursor:pointer}.v23-delete{font-size:10px;color:var(--muted);font-weight:800;cursor:pointer}.v23-delete:hover{color:#e57373}
+.v23-health{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.v23-chip{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:999px;padding:6px 9px;font-size:9px;color:var(--muted)}
+.v23-chip strong{color:var(--text)}
+
+.v23-section{border-top:1px solid var(--line)}
+.v23-section-btn{width:100%;border:0;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:space-between;padding:14px 4px;cursor:pointer;text-align:left}
+.v23-section-title{display:flex;align-items:center;gap:10px}
+.v23-section-title span:first-child{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.035);font-size:13px}
+.v23-section-title b{display:block;font-size:12px}
+.v23-section-title small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+.v23-section-arrow{color:var(--muted);transition:.18s}
+.v23-section.open .v23-section-arrow{transform:rotate(90deg);color:var(--gold)}
+.v23-section-body{display:none;padding:0 4px 14px}
+.v23-section.open .v23-section-body{display:block}
+
+.v23-action-list{border-top:1px solid var(--line)}
+.v23-action{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.v23-action strong{font-size:14px;color:var(--gold)}
+.v23-action b{display:block;font-size:11px}
+.v23-action small{color:var(--muted);font-size:8px}
+.v23-action em{font-style:normal;color:var(--muted);font-size:14px}
+
+.v23-cost-main{padding:4px 0 12px}
+.v23-cost-main strong{display:block;font-size:28px;letter-spacing:-.05em}
+.v23-cost-main small{color:var(--muted);font-size:8px}
+.v23-cost-break{display:flex;gap:8px;flex-wrap:wrap}
+.v23-cost-pill{padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.03);font-size:9px;color:var(--muted)}
+.v23-cost-pill b{color:var(--text)}
+
+.v23-timeline{border-left:1px solid var(--line);margin-left:4px;padding-left:15px}
+.v23-event{position:relative;padding:0 0 14px}
+.v23-event:before{content:"";position:absolute;left:-19px;top:4px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.v23-event b{display:block;font-size:10px}
+.v23-event small{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+
+.v23-reminder-empty{border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:9px;color:var(--muted)}
+.v23-primary{width:100%;border:1px solid rgba(201,169,98,.25);background:rgba(201,169,98,.07);color:var(--gold);border-radius:12px;padding:11px;font-size:10px;font-weight:900;cursor:pointer;margin-top:12px}
+.v23-mini-link{font-size:9px;color:var(--gold);font-weight:900}
+</style>
+
 </head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home">
 <div class="v14-home-top">
@@ -728,6 +794,11 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   </div>
 </nav>
 <script>
+// V23.6 prototype migration: clear stale garage records created by earlier broken add flows once.
+if(localStorage.getItem('garajV236GarageCleanup')!=='1'){
+  localStorage.removeItem('garajCarsV2');
+  localStorage.setItem('garajV236GarageCleanup','1');
+}
 const CARS=[{"brand": "Audi", "model": "A3 Sedan", "variant": "35 TFSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4495, "trunk": 425, "cons": 5.4, "id": 1}, {"brand": "Audi", "model": "A4", "variant": "2.0 TDI 190 bg", "body": "Sedan", "power": 190, "torque": 400, "engine": 1968, "zero": 7.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4762, "trunk": 460, "cons": 4.6, "id": 2}, {"brand": "Audi", "model": "Q3", "variant": "1.5 TFSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4485, "trunk": 530, "cons": 6.1, "id": 3}, {"brand": "BMW", "model": "3 Serisi", "variant": "320i M Sport 184 bg", "body": "Sedan", "power": 184, "torque": 300, "engine": 1998, "zero": 7.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4713, "trunk": 480, "cons": 6.0, "id": 4}, {"brand": "BMW", "model": "2 Serisi", "variant": "218i 156 bg", "body": "Sedan", "power": 156, "torque": 250, "engine": 1499, "zero": 8.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4526, "trunk": 430, "cons": 5.8, "id": 5}, {"brand": "BMW", "model": "X1", "variant": "sDrive18i 136 bg", "body": "SUV", "power": 136, "torque": 230, "engine": 1499, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 540, "cons": 6.3, "id": 6}, {"brand": "Citroen", "model": "C3", "variant": "1.2 PureTech 110 bg", "body": "Hatchback", "power": 110, "torque": 205, "engine": 1199, "zero": 10.9, "fuel": "Benzin", "gear": "Otomatik", "length": 3981, "trunk": 300, "cons": 5.6, "id": 7}, {"brand": "Citroen", "model": "C5 Aircross", "variant": "1.5 BlueHDi 130 bg", "body": "SUV", "power": 130, "torque": 300, "engine": 1499, "zero": 10.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4500, "trunk": 580, "cons": 4.7, "id": 8}, {"brand": "Dacia", "model": "Duster", "variant": "1.3 TCe 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1332, "zero": 10.4, "fuel": "Benzin", "gear": "Manuel", "length": 4341, "trunk": 478, "cons": 6.0, "id": 9}, {"brand": "Dacia", "model": "Sandero", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 11.7, "fuel": "Benzin", "gear": "Manuel", "length": 4088, "trunk": 328, "cons": 5.4, "id": 10}, {"brand": "Fiat", "model": "Egea", "variant": "1.6 Multijet 130 bg", "body": "Sedan", "power": 130, "torque": 320, "engine": 1598, "zero": 9.8, "fuel": "Dizel", "gear": "Manuel", "length": 4532, "trunk": 520, "cons": 4.3, "id": 11}, {"brand": "Fiat", "model": "Egea Cross", "variant": "1.5 Hybrid 130 bg", "body": "SUV", "power": 130, "torque": 240, "engine": 1469, "zero": 9.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4381, "trunk": 448, "cons": 5.0, "id": 12}, {"brand": "Ford", "model": "Focus", "variant": "1.5 EcoBoost 150 bg", "body": "Hatchback", "power": 150, "torque": 240, "engine": 1497, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4378, "trunk": 375, "cons": 5.9, "id": 13}, {"brand": "Ford", "model": "Puma", "variant": "1.0 EcoBoost 125 bg", "body": "SUV", "power": 125, "torque": 210, "engine": 999, "zero": 9.8, "fuel": "Benzin", "gear": "Otomatik", "length": 4186, "trunk": 456, "cons": 5.7, "id": 14}, {"brand": "Honda", "model": "Civic", "variant": "1.5 VTEC 182 bg", "body": "Sedan", "power": 182, "torque": 240, "engine": 1498, "zero": 8.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4551, "trunk": 519, "cons": 6.4, "id": 15}, {"brand": "Honda", "model": "HR-V", "variant": "1.5 e:HEV 131 bg", "body": "SUV", "power": 131, "torque": 253, "engine": 1498, "zero": 10.6, "fuel": "Hibrit", "gear": "Otomatik", "length": 4340, "trunk": 335, "cons": 5.4, "id": 16}, {"brand": "Hyundai", "model": "i20", "variant": "1.4 MPI 100 bg", "body": "Hatchback", "power": 100, "torque": 133, "engine": 1368, "zero": 11.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4040, "trunk": 352, "cons": 6.2, "id": 17}, {"brand": "Hyundai", "model": "Bayon", "variant": "1.4 MPI 100 bg", "body": "SUV", "power": 100, "torque": 133, "engine": 1368, "zero": 12.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4180, "trunk": 411, "cons": 6.4, "id": 18}, {"brand": "Hyundai", "model": "Tucson", "variant": "1.6 T-GDi 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1598, "zero": 9.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4500, "trunk": 620, "cons": 6.6, "id": 19}, {"brand": "Kia", "model": "Ceed", "variant": "1.5 T-GDi 160 bg", "body": "Hatchback", "power": 160, "torque": 253, "engine": 1482, "zero": 8.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4310, "trunk": 395, "cons": 6.0, "id": 20}, {"brand": "Kia", "model": "Sportage", "variant": "1.6 CRDi 136 bg", "body": "SUV", "power": 136, "torque": 320, "engine": 1598, "zero": 11.4, "fuel": "Dizel", "gear": "Otomatik", "length": 4515, "trunk": 587, "cons": 5.3, "id": 21}, {"brand": "Mercedes-Benz", "model": "A-Serisi", "variant": "A180 136 bg", "body": "Hatchback", "power": 136, "torque": 200, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4419, "trunk": 370, "cons": 5.6, "id": 22}, {"brand": "Mercedes-Benz", "model": "C-Serisi", "variant": "C200 204 bg", "body": "Sedan", "power": 204, "torque": 300, "engine": 1496, "zero": 7.3, "fuel": "Benzin", "gear": "Otomatik", "length": 4751, "trunk": 455, "cons": 6.2, "id": 23}, {"brand": "Nissan", "model": "Qashqai", "variant": "1.3 DIG-T 158 bg", "body": "SUV", "power": 158, "torque": 270, "engine": 1332, "zero": 9.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4425, "trunk": 504, "cons": 6.3, "id": 24}, {"brand": "Opel", "model": "Corsa", "variant": "1.2 Turbo 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.2, "fuel": "Benzin", "gear": "Otomatik", "length": 4060, "trunk": 309, "cons": 5.5, "id": 25}, {"brand": "Opel", "model": "Astra", "variant": "1.2 Turbo 130 bg", "body": "Hatchback", "power": 130, "torque": 230, "engine": 1199, "zero": 9.7, "fuel": "Benzin", "gear": "Otomatik", "length": 4374, "trunk": 422, "cons": 5.6, "id": 26}, {"brand": "Peugeot", "model": "208", "variant": "1.2 PureTech 100 bg", "body": "Hatchback", "power": 100, "torque": 205, "engine": 1199, "zero": 10.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4055, "trunk": 311, "cons": 5.4, "id": 27}, {"brand": "Peugeot", "model": "2008", "variant": "1.2 PureTech 130 bg", "body": "SUV", "power": 130, "torque": 230, "engine": 1199, "zero": 9.1, "fuel": "Benzin", "gear": "Otomatik", "length": 4300, "trunk": 434, "cons": 5.7, "id": 28}, {"brand": "Renault", "model": "Clio", "variant": "1.0 TCe 90 bg", "body": "Hatchback", "power": 90, "torque": 160, "engine": 999, "zero": 12.2, "fuel": "Benzin", "gear": "Manuel", "length": 4053, "trunk": 391, "cons": 5.2, "id": 29}, {"brand": "Renault", "model": "Megane", "variant": "1.3 TCe 140 bg", "body": "Sedan", "power": 140, "torque": 260, "engine": 1332, "zero": 9.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4359, "trunk": 384, "cons": 5.8, "id": 30}, {"brand": "Renault", "model": "Captur", "variant": "1.3 TCe 140 bg", "body": "SUV", "power": 140, "torque": 260, "engine": 1332, "zero": 9.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4227, "trunk": 422, "cons": 5.9, "id": 31}, {"brand": "Skoda", "model": "Octavia", "variant": "1.5 TSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4689, "trunk": 600, "cons": 5.4, "id": 32}, {"brand": "Skoda", "model": "Kamiq", "variant": "1.0 TSI 110 bg", "body": "SUV", "power": 110, "torque": 200, "engine": 999, "zero": 10.6, "fuel": "Benzin", "gear": "Otomatik", "length": 4241, "trunk": 400, "cons": 5.6, "id": 33}, {"brand": "Togg", "model": "T10X", "variant": "Uzun Menzil 218 bg", "body": "SUV", "power": 218, "torque": 350, "engine": 0, "zero": 7.6, "fuel": "Elektrik", "gear": "Otomatik", "length": 4599, "trunk": 405, "cons": 0, "id": 34}, {"brand": "Toyota", "model": "Corolla", "variant": "1.8 Hybrid 140 bg", "body": "Sedan", "power": 140, "torque": 185, "engine": 1798, "zero": 10.9, "fuel": "Hibrit", "gear": "Otomatik", "length": 4630, "trunk": 471, "cons": 4.5, "id": 35}, {"brand": "Toyota", "model": "C-HR", "variant": "1.8 Hybrid 140 bg", "body": "SUV", "power": 140, "torque": 190, "engine": 1798, "zero": 11.0, "fuel": "Hibrit", "gear": "Otomatik", "length": 4360, "trunk": 388, "cons": 4.9, "id": 36}, {"brand": "Volkswagen", "model": "Golf", "variant": "1.5 eTSI 150 bg", "body": "Hatchback", "power": 150, "torque": 250, "engine": 1498, "zero": 8.5, "fuel": "Benzin", "gear": "Otomatik", "length": 4284, "trunk": 381, "cons": 5.5, "id": 37}, {"brand": "Volkswagen", "model": "Passat", "variant": "1.5 eTSI 150 bg", "body": "Sedan", "power": 150, "torque": 250, "engine": 1498, "zero": 8.9, "fuel": "Benzin", "gear": "Otomatik", "length": 4767, "trunk": 586, "cons": 5.6, "id": 38}, {"brand": "Volkswagen", "model": "T-Roc", "variant": "1.5 TSI 150 bg", "body": "SUV", "power": 150, "torque": 250, "engine": 1498, "zero": 8.4, "fuel": "Benzin", "gear": "Otomatik", "length": 4234, "trunk": 445, "cons": 5.9, "id": 39}];const IS_PRO=false;let slots=[null,null],currentMode='teknik',currentView='rakam',modalCtx=null,myCars=JSON.parse(localStorage.getItem('garajCarsV2')||'[]');
 const MODES={teknik:['Güç (bg)','Tork (Nm)','Motor (cc)','0-100 (sn)','Şanzıman'],gundelik:['Tüketim (L/100)','Bagaj (L)','Uzunluk (mm)','Yakıt','Şanzıman']};const HIGH=['Güç (bg)','Tork (Nm)','Bagaj (L)'],LOW=['0-100 (sn)','Tüketim (L/100)'];const QUICK=['Sedan','SUV','Hatchback','Elektrik','Hibrit','Dizel'];
 const cats=[['En güçlüler','Yüksek beygir',c=>-c.power],['En ekonomikler','Düşük tüketim',c=>c.cons===0?99:c.cons],['Geniş bagaj','En çok hacim',c=>-c.trunk],['En hızlılar','0-100 sprint',c=>c.zero]];const alarms=[['muayene','Muayene'],['sigorta','Sigorta / Kasko'],['yag','Yağ değişimi'],['lastik','Lastik'],['bakim','Genel bakım'],['mtv','MTV / Vergi']];
@@ -1086,7 +1157,7 @@ function togglePreference(k,el){comparePrefs[k]=!comparePrefs[k];el.classList.to
 function applyPreferences(){if(!Object.values(comparePrefs).some(Boolean)){comparePrefs.performance=comparePrefs.economy=comparePrefs.practicality=true}closeModal();renderCompare()}
 function renderCompareLegacyV15(){let a=slots.filter(Boolean),res=compareResult;if(a.length<2){res.innerHTML='';return}let ks=MODES[currentMode],scores=a.map(()=>0);ks.forEach(k=>{let vs=a.map(c=>val(c,k));if(vs.every(v=>typeof v==='number'&&v!==0)){let b=HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined;if(b!==undefined)a.forEach((c,i)=>{if(val(c,k)===b)scores[i]++})}});let m=Math.max(...scores),wi=scores.filter(x=>x===m).length===1?scores.indexOf(m):-1;let h=decisionLayer(a);h+=`<div class="winner"><b>${wi>=0?a[wi].brand+' '+a[wi].model+' önde':'Başa baş'}</b><div>${wi>=0?(currentMode==='teknik'?'Teknik':'Gündelik')+' modda '+m+' kategoride üstün':'Bu modda araçlar dengeli'}</div></div>`;if(currentView==='rakam'){let col='minmax(100px,1.1fr) '+a.map(()=> 'minmax(78px,1fr)').join(' ');h+='<div class="ctable">';h+=`<div class="row head" style="grid-template-columns:${col}"><div>${currentMode}</div>`+a.map(c=>`<div><b>${c.brand}</b><br><small>${c.model}</small></div>`).join('')+'</div>';ks.forEach(k=>{let vs=a.map(c=>val(c,k)),best=vs.every(v=>typeof v==='number'&&v!==0)?(HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined):undefined;h+=`<div class="row" style="grid-template-columns:${col}"><div>${k}</div>`+a.map(c=>{let v=val(c,k),w=best!==undefined&&v===best;return `<div class="${w?'win':''}">${(v===0&&(k==='Motor (cc)'||k==='Tüketim (L/100)'))?'—':v}</div>`}).join('')+'</div>'});h+='</div>'}else if(currentView==='bar'){h+='<div class="bars">';ks.filter(k=>a.every(c=>typeof val(c,k)==='number'&&val(c,k)!==0)).forEach(k=>{let vs=a.map(c=>val(c,k)),mx=Math.max(...vs),best=HIGH.includes(k)?Math.max(...vs):LOW.includes(k)?Math.min(...vs):undefined;h+=`<div class="baritem"><div class="barlabel">${k}</div>`+a.map(c=>{let v=val(c,k),pct=Math.max(12,Math.round(v/mx*100));return `<div class="brow"><div class="bname">${c.model}</div><div class="track"><div class="fill ${v===best?'best':''}" style="width:${pct}%">${v}</div></div></div>`}).join('')+'</div>'});h+='</div>'}else h+=radar(a,ks);res.innerHTML=h;decorateCompareV13()}
 function radar(a,ks){let nk=ks.filter(k=>a.every(c=>typeof val(c,k)==='number'&&val(c,k)!==0));if(nk.length<3)return '<div class="radar"><div class="sub">Radar için en az 3 sayısal özellik gerekir.</div></div>';let cx=140,cy=130,R=95,n=nk.length,colors=['#d6b46a','#63d3ad','#7aa2ff','#ef8d73'],svg='<svg viewBox="0 0 280 285" style="width:100%">';for(let r=1;r<=3;r++){let p=[];for(let i=0;i<n;i++){let g=Math.PI*2*i/n-Math.PI/2;p.push(`${cx+Math.cos(g)*R*r/3},${cy+Math.sin(g)*R*r/3}`)}svg+=`<polygon points="${p.join(' ')}" fill="none" stroke="var(--line)"/>`}nk.forEach((k,i)=>{let g=Math.PI*2*i/n-Math.PI/2,x=cx+Math.cos(g)*R,y=cy+Math.sin(g)*R;svg+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line)"/><text x="${cx+Math.cos(g)*(R+17)}" y="${cy+Math.sin(g)*(R+17)}" fill="var(--muted)" font-size="9" text-anchor="middle">${k.split(' ')[0]}</text>`});a.forEach((c,ci)=>{let p=nk.map((k,i)=>{let vs=a.map(x=>val(x,k)),mn=Math.min(...vs),mx=Math.max(...vs),z=mx===mn?1:(val(c,k)-mn)/(mx-mn);if(LOW.includes(k))z=1-z;z=.25+.75*z;let g=Math.PI*2*i/n-Math.PI/2;return `${cx+Math.cos(g)*R*z},${cy+Math.sin(g)*R*z}`});svg+=`<polygon points="${p.join(' ')}" fill="${colors[ci]}" fill-opacity=".14" stroke="${colors[ci]}" stroke-width="2"/>`});svg+='</svg><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+a.map((c,i)=>`<span style="font-size:10px"><b style="color:${colors[i]}">●</b> ${c.model}</span>`).join('')+'</div>';return `<div class="radar">${svg}</div>`}
-function openPicker(i){modalCtx={type:'compare',slot:i};renderBrands();modalBack.classList.add('open')}function closeModal(){modalBack.classList.remove('open')}function renderBrands(){let bs=[...new Set(CARS.map(c=>c.brand))].sort();modalBody.innerHTML='<h3>Marka seç</h3><div class="field"><input placeholder="Marka ara..." oninput="filterBrands(this.value)"></div><div id="brandList"></div>';drawBrands(bs)}function drawBrands(bs){brandList.innerHTML=bs.map(b=>`<div class="brand-row" onclick="selectBrand('${b.replace("'","\'")}')"><b>${b}</b><small>${CARS.filter(c=>c.brand===b).length} model ›</small></div>`).join('')}function filterBrands(q){drawBrands([...new Set(CARS.map(c=>c.brand))].sort().filter(b=>b.toLowerCase().includes(q.toLowerCase())))}function selectBrand(b){let ms=CARS.filter(c=>c.brand===b);modalBody.innerHTML=`<h3 onclick="renderBrands()" style="cursor:pointer">← ${b}</h3>`+ms.map(c=>`<div class="car-card" onclick="chooseCar(${c.id})">${card(c)}</div>`).join('')}function chooseCar(id){let c=CARS.find(x=>x.id===id);if(modalCtx.type==='compare'){slots[modalCtx.slot]=c;closeModal();renderSlots();renderCompare()}else openAddCarForm(c)}function openProModal(){
+function openPicker(i){modalCtx={type:'compare',slot:i};renderBrands();document.getElementById('modalBack').classList.add('open')}function closeModal(){document.getElementById('modalBack').classList.remove('open')}function renderBrands(){let bs=[...new Set(CARS.map(c=>c.brand))].sort();const body=document.getElementById('modalBody');if(!body)return;body.innerHTML='<h3>Marka seç</h3><div class="field"><input id="garageBrandSearch" placeholder="Marka ara..." oninput="filterBrands(this.value)"></div><div id="brandList"></div>';drawBrands(bs)}function drawBrands(bs){const list=document.getElementById('brandList');if(!list)return;list.innerHTML=bs.map(b=>{const enc=encodeURIComponent(b);return `<div class="brand-row" onclick="selectBrand(decodeURIComponent('${enc}'))"><b>${b}</b><small>${CARS.filter(c=>c.brand===b).length} model ›</small></div>`}).join('')}function filterBrands(q){const x=(q||'').toLocaleLowerCase('tr-TR');drawBrands([...new Set(CARS.map(c=>c.brand))].sort().filter(b=>b.toLocaleLowerCase('tr-TR').includes(x)))}function selectBrand(b){let ms=CARS.filter(c=>c.brand===b);const body=document.getElementById('modalBody');if(!body)return;body.innerHTML=`<h3 onclick="renderBrands()" style="cursor:pointer">← ${b}</h3><div class="sub" style="margin-bottom:10px">Garajına eklemek istediğin aracı seç.</div>`+ms.map(c=>`<div class="car-card" onclick="chooseCar(${c.id})">${card(c)}</div>`).join('')}function chooseCar(id){let c=CARS.find(x=>x.id===id);if(!c)return;if(modalCtx&&modalCtx.type==='compare'){slots[modalCtx.slot]=c;closeModal();renderSlots();renderCompare()}else openAddCarForm(c)}function openProModal(){
  modalBody.innerHTML=`<div class="pro-modal">
    <div class="pro-modal-kicker">GARAJ PRO</div>
    <h3>Arabanı seçmekten<br>sahip olmaya kadar.</h3>
@@ -1101,10 +1172,35 @@ function openPicker(i){modalCtx={type:'compare',slot:i};renderBrands();modalBack
    <button class="full" onclick="alert('Garaj Pro ödeme altyapısı demo sürümünde aktif değil.')">Garaj Pro'yu keşfet</button>
    <button class="pro-modal-close" onclick="closeModal()">Şimdilik Free ile devam et</button>
  </div>`;modalBack.classList.add('open')}
-function quickAddGarage(id){if(myCars.length>=1&&!IS_PRO)return openProModal();modalCtx={type:'garage'};openAddCarForm(CARS.find(x=>x.id===id));modalBack.classList.add('open')}function openGaragePicker(){if(myCars.length>=1&&!IS_PRO)return openProModal();modalCtx={type:'garage'};renderBrands();modalBack.classList.add('open')}function openAddCarForm(c){modalBody.innerHTML=`<h3>${c.brand} ${c.model}</h3><div class="field"><label>Model yılı</label><input id="fYear" type="number" value="2022"></div><div class="field"><label>Kilometre</label><input id="fKm" type="number" placeholder="45000"></div><div class="field"><label>Plaka (opsiyonel)</label><input id="fPlate" placeholder="34 ABC 123"></div><button class="full" onclick="saveCar(${c.id})">Garaja ekle</button>`}function saveCar(id){myCars.push({carId:id,year:fYear.value||'—',km:fKm.value||'0',plate:fPlate.value.trim(),alarms:[]});persist();closeModal();renderGarage()}function persist(){localStorage.setItem('garajCarsV2',JSON.stringify(myCars))}function garageNextAlarm(m){if(!m.alarms||!m.alarms.length)return null;return [...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date))[0]}
+function quickAddGarage(id){modalCtx={type:'garage'};openAddCarForm(CARS.find(x=>x.id===id));document.getElementById('modalBack').classList.add('open')}function openGaragePicker(){modalCtx={type:'garage'};renderBrands();document.getElementById('modalBack').classList.add('open')}function openAddCarForm(c){if(!c)return;const body=document.getElementById('modalBody');if(!body)return;body.innerHTML=`<h3>${c.brand} ${c.model}</h3><div class="sub">${c.variant||''}</div><div class="field" style="margin-top:14px"><label>Model yılı</label><input id="fYear" type="number" value="2022"></div><div class="field"><label>Kilometre</label><input id="fKm" type="number" placeholder="45000"></div><div class="field"><label>Plaka (opsiyonel)</label><input id="fPlate" placeholder="34 ABC 123"></div><button class="full" onclick="saveCar(${c.id})">Garaja ekle</button>`}function saveCar(id){
+  const y=document.getElementById('fYear');
+  const km=document.getElementById('fKm');
+  const plate=document.getElementById('fPlate');
+  const car=(typeof CARS!=='undefined'?CARS:[]).find(x=>x.id===id);
+  if(!car)return;
+  const year=y?.value||'—';
+  const mileage=km?.value||'0';
+  const p=(plate?.value||'').trim();
+
+  const duplicate=myCars.some(m =>
+    Number(m.carId)===Number(id) &&
+    String(m.year)===String(year) &&
+    String(m.plate||'').trim().toLocaleUpperCase('tr-TR')===p.toLocaleUpperCase('tr-TR')
+  );
+  if(duplicate){
+    alert('Bu araç zaten garajında.');
+    return;
+  }
+
+  myCars.push({carId:id,year,km:mileage,plate:p,alarms:[],expenses:[]});
+  persist();
+  document.getElementById('modalBack')?.classList.remove('open');
+  if(typeof renderGarageV23==='function')renderGarageV23();
+  else if(typeof renderGarage==='function')renderGarage();
+}function persist(){localStorage.setItem('garajCarsV2',JSON.stringify(myCars))}function garageNextAlarm(m){if(!m.alarms||!m.alarms.length)return null;return [...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date))[0]}
 function openKmModal(i){let m=myCars[i];modalBody.innerHTML=`<h3>Kilometreyi güncelle</h3><div class="sub">Güncel kilometreyi gir. Garaj özeti anında yenilenir.</div><div class="field" style="margin-top:14px"><label>Kilometre</label><input id="garageKmInput" type="number" value="${m.km||0}" min="0"></div><button class="full" onclick="saveGarageKm(${i})">Kilometreyi kaydet</button>`;modalBack.classList.add('open')}
 function saveGarageKm(i){let v=document.getElementById('garageKmInput').value;if(v===''||Number(v)<0)return alert('Geçerli bir kilometre gir');myCars[i].km=String(Math.round(Number(v)));persist();closeModal();renderGarage()}
-function renderGarage(){if(!myCars.length){garageContent.innerHTML=`<div class="garage-shell"><div class="garage-eyebrow">PRIVATE GARAGE</div><div class="garage-empty premium-empty"><div class="pe-top"><div class="pe-kicker">ARACININ DİJİTAL DOSYASI</div><h3>Garajın henüz boş.</h3><div class="pe-copy">Aracını ekle; kilometre, bakım, muayene, sigorta ve vergi tarihlerini tek ekrandan takip et.</div></div><div class="pe-benefits"><div class="pe-benefit"><b>Takvim</b><small>Yaklaşan işlemleri gör</small></div><div class="pe-benefit"><b>Kilometre</b><small>Güncel km bilgisini tut</small></div><div class="pe-benefit"><b>Profil</b><small>Araç bilgilerine hızlı eriş</small></div></div><button class="full" onclick="openGaragePicker()">İlk aracını ekle</button></div></div>`;return}let h='<div class="garage-shell">';myCars.forEach((m,i)=>{let c=CARS.find(x=>x.id===m.carId);if(!c)return;let next=garageNextAlarm(m),nd=next?daysUntil(next.date):null,nextName=next?alarms.find(x=>x[0]===next.type)?.[1]||'Hatırlatıcı':'Hatırlatıcı ekle';let overdue=(m.alarms||[]).filter(a=>daysUntil(a.date)<0).length,soon=(m.alarms||[]).filter(a=>{let d=daysUntil(a.date);return d>=0&&d<=30}).length;let statusTitle=overdue?`${overdue} işlem gecikmiş`:next?`${nextName} yaklaşıyor`:'Takvim hazır değil';let statusCopy=overdue?'Geciken işlemleri kontrol ederek araç takibini güncel tut.':next?`${formatDate(next.date)} tarihinde planlandı.`:'Bakım, muayene veya sigorta tarihi ekleyerek takibe başla.';let dayText=next?(nd<0?Math.abs(nd):nd):'—';let dayLabel=next?(nd<0?'gün geçti':'gün kaldı'):'plan yok';h+=`<div class="garage-eyebrow">PRIMARY VEHICLE <span style="color:var(--muted);font-weight:700">0${i+1}</span></div><div class="garage-hero"><div class="gh-top"><div><div class="gh-brand">${c.brand}</div><div class="gh-model">${c.model}</div><div class="gh-variant">${c.variant}</div></div>${m.plate?`<div class="gh-plate">${m.plate}</div>`:'<div class="gh-plate" style="color:var(--muted)">PLAKA YOK</div>'}</div><div class="gh-metrics"><div class="gh-metric"><b>${m.year}</b><small>Model yılı</small></div><div class="gh-metric"><b>${Number(m.km||0).toLocaleString('tr-TR')}</b><small>Kilometre</small></div><div class="gh-metric"><b>${c.power} bg</b><small>Güç</small></div></div></div><div class="garage-status"><div class="gs-main"><div class="gs-label">Garaj durumu</div><div class="gs-title">${statusTitle}</div><div class="gs-copy">${statusCopy}</div></div><div class="gs-side ${overdue?'late':'good'}"><div class="gs-label">Sonraki işlem</div><div class="gs-days">${dayText}<small>${dayLabel}</small></div></div></div><div class="garage-focus"><div><div class="gf-kicker">Sıradaki odak</div><div class="gf-title">${next?nextName:(overdue?'Geciken işlemleri kontrol et':'İlk takibini oluştur')}</div><div class="gf-copy">${next?`${formatDate(next.date)} · ${nd<0?Math.abs(nd)+' gün gecikti':nd===0?'bugün':nd+' gün kaldı'}`:'Bakım, muayene veya sigorta tarihi ekleyebilirsin.'}</div></div><button class="gf-action" onclick="openAlarmModal(${i})">${next?'Takvimi yönet':'+ Takip ekle'}</button></div><div class="garage-summary"><div class="gstat"><b>${(m.alarms||[]).length}</b><small>Toplam takip</small></div><div class="gstat"><b>${soon}</b><small>30 gün içinde</small></div><div class="gstat"><b>${overdue}</b><small>Gecikmiş</small></div></div><div class="garage-actions"><button class="gaction primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı</button><button class="gaction" onclick="openKmModal(${i})">KM güncelle</button><button class="gaction" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayı</button></div><div class="garage-section"><div><h2>Yaklaşan işler</h2><p>Aracın için oluşturduğun takip planı</p></div><span class="link" onclick="openAlarmModal(${i})">+ Yeni ekle</span></div>`;if((m.alarms||[]).length){h+='<div class="garage-timeline">'+[...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date)).map(a=>{let n=alarms.find(x=>x[0]===a.type)?.[1]||a.type,d=daysUntil(a.date),cl=d<0?'late':d>30?'safe':'';let st=d<0?`${Math.abs(d)} gün gecikti`:d===0?'Bugün':`${d} gün`;return `<div class="garage-event ${cl}"><span class="ge-dot"></span><div><div class="ge-name">${n}</div><div class="ge-date">${formatDate(a.date)}</div></div><div class="ge-state">${st}</div></div>`}).join('')+'</div>'}else{h+='<div class="sub" style="border-top:1px solid var(--line);padding:16px 2px">Henüz bir takip tarihi eklenmedi.</div>'}h+=`<div class="garage-section"><div><h2>Araç profili</h2><p>Garajındaki temel araç bilgileri</p></div></div><div class="garage-profile"><div class="gp-item"><small>Gövde</small><b>${c.body}</b></div><div class="gp-item"><small>Yakıt</small><b>${c.fuel}</b></div><div class="gp-item"><small>Şanzıman</small><b>${c.gear}</b></div><div class="gp-item"><small>Bagaj</small><b>${c.trunk} L</b></div></div>`});h+=myCars.length>=1&&!IS_PRO?'<button class="btn garage-addmore" onclick="openProModal()">🔒 İkinci aracı ekle · PRO</button>':'<button class="btn garage-addmore" onclick="openGaragePicker()">+ Araç ekle</button>';h+='</div>';garageContent.innerHTML=h}
+function renderGarage(){if(!myCars.length){garageContent.innerHTML=`<div class="garage-shell"><div class="garage-eyebrow">PRIVATE GARAGE</div><div class="garage-empty premium-empty"><div class="pe-top"><div class="pe-kicker">ARACININ DİJİTAL DOSYASI</div><h3>Garajın henüz boş.</h3><div class="pe-copy">Aracını ekle; kilometre, bakım, muayene, sigorta ve vergi tarihlerini tek ekrandan takip et.</div></div><div class="pe-benefits"><div class="pe-benefit"><b>Takvim</b><small>Yaklaşan işlemleri gör</small></div><div class="pe-benefit"><b>Kilometre</b><small>Güncel km bilgisini tut</small></div><div class="pe-benefit"><b>Profil</b><small>Araç bilgilerine hızlı eriş</small></div></div><button class="full" onclick="openGaragePicker()">İlk aracını ekle</button></div></div>`;return}let h='<div class="garage-shell">';myCars.forEach((m,i)=>{let c=CARS.find(x=>x.id===m.carId);if(!c)return;let next=garageNextAlarm(m),nd=next?daysUntil(next.date):null,nextName=next?alarms.find(x=>x[0]===next.type)?.[1]||'Hatırlatıcı':'Hatırlatıcı ekle';let overdue=(m.alarms||[]).filter(a=>daysUntil(a.date)<0).length,soon=(m.alarms||[]).filter(a=>{let d=daysUntil(a.date);return d>=0&&d<=30}).length;let statusTitle=overdue?`${overdue} işlem gecikmiş`:next?`${nextName} yaklaşıyor`:'Takvim hazır değil';let statusCopy=overdue?'Geciken işlemleri kontrol ederek araç takibini güncel tut.':next?`${formatDate(next.date)} tarihinde planlandı.`:'Bakım, muayene veya sigorta tarihi ekleyerek takibe başla.';let dayText=next?(nd<0?Math.abs(nd):nd):'—';let dayLabel=next?(nd<0?'gün geçti':'gün kaldı'):'plan yok';h+=`<div class="garage-eyebrow">PRIMARY VEHICLE <span style="color:var(--muted);font-weight:700">0${i+1}</span></div><div class="garage-hero"><div class="gh-top"><div><div class="gh-brand">${c.brand}</div><div class="gh-model">${c.model}</div><div class="gh-variant">${c.variant}</div></div>${m.plate?`<div class="gh-plate">${m.plate}</div>`:'<div class="gh-plate" style="color:var(--muted)">PLAKA YOK</div>'}</div><div class="gh-metrics"><div class="gh-metric"><b>${m.year}</b><small>Model yılı</small></div><div class="gh-metric"><b>${Number(m.km||0).toLocaleString('tr-TR')}</b><small>Kilometre</small></div><div class="gh-metric"><b>${c.power} bg</b><small>Güç</small></div></div></div><div class="garage-status"><div class="gs-main"><div class="gs-label">Garaj durumu</div><div class="gs-title">${statusTitle}</div><div class="gs-copy">${statusCopy}</div></div><div class="gs-side ${overdue?'late':'good'}"><div class="gs-label">Sonraki işlem</div><div class="gs-days">${dayText}<small>${dayLabel}</small></div></div></div><div class="garage-focus"><div><div class="gf-kicker">Sıradaki odak</div><div class="gf-title">${next?nextName:(overdue?'Geciken işlemleri kontrol et':'İlk takibini oluştur')}</div><div class="gf-copy">${next?`${formatDate(next.date)} · ${nd<0?Math.abs(nd)+' gün gecikti':nd===0?'bugün':nd+' gün kaldı'}`:'Bakım, muayene veya sigorta tarihi ekleyebilirsin.'}</div></div><button class="gf-action" onclick="openAlarmModal(${i})">${next?'Takvimi yönet':'+ Takip ekle'}</button></div><div class="garage-summary"><div class="gstat"><b>${(m.alarms||[]).length}</b><small>Toplam takip</small></div><div class="gstat"><b>${soon}</b><small>30 gün içinde</small></div><div class="gstat"><b>${overdue}</b><small>Gecikmiş</small></div></div><div class="garage-actions"><button class="gaction primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı</button><button class="gaction" onclick="openKmModal(${i})">KM güncelle</button><button class="gaction" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayı</button></div><div class="garage-section"><div><h2>Yaklaşan işler</h2><p>Aracın için oluşturduğun takip planı</p></div><span class="link" onclick="openAlarmModal(${i})">+ Yeni ekle</span></div>`;if((m.alarms||[]).length){h+='<div class="garage-timeline">'+[...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date)).map(a=>{let n=alarms.find(x=>x[0]===a.type)?.[1]||a.type,d=daysUntil(a.date),cl=d<0?'late':d>30?'safe':'';let st=d<0?`${Math.abs(d)} gün gecikti`:d===0?'Bugün':`${d} gün`;return `<div class="garage-event ${cl}"><span class="ge-dot"></span><div><div class="ge-name">${n}</div><div class="ge-date">${formatDate(a.date)}</div></div><div class="ge-state">${st}</div></div>`}).join('')+'</div>'}else{h+='<div class="sub" style="border-top:1px solid var(--line);padding:16px 2px">Henüz bir takip tarihi eklenmedi.</div>'}h+=`<div class="garage-section"><div><h2>Araç profili</h2><p>Garajındaki temel araç bilgileri</p></div></div><div class="garage-profile"><div class="gp-item"><small>Gövde</small><b>${c.body}</b></div><div class="gp-item"><small>Yakıt</small><b>${c.fuel}</b></div><div class="gp-item"><small>Şanzıman</small><b>${c.gear}</b></div><div class="gp-item"><small>Bagaj</small><b>${c.trunk} L</b></div></div>`});h+='<button class="btn garage-addmore" onclick="openGaragePicker()">+ Araç ekle</button>';h+='</div>';garageContent.innerHTML=h}
 function openAlarmModal(i){window.alCar=i;window.alType=null;modalBody.innerHTML='<h3>Hatırlatıcı ekle</h3><div class="atype">'+alarms.map(a=>`<button onclick="selectAlarm('${a[0]}',this)">${a[1]}</button>`).join('')+'</div><div class="field" style="margin-top:12px"><label>Tarih</label><input id="alDate" type="date"></div><button class="full" onclick="saveAlarm()">Hatırlatıcı kur</button>';modalBack.classList.add('open')}function selectAlarm(t,e){alType=t;document.querySelectorAll('.atype button').forEach(x=>x.classList.remove('sel'));e.classList.add('sel')}function saveAlarm(){if(!alType||!alDate.value)return alert('Tür ve tarih seç');myCars[alCar].alarms.push({type:alType,date:alDate.value});myCars[alCar].alarms.sort((a,b)=>new Date(a.date)-new Date(b.date));persist();closeModal();renderGarage()}function daysUntil(s){let n=new Date();n.setHours(0,0,0,0);return Math.round((new Date(s)-n)/86400000)}function formatDate(s){return new Date(s).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})}
 function openCalc(t){let b='';if(t==='mtv')b='<h3>MTV Hesapla</h3><div class="field"><label>Motor hacmi (cc)</label><input id="cMotor" type="number" placeholder="1600"></div><div class="field"><label>Araç yaşı</label><select id="cYas"><option value="0">1-3 yaş</option><option value="1">4-6 yaş</option><option value="2">7-11 yaş</option><option value="3">12-15 yaş</option><option value="4">16+ yaş</option></select></div><button class="full" onclick="calcMTV()">Hesapla</button><div id="calcOut"></div>';if(t==='otv')b='<h3>ÖTV Hesapla</h3><div class="field"><label>ÖTV&#39;siz fiyat (TL)</label><input id="cFiyat" type="number" placeholder="800000"></div><div class="field"><label>Motor hacmi</label><select id="cHacim"><option value=".45">1600 cc altı (~%45)</option><option value="1.3">1600-2000 cc (~%130)</option><option value="2.2">2000 cc üstü (~%220)</option></select></div><button class="full" onclick="calcOTV()">Hesapla</button><div id="calcOut"></div>';if(t==='kredi')b='<h3>Kredi Hesapla</h3><div class="field"><label>Kredi tutarı</label><input id="cTutar" type="number" placeholder="500000"></div><div class="field"><label>Vade (ay)</label><select id="cVade"><option>12</option><option>24</option><option>36</option><option>48</option></select></div><div class="field"><label>Aylık faiz (%)</label><input id="cFaiz" type="number" step=".1" placeholder="3.5"></div><button class="full" onclick="calcKredi()">Hesapla</button><div id="calcOut"></div>';if(t==='yakit')b='<h3>Yakıt Maliyeti</h3><div class="field"><label>Aylık km</label><input id="cKm" type="number" placeholder="1500"></div><div class="field"><label>Tüketim L/100</label><input id="cTuk" type="number" step=".1" placeholder="6.0"></div><div class="field"><label>Yakıt fiyatı TL/L</label><input id="cLitre" type="number" step=".1" placeholder="43"></div><button class="full" onclick="calcYakit()">Hesapla</button><div id="calcOut"></div>';modalBody.innerHTML=b;modalBack.classList.add('open')}function tl(n){return '₺'+Math.round(n).toLocaleString('tr-TR')}function out(l,v){calcOut.innerHTML=`<div class="winner"><b>${l}</b><div style="font-size:24px;color:var(--gold);font-weight:800">${v}</div></div>`}function calcMTV(){let m=+cMotor.value,y=+cYas.value;if(!m)return alert('Motor hacmi gir');let b=m<=1300?3500:m<=1600?6000:m<=1800?11000:m<=2000?18000:m<=2500?27000:45000;out('Tahmini yıllık MTV',tl(b*[1,.8,.6,.45,.15][y]))}function calcOTV(){if(!+cFiyat.value)return alert('Fiyat gir');out('Tahmini ÖTV',tl(+cFiyat.value*+cHacim.value))}function calcKredi(){let t=+cTutar.value,v=+cVade.value,r=+cFaiz.value/100;if(!t||!r)return alert('Tutar ve faiz gir');out('Aylık taksit',tl(t*(r*(1+r)**v)/((1+r)**v-1))+' /ay')}function calcYakit(){let k=+cKm.value,t=+cTuk.value,l=+cLitre.value;if(!k||!t||!l)return alert('Tüm alanları gir');out('Aylık yakıt gideri',tl(k/100*t*l)+' /ay')}
 
@@ -1126,8 +1222,33 @@ function expenseStats(m){let ex=Array.isArray(m.expenses)?m.expenses:[],now=new 
 function expenseMonths(m){let ex=Array.isArray(m.expenses)?m.expenses:[],arr=[];let now=new Date();for(let i=11;i>=0;i--){let d=new Date(now.getFullYear(),now.getMonth()-i,1),y=d.getFullYear(),mo=d.getMonth();let total=ex.filter(e=>{let x=new Date(e.date+'T00:00:00');return x.getFullYear()===y&&x.getMonth()===mo}).reduce((s,e)=>s+(Number(e.amount)||0),0);arr.push({label:d.toLocaleDateString('tr-TR',{month:'short'}).replace('.',''),total})}return arr}
 function expensePanel(m,i){let st=expenseStats(m),months=expenseMonths(m),mx=Math.max(1,...months.map(x=>x.total));let monthBars=months.map((x,idx)=>`<div class="month-col" title="${x.label}: ${moneyTR(x.total)}"><div class="month-bar" style="height:${x.total?Math.max(5,Math.round(x.total/mx*100)):2}%"></div></div>`).join('');let monthLabels=months.map((x,idx)=>`<span>${idx%2===0?x.label:''}</span>`).join('');let catEntries=Object.entries(st.cats).sort((a,b)=>b[1]-a[1]);let catMax=Math.max(1,...catEntries.map(x=>x[1]));let cats=catEntries.slice(0,5).map(([k,v])=>`<div class="expense-cat"><b>${EXPENSE_TYPES[k]?.name||'Diğer'}</b><div class="cat-track"><div class="cat-fill" style="width:${Math.max(4,v/catMax*100)}%"></div></div><span>${moneyTR(v)}</span></div>`).join('');let recent=st.ex.slice(0,5).map(e=>{let t=EXPENSE_TYPES[e.type]||EXPENSE_TYPES.other;let sub=[formatDate(e.date),e.km?Number(e.km).toLocaleString('tr-TR')+' km':'',e.note?safeText(e.note):''].filter(Boolean).join(' · ');return `<div class="expense-row"><div class="expense-icon">${t.icon}</div><div class="expense-name"><b>${t.name}</b><small>${sub}</small></div><div class="expense-amount">${moneyTR(e.amount)}</div><button class="expense-del" onclick="deleteExpense(${i},${Number(e.id)})" title="Sil">×</button></div>`}).join('');return `<div class="expense-panel"><div class="expense-head"><div><div class="eh-kicker">OWNERSHIP COST</div><h3>Masraf & gider takibi</h3><p>Aracının sana gerçekte ne kadara mal olduğunu tek yerde gör.</p></div><button class="expense-add" onclick="openExpenseModal(${i})">+ Gider ekle</button></div><div class="expense-hero-total"><small>Bu ay aracın sana</small><b>${moneyTR(st.month)}</b><em>${st.month?'mal oldu':'Henüz gider kaydı yok'}</em></div><div class="quick-expense"><button onclick="openExpenseModal(${i},'fuel')">+ Yakıt</button><button onclick="openExpenseModal(${i},'maintenance')">+ Bakım</button><button onclick="openExpenseModal(${i},'parking')">+ Otopark</button><button onclick="openExpenseModal(${i},'insurance')">+ Sigorta</button></div><div class="expense-summary"><div class="es-item primary"><small>Bu ay</small><b>${moneyTR(st.month)}</b><em>${st.month?st.ex.filter(e=>{let d=new Date(e.date+'T00:00:00'),n=new Date();return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()}).length+' kayıt':'Henüz gider yok'}</em></div><div class="es-item"><small>Son 12 ay</small><b>${moneyTR(st.year)}</b><em>Sahiplik gideri</em></div><div class="es-item"><small>Km başına</small><b>${st.cpk!==null?'₺'+st.cpk.toFixed(2).replace('.',','):'—'}</b><em>${st.cpk!==null?'Kayıtlı km aralığı':'2 km kayıtlı gider gerekir'}</em></div></div>${st.ex.length?`<div class="expense-chart"><div class="ec-head"><b>Son 12 ay</b><span>Toplam ${moneyTR(st.year)}</span></div><div class="month-bars">${monthBars}</div><div class="month-labels">${monthLabels}</div></div>${cats?`<div class="expense-cats">${cats}</div>`:''}<div class="expense-list-title"><b>Son giderler</b><span>${st.ex.length} kayıt · toplam ${moneyTR(st.total)}</span></div><div class="expense-list">${recent}</div>`:`<div class="expense-empty"><b>Henüz gider kaydı yok.</b><span>Yakıt, bakım, sigorta veya vergi gibi ilk giderini eklediğinde sahiplik özeti burada oluşacak.</span><button onclick="openExpenseModal(${i})">İlk gideri ekle</button></div>`}</div>`}
 
-function saveCar(id){myCars.push({carId:id,year:fYear.value||'—',km:fKm.value||'0',plate:fPlate.value.trim(),alarms:[],expenses:[]});persist();closeModal();renderGarage()}
-function renderGarage(){normalizeGarageData();if(!myCars.length){garageContent.innerHTML=`<div class="garage-shell"><div class="garage-eyebrow">PRIVATE GARAGE</div><div class="garage-empty premium-empty"><div class="pe-top"><div class="pe-kicker">ARACININ DİJİTAL DOSYASI</div><h3>Garajın henüz boş.</h3><div class="pe-copy">Aracını ekle; kilometre, bakım, muayene, sigorta, vergi ve gerçek sahiplik giderlerini tek ekrandan takip et.</div></div><div class="pe-benefits"><div class="pe-benefit"><b>Takvim</b><small>Yaklaşan işlemleri gör</small></div><div class="pe-benefit"><b>Giderler</b><small>Sahiplik maliyetini izle</small></div><div class="pe-benefit"><b>Kilometre</b><small>Güncel km bilgisini tut</small></div></div><button class="full" onclick="openGaragePicker()">İlk aracını ekle</button></div></div>`;return}let h='<div class="garage-shell">';myCars.forEach((m,i)=>{let c=CARS.find(x=>x.id===m.carId);if(!c)return;let next=garageNextAlarm(m),nd=next?daysUntil(next.date):null,nextName=next?alarms.find(x=>x[0]===next.type)?.[1]||'Hatırlatıcı':'Hatırlatıcı ekle';let overdue=(m.alarms||[]).filter(a=>daysUntil(a.date)<0).length,soon=(m.alarms||[]).filter(a=>{let d=daysUntil(a.date);return d>=0&&d<=30}).length;let statusTitle=overdue?`${overdue} işlem gecikmiş`:next?`${nextName} yaklaşıyor`:'Takvim hazır değil';let statusCopy=overdue?'Geciken işlemleri kontrol ederek araç takibini güncel tut.':next?`${formatDate(next.date)} tarihinde planlandı.`:'Bakım, muayene veya sigorta tarihi ekleyerek takibe başla.';let dayText=next?(nd<0?Math.abs(nd):nd):'—';let dayLabel=next?(nd<0?'gün geçti':'gün kaldı'):'plan yok';h+=`<div class="garage-eyebrow">PRIMARY VEHICLE <span style="color:var(--muted);font-weight:700">0${i+1}</span></div><div class="garage-hero"><div class="gh-top"><div><div class="gh-brand">${c.brand}</div><div class="gh-model">${c.model}</div><div class="gh-variant">${c.variant}</div></div>${m.plate?`<div class="gh-plate">${safeText(m.plate)}</div>`:'<div class="gh-plate" style="color:var(--muted)">PLAKA YOK</div>'}</div><div class="gh-metrics"><div class="gh-metric"><b>${m.year}</b><small>Model yılı</small></div><div class="gh-metric"><b>${Number(m.km||0).toLocaleString('tr-TR')}</b><small>Kilometre</small></div><div class="gh-metric"><b>${c.power} bg</b><small>Güç</small></div></div></div><div class="garage-status"><div class="gs-main"><div class="gs-label">Garaj durumu</div><div class="gs-title">${statusTitle}</div><div class="gs-copy">${statusCopy}</div></div><div class="gs-side ${overdue?'late':'good'}"><div class="gs-label">Sonraki işlem</div><div class="gs-days">${dayText}<small>${dayLabel}</small></div></div></div><div class="garage-summary"><div class="gstat"><b>${(m.alarms||[]).length}</b><small>Toplam takip</small></div><div class="gstat"><b>${soon}</b><small>30 gün içinde</small></div><div class="gstat"><b>${overdue}</b><small>Gecikmiş</small></div></div><div class="garage-actions"><button class="gaction primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı</button><button class="gaction" onclick="openKmModal(${i})">KM güncelle</button><button class="gaction" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayı</button></div>${expensePanel(m,i)}<div class="garage-section"><div><h2>Yaklaşan işler</h2><p>Aracın için oluşturduğun takip planı</p></div><span class="link" onclick="openAlarmModal(${i})">+ Yeni ekle</span></div>`;if((m.alarms||[]).length){h+='<div class="garage-timeline">'+[...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date)).map(a=>{let n=alarms.find(x=>x[0]===a.type)?.[1]||a.type,d=daysUntil(a.date),cl=d<0?'late':d>30?'safe':'';let st=d<0?`${Math.abs(d)} gün gecikti`:d===0?'Bugün':`${d} gün`;return `<div class="garage-event ${cl}"><span class="ge-dot"></span><div><div class="ge-name">${n}</div><div class="ge-date">${formatDate(a.date)}</div></div><div class="ge-state">${st}</div></div>`}).join('')+'</div>'}else{h+='<div class="sub" style="border-top:1px solid var(--line);padding:16px 2px">Henüz bir takip tarihi eklenmedi.</div>'}h+=`<div class="garage-section"><div><h2>Araç profili</h2><p>Garajındaki temel araç bilgileri</p></div></div><div class="garage-profile"><div class="gp-item"><small>Gövde</small><b>${c.body}</b></div><div class="gp-item"><small>Yakıt</small><b>${c.fuel}</b></div><div class="gp-item"><small>Şanzıman</small><b>${c.gear}</b></div><div class="gp-item"><small>Bagaj</small><b>${c.trunk} L</b></div></div>`});h+=myCars.length>=1&&!IS_PRO?'<button class="btn garage-addmore" onclick="openProModal()">🔒 İkinci aracı ekle · PRO</button>':'<button class="btn garage-addmore" onclick="openGaragePicker()">+ Araç ekle</button>';h+='</div>';garageContent.innerHTML=h}
+function saveCar(id){
+  const y=document.getElementById('fYear');
+  const km=document.getElementById('fKm');
+  const plate=document.getElementById('fPlate');
+  const car=(typeof CARS!=='undefined'?CARS:[]).find(x=>x.id===id);
+  if(!car)return;
+  const year=y?.value||'—';
+  const mileage=km?.value||'0';
+  const p=(plate?.value||'').trim();
+
+  const duplicate=myCars.some(m =>
+    Number(m.carId)===Number(id) &&
+    String(m.year)===String(year) &&
+    String(m.plate||'').trim().toLocaleUpperCase('tr-TR')===p.toLocaleUpperCase('tr-TR')
+  );
+  if(duplicate){
+    alert('Bu araç zaten garajında.');
+    return;
+  }
+
+  myCars.push({carId:id,year,km:mileage,plate:p,alarms:[],expenses:[]});
+  persist();
+  document.getElementById('modalBack')?.classList.remove('open');
+  if(typeof renderGarageV23==='function')renderGarageV23();
+  else if(typeof renderGarage==='function')renderGarage();
+}
+function renderGarage(){normalizeGarageData();if(!myCars.length){garageContent.innerHTML=`<div class="garage-shell"><div class="garage-eyebrow">PRIVATE GARAGE</div><div class="garage-empty premium-empty"><div class="pe-top"><div class="pe-kicker">ARACININ DİJİTAL DOSYASI</div><h3>Garajın henüz boş.</h3><div class="pe-copy">Aracını ekle; kilometre, bakım, muayene, sigorta, vergi ve gerçek sahiplik giderlerini tek ekrandan takip et.</div></div><div class="pe-benefits"><div class="pe-benefit"><b>Takvim</b><small>Yaklaşan işlemleri gör</small></div><div class="pe-benefit"><b>Giderler</b><small>Sahiplik maliyetini izle</small></div><div class="pe-benefit"><b>Kilometre</b><small>Güncel km bilgisini tut</small></div></div><button class="full" onclick="openGaragePicker()">İlk aracını ekle</button></div></div>`;return}let h='<div class="garage-shell">';myCars.forEach((m,i)=>{let c=CARS.find(x=>x.id===m.carId);if(!c)return;let next=garageNextAlarm(m),nd=next?daysUntil(next.date):null,nextName=next?alarms.find(x=>x[0]===next.type)?.[1]||'Hatırlatıcı':'Hatırlatıcı ekle';let overdue=(m.alarms||[]).filter(a=>daysUntil(a.date)<0).length,soon=(m.alarms||[]).filter(a=>{let d=daysUntil(a.date);return d>=0&&d<=30}).length;let statusTitle=overdue?`${overdue} işlem gecikmiş`:next?`${nextName} yaklaşıyor`:'Takvim hazır değil';let statusCopy=overdue?'Geciken işlemleri kontrol ederek araç takibini güncel tut.':next?`${formatDate(next.date)} tarihinde planlandı.`:'Bakım, muayene veya sigorta tarihi ekleyerek takibe başla.';let dayText=next?(nd<0?Math.abs(nd):nd):'—';let dayLabel=next?(nd<0?'gün geçti':'gün kaldı'):'plan yok';h+=`<div class="garage-eyebrow">PRIMARY VEHICLE <span style="color:var(--muted);font-weight:700">0${i+1}</span></div><div class="garage-hero"><div class="gh-top"><div><div class="gh-brand">${c.brand}</div><div class="gh-model">${c.model}</div><div class="gh-variant">${c.variant}</div></div>${m.plate?`<div class="gh-plate">${safeText(m.plate)}</div>`:'<div class="gh-plate" style="color:var(--muted)">PLAKA YOK</div>'}</div><div class="gh-metrics"><div class="gh-metric"><b>${m.year}</b><small>Model yılı</small></div><div class="gh-metric"><b>${Number(m.km||0).toLocaleString('tr-TR')}</b><small>Kilometre</small></div><div class="gh-metric"><b>${c.power} bg</b><small>Güç</small></div></div></div><div class="garage-status"><div class="gs-main"><div class="gs-label">Garaj durumu</div><div class="gs-title">${statusTitle}</div><div class="gs-copy">${statusCopy}</div></div><div class="gs-side ${overdue?'late':'good'}"><div class="gs-label">Sonraki işlem</div><div class="gs-days">${dayText}<small>${dayLabel}</small></div></div></div><div class="garage-summary"><div class="gstat"><b>${(m.alarms||[]).length}</b><small>Toplam takip</small></div><div class="gstat"><b>${soon}</b><small>30 gün içinde</small></div><div class="gstat"><b>${overdue}</b><small>Gecikmiş</small></div></div><div class="garage-actions"><button class="gaction primary" onclick="openAlarmModal(${i})">+ Hatırlatıcı</button><button class="gaction" onclick="openKmModal(${i})">KM güncelle</button><button class="gaction" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç detayı</button></div>${expensePanel(m,i)}<div class="garage-section"><div><h2>Yaklaşan işler</h2><p>Aracın için oluşturduğun takip planı</p></div><span class="link" onclick="openAlarmModal(${i})">+ Yeni ekle</span></div>`;if((m.alarms||[]).length){h+='<div class="garage-timeline">'+[...m.alarms].sort((a,b)=>new Date(a.date)-new Date(b.date)).map(a=>{let n=alarms.find(x=>x[0]===a.type)?.[1]||a.type,d=daysUntil(a.date),cl=d<0?'late':d>30?'safe':'';let st=d<0?`${Math.abs(d)} gün gecikti`:d===0?'Bugün':`${d} gün`;return `<div class="garage-event ${cl}"><span class="ge-dot"></span><div><div class="ge-name">${n}</div><div class="ge-date">${formatDate(a.date)}</div></div><div class="ge-state">${st}</div></div>`}).join('')+'</div>'}else{h+='<div class="sub" style="border-top:1px solid var(--line);padding:16px 2px">Henüz bir takip tarihi eklenmedi.</div>'}h+=`<div class="garage-section"><div><h2>Araç profili</h2><p>Garajındaki temel araç bilgileri</p></div></div><div class="garage-profile"><div class="gp-item"><small>Gövde</small><b>${c.body}</b></div><div class="gp-item"><small>Yakıt</small><b>${c.fuel}</b></div><div class="gp-item"><small>Şanzıman</small><b>${c.gear}</b></div><div class="gp-item"><small>Bagaj</small><b>${c.trunk} L</b></div></div>`});h+='<button class="btn garage-addmore" onclick="openGaragePicker()">+ Araç ekle</button>';h+='</div>';garageContent.innerHTML=h}
 
 
 function profileStats(){
@@ -1406,4 +1527,314 @@ function upgradeCalcResults(){
 setTimeout(()=>{setupSearchAssist();maybeOnboard();renderCompareEmptyV12();upgradeCalcResults();renderPersonalHomeV13();renderV14Home()},80);
 
 renderQuick();renderCats();renderSlots();
-</script></body></html>
+</script>
+<script id="v23-garage">
+(function(){
+  let activeVehicle = 0;
+
+  function realGarageVehicles(){
+    const cars=(typeof CARS!=='undefined'?CARS:[]);
+    return (typeof myCars!=='undefined'?myCars:[]).map((m,idx)=>{
+      const c=cars.find(x=>x.id===m.carId)||{};
+      return {idx,m,c};
+    }).filter(x=>x.c && x.c.id);
+  }
+
+  function fmtMoney(v){
+    return typeof moneyTR==='function' ? moneyTR(Number(v||0)) :
+      Number(v||0).toLocaleString('tr-TR',{maximumFractionDigits:0})+' TL';
+  }
+
+  function alarmName(type){
+    return (window.alarms||[]).find(x=>x[0]===type)?.[1] || type || 'Hatırlatıcı';
+  }
+
+  function sectionHtml(i,key,icon,title,sub,body,open=false){
+    return `<section class="v23-section ${open?'open':''}" data-v23-section="${i}-${key}">
+      <button type="button" class="v23-section-btn" onclick="toggleGarageSectionV23(${i},'${key}');return false;">
+        <span class="v23-section-title"><span>${icon}</span><span><b>${title}</b><small>${sub}</small></span></span>
+        <span class="v23-section-arrow">›</span>
+      </button>
+      <div class="v23-section-body">${body}</div>
+    </section>`;
+  }
+
+  function importantBody(m,i){
+    const arr=[...(m.alarms||[])].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    if(!arr.length){
+      return `<div class="v23-reminder-empty">Henüz yaklaşan işlem yok. Bakım, muayene, sigorta veya vergi tarihi ekleyebilirsin.</div>
+      <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
+    }
+    return `<div class="v23-action-list">${arr.slice(0,5).map(a=>{
+      const d=daysUntil(a.date);
+      const lead=d<0?`${Math.abs(d)} gün`:d===0?'Bugün':`${d} gün`;
+      const sub=d<0?'Gecikmiş':formatDate(a.date);
+      return `<div class="v23-action">
+        <strong>${lead}</strong>
+        <span><b>${alarmName(a.type)}</b><small>${sub}</small></span>
+        <em>›</em>
+      </div>`;
+    }).join('')}</div>
+    <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Yeni hatırlatıcı</button>`;
+  }
+
+  function costBody(m,i){
+    const st=typeof expenseStats==='function'?expenseStats(m):{month:0,year:0,total:0,cats:{},ex:[]};
+    const cats=Object.entries(st.cats||{}).sort((a,b)=>b[1]-a[1]).slice(0,4);
+    return `<div class="v23-cost-main"><strong>${fmtMoney(st.month)}</strong><small>Bu ay toplam araç gideri</small></div>
+      <div class="v23-cost-break">${
+        cats.length?cats.map(([k,v])=>`<span class="v23-cost-pill">${EXPENSE_TYPES?.[k]?.name||'Diğer'} <b>${fmtMoney(v)}</b></span>`).join('')
+        :'<span class="v23-cost-pill">Henüz gider kaydı yok</span>'
+      }</div>
+      <button class="v23-primary" type="button" onclick="openExpenseModal(${i})">+ Gider ekle</button>`;
+  }
+
+  function historyBody(m,i){
+    const ex=[...(m.expenses||[])].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6);
+    if(!ex.length){
+      return `<div class="v23-reminder-empty">Henüz geçmiş kaydı yok. İlk yakıt, bakım, sigorta veya diğer giderini eklediğinde burada görünür.</div>
+      <button class="v23-primary" type="button" onclick="openExpenseModal(${i},'maintenance')">+ İlk kaydı ekle</button>`;
+    }
+    return `<div class="v23-timeline">${ex.map(e=>{
+      const t=EXPENSE_TYPES?.[e.type]||EXPENSE_TYPES?.other||{name:'Diğer'};
+      const extra=[e.km?Number(e.km).toLocaleString('tr-TR')+' km':'',e.note||''].filter(Boolean).join(' · ');
+      return `<div class="v23-event"><b>${t.name} · ${fmtMoney(e.amount)}</b><small>${formatDate(e.date)}${extra?' · '+safeText(extra):''}</small></div>`;
+    }).join('')}</div>
+    <button class="v23-primary" type="button" onclick="openExpenseModal(${i})">+ Geçmişe kayıt ekle</button>`;
+  }
+
+  function remindersBody(m,i){
+    const arr=[...(m.alarms||[])].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    return `${arr.length?`<div class="v23-action-list">${arr.map(a=>{
+      const d=daysUntil(a.date);
+      return `<div class="v23-action"><strong>${d<0?Math.abs(d)+' gün':d===0?'Bugün':d+' gün'}</strong><span><b>${alarmName(a.type)}</b><small>${formatDate(a.date)}</small></span><em>›</em></div>`;
+    }).join('')}</div>`:'<div class="v23-reminder-empty">Araca özel hatırlatıcılarını burada yönetebilirsin.</div>'}
+    <button class="v23-primary" type="button" onclick="openAlarmModal(${i})">+ Hatırlatıcı ekle</button>`;
+  }
+
+  function vehicleHtml(v){
+    const {idx:i,m,c}=v;
+    const alarmArr=m.alarms||[];
+    const overdue=alarmArr.filter(a=>daysUntil(a.date)<0).length;
+    const soon=alarmArr.filter(a=>{const d=daysUntil(a.date);return d>=0&&d<=30}).length;
+    const st=typeof expenseStats==='function'?expenseStats(m):{month:0};
+    const lastExp=[...(m.expenses||[])].sort((a,b)=>new Date(b.date)-new Date(a.date))[0];
+    const title=[m.year,c.brand,c.model].filter(Boolean).join(' ');
+    const km=Number(m.km||0).toLocaleString('tr-TR');
+
+    return `<article class="v23-car ${i===activeVehicle?'open':''}" data-v23-car="${i}">
+      <button type="button" class="v23-car-head" onclick="toggleVehicleV23(${i});return false;">
+        <span class="v23-car-mark">⌁</span>
+        <span class="v23-car-meta"><b>${title}</b><small>${c.variant||''}${m.plate?' · '+safeText(m.plate):''} · ${km} km</small></span>
+        <span class="v23-car-state">›</span>
+      </button>
+      <div class="v23-car-body">
+        <div class="v23-hero">
+          <div class="v23-hero-top">
+            <div><div class="v23-eyebrow">Güncel kilometre</div><div class="v23-km">${km} km</div></div>
+            <span style="display:flex;gap:12px;align-items:center">
+  <span class="v23-edit" onclick="openGarageEditV23(${i})">Düzenle</span>
+  <span class="v23-delete" onclick="deleteGarageCarV23(${i})">Garajdan çıkar</span>
+</span>
+          </div>
+          <div class="v23-health">
+            <span class="v23-chip"><strong>${soon+overdue}</strong> yakın / gecikmiş</span>
+            <span class="v23-chip"><strong>${fmtMoney(st.month)}</strong> bu ay</span>
+            <span class="v23-chip"><strong>${lastExp?'Son kayıt':'Kayıt yok'}</strong>${lastExp?' '+formatDate(lastExp.date):''}</span>
+          </div>
+        </div>
+
+        ${sectionHtml(i,'important','◷','Şu an önemli olanlar',
+          overdue?`${overdue} gecikmiş`:soon?`${soon} yaklaşıyor`:'Takvim sakin',
+          importantBody(m,i),true)}
+
+        ${sectionHtml(i,'cost','₺','Maliyet','Gerçek sahiplik giderleri',costBody(m,i))}
+        ${sectionHtml(i,'history','↺','Araç geçmişi',`${(m.expenses||[]).length} kayıt`,historyBody(m,i))}
+        ${sectionHtml(i,'reminders','⏱','Hatırlatıcılar',`${alarmArr.length} aktif kayıt`,remindersBody(m,i))}
+
+        <button class="v23-primary" type="button" onclick="openDetail(CARS.find(x=>x.id===${c.id}))">Araç teknik detayları</button>
+      </div>
+    </article>`;
+  }
+
+  window.toggleVehicleV23=function(index){
+    const target=document.querySelector(`[data-v23-car="${index}"]`);
+    if(!target)return;
+    const wasOpen=target.classList.contains('open');
+    document.querySelectorAll('[data-v23-car]').forEach(el=>el.classList.remove('open'));
+    if(!wasOpen){target.classList.add('open');activeVehicle=index}
+    else activeVehicle=-1;
+  };
+
+  window.toggleGarageSectionV23=function(i,key){
+    const sec=document.querySelector(`[data-v23-section="${i}-${key}"]`);
+    if(sec)sec.classList.toggle('open');
+  };
+
+  window.openGarageEditV23=function(i){
+    const m=myCars[i],c=CARS.find(x=>x.id===m.carId);
+    if(!m||!c)return;
+    modalBody.innerHTML=`<h3>${c.brand} ${c.model}</h3>
+      <div class="sub">Araç bilgilerini güncelle.</div>
+      <div class="field" style="margin-top:14px"><label>Model yılı</label><input id="v23EditYear" type="number" value="${m.year||''}"></div>
+      <div class="field"><label>Kilometre</label><input id="v23EditKm" type="number" min="0" value="${m.km||0}"></div>
+      <div class="field"><label>Plaka (opsiyonel)</label><input id="v23EditPlate" value="${safeText(m.plate||'')}"></div>
+      <button class="full" onclick="saveGarageEditV23(${i})">Değişiklikleri kaydet</button>`;
+    modalBack.classList.add('open');
+  };
+
+  window.saveGarageEditV23=function(i){
+    const m=myCars[i]; if(!m)return;
+    m.year=document.getElementById('v23EditYear').value||m.year;
+    m.km=document.getElementById('v23EditKm').value||m.km;
+    m.plate=document.getElementById('v23EditPlate').value.trim();
+    persist(); closeModal(); renderGarage();
+  };
+
+
+  window.deleteGarageCarV23=function(i){
+    const m=myCars[i];
+    if(!m)return;
+    const c=CARS.find(x=>x.id===m.carId);
+    const name=c?`${c.brand} ${c.model}`:'Bu araç';
+
+    modalBody.innerHTML=`<h3>Garajdan çıkar?</h3>
+      <div class="sub"><b>${name}</b> ve bu araca bağlı gider/hatırlatıcı kayıtları Garaj'dan kaldırılacak.</div>
+      <div style="display:flex;gap:8px;margin-top:18px">
+        <button class="btn" style="flex:1" onclick="closeModal()">Vazgeç</button>
+        <button class="full" style="flex:1;margin:0" onclick="confirmDeleteGarageCarV23(${i})">Garajdan çıkar</button>
+      </div>`;
+    modalBack.classList.add('open');
+  };
+
+  window.confirmDeleteGarageCarV23=function(i){
+    if(i<0||i>=myCars.length)return;
+    myCars.splice(i,1);
+    persist();
+    activeVehicle=myCars.length?Math.min(i,myCars.length-1):-1;
+    closeModal();
+    renderGarageV23();
+  };
+
+  window.renderGarageV23=function(){
+    normalizeGarageData();
+    const host=document.getElementById('garageContent');
+    if(!host)return;
+    const vehicles=realGarageVehicles();
+
+    if(!vehicles.length){
+      host.innerHTML=`<div class="v23-garage"><div class="v23-head"><div><small>KİŞİSEL GARAJ</small><h2>Garajım</h2></div></div>
+      <div class="v23-car"><div class="v23-car-body" style="display:block;border-top:0">
+        <div class="v23-reminder-empty">Garajın henüz boş. Bir araç eklediğinde kilometre, gider, geçmiş ve hatırlatıcılar burada yaşayacak.</div>
+        <button class="v23-primary" onclick="openFirstGarageCarV23()">İlk aracını ekle</button>
+      </div></div></div>`;
+      return;
+    }
+
+    if(activeVehicle>=vehicles.length)activeVehicle=0;
+    host.innerHTML=`<div class="v23-garage">
+      <div class="v23-head"><div><small>KİŞİSEL GARAJ</small><h2>Garajım</h2></div>
+      <button type="button" class="v23-addcar" onclick="openGaragePicker()">+ Araç ekle</button></div>
+      <div>${vehicles.map(vehicleHtml).join('')}</div>
+    </div>`;
+  };
+
+  window.renderGarage=window.renderGarageV23;
+
+  document.addEventListener('click',function(e){
+    const el=e.target.closest?.('[onclick*="showScreen"]');
+    if(el&&(el.getAttribute('onclick')||'').includes('garage'))setTimeout(window.renderGarageV23,0);
+  },true);
+
+  setTimeout(()=>{
+    const screen=document.getElementById('screen-garage');
+    if(screen&&screen.classList.contains('active'))window.renderGarageV23();
+  },0);
+})();
+</script>
+
+
+<script id="v23-3-first-car-fix">
+window.openFirstGarageCarV23=function(){
+  window.modalCtx={type:'garage'};
+  const back=document.getElementById('modalBack');
+  const body=document.getElementById('modalBody');
+  if(!back||!body)return;
+
+  const brands=[...new Set((typeof CARS!=='undefined'?CARS:[]).map(c=>c.brand))].filter(Boolean).sort();
+  body.innerHTML=`
+    <h3>Aracını seç</h3>
+    <div class="sub">Önce marka seç.</div>
+    <div class="field" style="margin-top:14px">
+      <input id="v23FirstBrandSearch" placeholder="Marka ara..." autocomplete="off"
+             oninput="filterFirstGarageBrandsV23(this.value)">
+    </div>
+    <div id="v23FirstBrandList"></div>`;
+  drawFirstGarageBrandsV23(brands);
+  back.classList.add('open');
+};
+
+window.drawFirstGarageBrandsV23=function(brands){
+  const list=document.getElementById('v23FirstBrandList');
+  if(!list)return;
+  list.innerHTML=brands.map(b=>{
+    const enc=encodeURIComponent(b);
+    const count=(typeof CARS!=='undefined'?CARS:[]).filter(c=>c.brand===b).length;
+    return `<div class="brand-row" onclick="selectFirstGarageBrandV23(decodeURIComponent('${enc}'))"><b>${b}</b><small>${count} model ›</small></div>`;
+  }).join('');
+};
+
+window.filterFirstGarageBrandsV23=function(q){
+  const x=(q||'').toLocaleLowerCase('tr-TR');
+  const brands=[...new Set((typeof CARS!=='undefined'?CARS:[]).map(c=>c.brand))].filter(Boolean).sort()
+    .filter(b=>b.toLocaleLowerCase('tr-TR').includes(x));
+  drawFirstGarageBrandsV23(brands);
+};
+
+window.selectFirstGarageBrandV23=function(brand){
+  const body=document.getElementById('modalBody');
+  if(!body)return;
+  const cars=(typeof CARS!=='undefined'?CARS:[]).filter(c=>c.brand===brand);
+  body.innerHTML=`<h3 style="cursor:pointer" onclick="openFirstGarageCarV23()">← ${brand}</h3>
+    <div class="sub" style="margin-bottom:10px">Garajına eklemek istediğin modeli seç.</div>
+    ${cars.map(c=>`<div class="car-card" onclick="selectFirstGarageCarV23(${c.id})">${card(c)}</div>`).join('')}`;
+};
+
+window.selectFirstGarageCarV23=function(id){
+  const c=(typeof CARS!=='undefined'?CARS:[]).find(x=>x.id===id);
+  if(!c)return;
+  const body=document.getElementById('modalBody');
+  body.innerHTML=`<h3>${c.brand} ${c.model}</h3>
+    <div class="sub">${c.variant||''}</div>
+    <div class="field" style="margin-top:14px"><label>Model yılı</label><input id="v23FirstYear" type="number" value="2022"></div>
+    <div class="field"><label>Kilometre</label><input id="v23FirstKm" type="number" min="0" placeholder="45000"></div>
+    <div class="field"><label>Plaka (opsiyonel)</label><input id="v23FirstPlate" placeholder="34 ABC 123"></div>
+    <button class="full" onclick="saveFirstGarageCarV23(${c.id})">Garaja ekle</button>`;
+};
+
+window.saveFirstGarageCarV23=function(id){
+  const car=(typeof CARS!=='undefined'?CARS:[]).find(x=>x.id===id);
+  if(!car)return;
+  const year=document.getElementById('v23FirstYear')?.value||'—';
+  const km=document.getElementById('v23FirstKm')?.value||'0';
+  const plate=(document.getElementById('v23FirstPlate')?.value||'').trim();
+
+  const duplicate=myCars.some(m =>
+    Number(m.carId)===Number(id) &&
+    String(m.year)===String(year) &&
+    String(m.plate||'').trim().toLocaleUpperCase('tr-TR')===plate.toLocaleUpperCase('tr-TR')
+  );
+  if(duplicate){
+    alert('Bu araç zaten garajında.');
+    return;
+  }
+
+  myCars.push({carId:id,year,km,plate,alarms:[],expenses:[]});
+  persist();
+  document.getElementById('modalBack')?.classList.remove('open');
+  if(typeof renderGarageV23==='function')renderGarageV23();
+  else if(typeof renderGarage==='function')renderGarage();
+};
+</script>
+
+</body></html>
