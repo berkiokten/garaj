@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V25 Auth</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V25.1 Guest Auth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -779,7 +779,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 <div class="v14-home-top">
   <div class="v14-brandrow">
     <div><div class="v14-wordmark">GARAJ</div><div class="v14-date" id="v14HomeDate">PREMIUM AUTOMOTIVE COMPANION</div></div>
-    <button class="v14-profile-dot" id="homeProfileDot" onclick="showScreen('profile')" aria-label="Profil"><span>G</span></button>
+    <button class="v14-profile-dot" id="homeProfileDot" onclick="openProfileV251()" aria-label="Profil"><span>G</span></button>
   </div>
   <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Sahip olduktan sonra da yanında.</em></h1></div>
 </div>
@@ -1404,7 +1404,7 @@ function renderProfile(){
      <button onclick="alert('Veri dışa aktarma Garaj Pro ile yakında.')"><span class="pm-icon">⇧</span><span><b>Verilerim</b><small>Garaj ve gider kayıtlarını yönet</small></span><em>›</em></button>
      <button onclick="garajSignOut()"><span class="pm-icon">↪</span><span><b>Çıkış yap</b><small>Bu cihazdaki oturumu kapat</small></span><em>›</em></button>
    </div>
-   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V25</span></div>
+   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V25.1</span></div>
  </div>`;
  applyProfilePersonalization();
 }
@@ -1957,7 +1957,9 @@ async function garajSignOut(){
   garajSession=null;
   localStorage.removeItem('garajUserProfileV1');
   applyProfilePersonalization();
-  renderAuthGate('login');
+  document.getElementById('authGate')?.classList.remove('open');
+  applyGuestProfileStateV251();
+  if(typeof renderProfile==='function')renderProfile();
 }
 async function ensureProfileRow(user,fallbackName=''){
   if(!user)return;
@@ -1977,7 +1979,7 @@ async function loadRemoteProfile(){
 }
 function renderGarageOnboardingIfNeeded(){
   const p=getLocalProfile();
-  if((p.garage_name||'').trim()){document.getElementById('authGate')?.classList.remove('open');return}
+  if((p.garage_name||'').trim()){document.getElementById('authGate')?.classList.remove('open');continuePendingAuthV251();return}
   const name=(p.name||'').trim()||'Garaj';
   const suggestions=[garajPossessive(name),'My Garage','Blackline Garage','Weekend Garage'];
   const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
@@ -2001,6 +2003,7 @@ async function saveGarageNameOnboarding(){
   const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);
   document.getElementById('authGate').classList.remove('open');
   applyProfilePersonalization();renderProfile();if(typeof renderGarageV24==='function')renderGarageV24();
+  continuePendingAuthV251();
 }
 async function changeGarageNameV25(){
   const p=getLocalProfile();
@@ -2018,8 +2021,50 @@ async function saveGarageNameV25(){
   }
   const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);closeModal();applyProfilePersonalization();renderProfile();
 }
+
+// ================= V25.1 GUEST MODE =================
+let pendingAuthActionV251=null;
+
+function isGarajLoggedInV251(){
+  return !!garajSession?.user;
+}
+function applyGuestProfileStateV251(){
+  const dot=document.getElementById('homeProfileDot');
+  if(!dot)return;
+  const sp=dot.querySelector('span');
+  if(!isGarajLoggedInV251()){
+    if(sp)sp.textContent='G';
+    dot.title='Giriş yap / Kayıt ol';
+  }
+}
+function openProfileV251(){
+  if(!isGarajLoggedInV251()){
+    pendingAuthActionV251=null;
+    renderAuthGate('login');
+    return;
+  }
+  showScreen('profile');
+}
+function guestAuthPromptV251(label='Bu özellik'){
+  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
+  if(!gate||!card)return;
+  gate.classList.add('open');
+  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
+    <div class="auth-kicker">KİŞİSEL GARAJ</div>
+    <h2>Garajını oluşturmaya başla.</h2>
+    <p>${safeText(label)} için ücretsiz bir Garaj hesabı gerekiyor. Araç arama, inceleme ve karşılaştırmaya üye olmadan devam edebilirsin.</p>
+    <button class="full" onclick="renderAuthGate('signup')">Ücretsiz kayıt ol</button>
+    <button class="auth-secondary" onclick="renderAuthGate('login')">Zaten hesabım var</button>
+    <button class="auth-secondary" onclick="document.getElementById('authGate').classList.remove('open');pendingAuthActionV251=null">Şimdilik devam et</button>`;
+}
+function continuePendingAuthV251(){
+  const fn=pendingAuthActionV251;
+  pendingAuthActionV251=null;
+  if(typeof fn==='function')setTimeout(fn,100);
+}
+
 async function initGarajAuth(){
-  if(!garajSupabaseConfigured()){renderAuthGate('login');return}
+  if(!garajSupabaseConfigured()){applyGuestProfileStateV251();return}
   garajSb=window.supabase.createClient(GARAJ_SUPABASE_URL,GARAJ_SUPABASE_PUBLISHABLE_KEY);
   const {data}=await garajSb.auth.getSession();
   garajSession=data.session;
@@ -2027,10 +2072,50 @@ async function initGarajAuth(){
     garajSession=session;
     if(session){await loadRemoteProfile();renderGarageOnboardingIfNeeded()}
   });
-  if(!garajSession){renderAuthGate('login');return}
+  if(!garajSession){document.getElementById('authGate')?.classList.remove('open');applyGuestProfileStateV251();return}
   await loadRemoteProfile();renderGarageOnboardingIfNeeded();
 }
 window.addEventListener('load',initGarajAuth);
+
+
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    if(typeof openGaragePicker==='function'){
+      const originalGaragePicker=openGaragePicker;
+      window.openGaragePicker=function(){
+        if(!isGarajLoggedInV251()){
+          pendingAuthActionV251=()=>originalGaragePicker();
+          guestAuthPromptV251('Garaja araç eklemek');
+          return;
+        }
+        return originalGaragePicker();
+      };
+    }
+    if(typeof openFirstGarageCarV23==='function'){
+      const originalFirstGarageCar=openFirstGarageCarV23;
+      window.openFirstGarageCarV23=function(){
+        if(!isGarajLoggedInV251()){
+          pendingAuthActionV251=()=>originalFirstGarageCar();
+          guestAuthPromptV251('İlk aracını Garaj’a eklemek');
+          return;
+        }
+        return originalFirstGarageCar();
+      };
+    }
+    if(typeof quickAddGarage==='function'){
+      const originalQuickAdd=quickAddGarage;
+      window.quickAddGarage=function(id){
+        if(!isGarajLoggedInV251()){
+          pendingAuthActionV251=()=>originalQuickAdd(id);
+          guestAuthPromptV251('Bu aracı Garaj’a eklemek');
+          return;
+        }
+        return originalQuickAdd(id);
+      };
+    }
+    applyGuestProfileStateV251();
+  },250);
+});
 
 </script>
 
