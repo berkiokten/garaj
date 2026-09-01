@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — Premium V25.1 Guest Auth</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V26 Clean Auth |  — Premium V24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -742,44 +742,53 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
 .v24-history-actions button:hover{color:var(--gold)}
 @media(max-width:640px){.v24-collapsed-info{display:none}.v24-cost-grid{grid-template-columns:1fr}.v24-garage-top b{display:none}}
 </style>
-
-<style id="v24-1-profile-style">
-.profile-identity{display:flex;align-items:center;gap:14px;margin:20px 0 22px}
-.profile-avatar{width:58px;height:58px;flex:0 0 58px;border-radius:18px;border:1px solid rgba(201,165,101,.34);background:linear-gradient(145deg,rgba(201,165,101,.18),rgba(255,255,255,.025));display:grid;place-items:center;color:var(--gold);font-family:Fraunces,serif;font-size:26px;font-weight:800}
-.profile-identity-copy{min-width:0}.profile-identity-copy small{display:block;color:var(--gold);font-size:8px;font-weight:900;letter-spacing:.16em;margin-bottom:4px}.profile-identity-copy b{display:block;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-identity-copy span{display:block;color:var(--muted);font-size:10px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.profile-edit-btn{margin-left:auto;border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--text);border-radius:11px;padding:9px 11px;font-size:9px;font-weight:900;cursor:pointer}
-.profile-edit-btn:hover{border-color:rgba(201,165,101,.35);color:var(--gold)}
-.profile-local-note{margin:0 16px 14px;padding:11px 13px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:9px;line-height:1.5;background:rgba(255,255,255,.015)}
-.profile-local-note b{color:var(--text)}
-.profile-complete{margin:0 16px 18px;padding:17px;border:1px dashed rgba(201,165,101,.3);border-radius:17px;background:rgba(201,165,101,.035)}
-.profile-complete b{display:block;font-size:13px;margin-bottom:5px}.profile-complete span{display:block;color:var(--muted);font-size:10px;line-height:1.55;margin-bottom:12px}.profile-complete button{border:0;background:var(--gold);color:#111;border-radius:11px;padding:10px 13px;font-size:9px;font-weight:900;cursor:pointer}
-.profile-form-note{font-size:9px;color:var(--muted);line-height:1.55;margin:10px 0 4px}
-</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style id="v25-auth-style">
-.auth-gate{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% -10%,rgba(201,165,101,.14),transparent 38%),var(--bg);display:none;align-items:center;justify-content:center;padding:22px}
-.auth-gate.open{display:flex}
-.auth-card{width:min(100%,430px);border:1px solid var(--line);background:linear-gradient(145deg,var(--surface),var(--surface2));border-radius:26px;padding:24px;box-shadow:var(--shadow)}
-.auth-brand{font:800 25px Manrope;margin-bottom:22px;letter-spacing:-.7px}.auth-brand b{color:var(--gold)}
-.auth-kicker{font-size:8px;letter-spacing:.18em;color:var(--gold);font-weight:900;margin-bottom:6px}
-.auth-card h2{font:800 25px Manrope;margin:0 0 7px}.auth-card>p{color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 18px}
-.auth-tabs{display:flex;padding:4px;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:13px;margin-bottom:16px}
-.auth-tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:9px;border-radius:9px;font-weight:800;font-size:10px}
-.auth-tabs button.active{background:var(--surface2);color:var(--gold)}
-.auth-error{min-height:18px;color:#e57373;font-size:9px;margin-top:8px}.auth-success{color:var(--good)}
-.auth-secondary{width:100%;margin-top:8px;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:12px;padding:12px;font-weight:800}
-.auth-setup{font-size:9px;line-height:1.55;color:var(--muted);border:1px dashed rgba(201,165,101,.35);padding:12px;border-radius:12px;margin-top:14px}
-.onboard-picks{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 13px}.onboard-picks button{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:999px;padding:7px 9px;font-size:9px;cursor:pointer}
-.onboard-picks button:hover{border-color:var(--gold);color:var(--gold)}
-.auth-user-chip{display:flex;align-items:center;gap:8px}.auth-signout{border:0;background:transparent;color:var(--muted);font-size:9px;cursor:pointer}
+<style id="v26-clean-auth-css">
+/* V26 — isolated account/auth layer */
+.v26-auth-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,6,8,.78);backdrop-filter:blur(14px)}
+.v26-auth-overlay.open{display:flex}
+.v26-auth-card{position:relative;width:min(100%,410px);border:1px solid var(--line);background:var(--surface);border-radius:22px;padding:22px;box-shadow:0 28px 80px rgba(0,0,0,.45)}
+.v26-auth-close{position:absolute;right:14px;top:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:18px}
+.v26-auth-head small{display:block;color:var(--gold);font-size:9px;font-weight:900;letter-spacing:.16em;margin-bottom:7px}
+.v26-auth-head h2{font:800 24px Manrope;margin:0 0 7px}
+.v26-auth-head p{color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 18px}
+.v26-tabs{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);margin-bottom:16px}
+.v26-tabs button{flex:1;border:0;background:transparent;color:var(--muted);border-radius:9px;padding:10px;font-size:10px;font-weight:900;cursor:pointer}
+.v26-tabs button.active{background:var(--bg);color:var(--text)}
+.v26-auth-card .field{margin-bottom:11px}
+.v26-auth-card .field label{display:block;font-size:9px;font-weight:800;color:var(--muted);margin-bottom:6px}
+.v26-auth-card .field input{width:100%}
+.v26-auth-main{width:100%;margin-top:5px}
+.v26-auth-msg{min-height:17px;margin-top:10px;font-size:10px;color:#e47a7a;line-height:1.4}
+.v26-auth-msg.ok{color:#66b88a}
+.v26-auth-note{margin-top:12px;text-align:center;color:var(--muted);font-size:9px}
+.v26-onboard-picks{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0 13px}
+.v26-onboard-picks button{border:1px solid var(--line);background:var(--surface2);color:var(--muted);border-radius:999px;padding:7px 9px;font-size:9px;cursor:pointer}
+.v26-account-shell{max-width:760px;margin:0 auto}
+.v26-account-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 0 18px;border-bottom:1px solid var(--line)}
+.v26-account-id{display:flex;align-items:center;gap:12px}
+.v26-avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--line);font-weight:900;color:var(--gold);font-size:18px}
+.v26-account-id small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.v26-plan{border:1px solid rgba(201,165,101,.25);color:var(--gold);border-radius:999px;padding:6px 9px;font-size:8px;font-weight:900;letter-spacing:.08em}
+.v26-account-section{padding:20px 0;border-bottom:1px solid var(--line)}
+.v26-account-section>small{display:block;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.14em;margin-bottom:10px}
+.v26-account-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}
+.v26-account-row+ .v26-account-row{border-top:1px solid var(--line)}
+.v26-account-row div b{display:block;font-size:11px}
+.v26-account-row div span{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.v26-account-row button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:8px 10px;font-size:9px;font-weight:800;cursor:pointer}
+.v26-signout{margin-top:20px;width:100%;border:1px solid rgba(220,100,100,.24);background:transparent;color:#df8d8d;border-radius:12px;padding:12px;font-weight:800;cursor:pointer}
 </style>
-</head><body data-theme="dark"><div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
+</head><body data-theme="dark">
+<div class="v26-auth-overlay" id="v26AuthOverlay" aria-hidden="true">
+  <div class="v26-auth-card" id="v26AuthCard"></div>
+</div>
+<div class="wrap"><header class="header"><div class="logo">Garaj<b>.</b></div><button class="theme" onclick="toggleTheme()" id="themeBtn">☀︎</button></header>
 <section class="screen active" id="screen-home">
 <div class="v14-home-top">
   <div class="v14-brandrow">
     <div><div class="v14-wordmark">GARAJ</div><div class="v14-date" id="v14HomeDate">PREMIUM AUTOMOTIVE COMPANION</div></div>
-    <button class="v14-profile-dot" id="homeProfileDot" onclick="openProfileV251()" aria-label="Profil"><span>G</span></button>
+    <button class="v14-profile-dot" onclick="openAccountV26()" aria-label="Hesap"><span>G</span></button>
   </div>
   <div class="v14-greeting"><small>BUGÜN GARAJINDA</small><h1 id="v14Greeting">Doğru aracı seç.<br><em>Sahip olduktan sonra da yanında.</em></h1></div>
 </div>
@@ -822,7 +831,7 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   <div class="tog" id="viewToggle" style="display:none"><button id="view-rakam" class="active" onclick="setView('rakam')">Rakam</button><button id="view-bar" onclick="setView('bar')">Bar</button><button id="view-radar" onclick="setView('radar')">Radar</button></div>
   <div id="compareResult"></div>
 </section>
-<section class="screen" id="screen-detail"><button class="back" onclick="showScreen('home')">← Geri</button><div id="detailContent"></div></section><section class="screen" id="screen-garage"><div class="scr-title" id="garagePageTitle">Garajım</div><div class="sub" id="garagePageSub">Aracını ve yaklaşan işleri tek yerde yönet.</div><div id="garageContent"></div></section>
+<section class="screen" id="screen-detail"><button class="back" onclick="showScreen('home')">← Geri</button><div id="detailContent"></div></section><section class="screen" id="screen-garage"><div class="scr-title">Garajım</div><div class="sub">Aracını ve yaklaşan işleri tek yerde yönet.</div><div id="garageContent"></div></section>
 <section class="screen" id="screen-profile"><div id="profileContent"></div></section></div>
 <div class="v13-toast" id="v13Toast"></div><div class="onboard-back" id="onboardBack">
   <div class="onboard-card" id="onboardCard"></div>
@@ -835,11 +844,11 @@ button:active,.card:active,.disc:active,.tool:active{transform:scale(.985)}
   <div class="navitem primary" id="nav-compare" onclick="showScreen('compare')">
     <i class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h12"/><path d="m16 4 3 3-3 3"/><path d="M17 17H5"/><path d="m8 14-3 3 3 3"/></svg></i><span>Karşılaştır</span>
   </div>
-  <div class="navitem" id="nav-garage" onclick="showScreen('garage')">
+  <div class="navitem" id="nav-garage" onclick="openGarageV26()">
     <i class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V21H3z"/><path d="M7 21v-7h10v7"/><path d="M9 17h6"/></svg></i><span>Garajım</span>
   </div>
-  <div class="navitem" id="nav-profile" onclick="showScreen('profile')">
-    <i class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c.6-4 3.1-6 7-6s6.4 2 7 6"/></svg></i><span>Profil</span>
+  <div class="navitem" id="nav-profile" onclick="openAccountV26()">
+    <i class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c.6-4 3.1-6 7-6s6.4 2 7 6"/></svg></i><span>Hesap</span>
   </div>
 </nav>
 <script>
@@ -1309,75 +1318,22 @@ function profileStats(){
  });
  return {expenseCount,alarmCount,total12}
 }
-function garajProfile(){
- try{return JSON.parse(localStorage.getItem('garajUserProfileV1')||'{}')||{}}catch(e){return{}}
-}
-function garajPossessive(name){
- name=(name||'').trim();
- if(!name)return 'Garajım';
- let low=name.toLocaleLowerCase('tr-TR'),last=low.slice(-1),vowels='aeıioöuü';
- let lastVowel='';
- for(let i=low.length-1;i>=0;i--){if(vowels.includes(low[i])){lastVowel=low[i];break}}
- let suffix=(lastVowel==='a'||lastVowel==='ı')?'ın':(lastVowel==='e'||lastVowel==='i')?'in':(lastVowel==='o'||lastVowel==='u')?'un':'ün';
- if(vowels.includes(last))suffix='n'+suffix;
- return `${name}'${suffix} Garajı`;
-}
-function applyProfilePersonalization(){
- let p=garajProfile(),name=(p.name||'').trim(),garageName=(p.garage_name||'').trim();
- let dot=document.getElementById('homeProfileDot');
- if(dot){let sp=dot.querySelector('span');if(sp)sp.textContent=name?name.charAt(0).toLocaleUpperCase('tr-TR'):'G';dot.title=name||'Profil'}
- let gt=document.getElementById('garagePageTitle');
- if(gt)gt.textContent=garageName||'Garajım';
- let gs=document.getElementById('garagePageSub');
- if(gs)gs.textContent=name?`${name}, aracını ve yaklaşan işleri tek yerde yönet.`:'Aracını ve yaklaşan işleri tek yerde yönet.';
-}
-function openProfileEdit(){
- let p=garajProfile();
- modalBody.innerHTML=`<h3>Profilini düzenle</h3>
-   <div class="sub">Garaj'ı sana göre kişiselleştir.</div>
-   <div class="field" style="margin-top:14px"><label>Adın</label><input id="profileNameInput" maxlength="30" placeholder="Örn. Kerem" value="${safeText(p.name||'')}"></div>
-   <div class="field"><label>E-posta <span style="color:var(--muted);font-weight:500">(opsiyonel)</span></label><input id="profileEmailInput" type="email" maxlength="80" placeholder="kerem@example.com" value="${safeText(p.email||'')}"></div>
-   <div class="profile-form-note">Bu sürümde profil bilgileri yalnızca bu tarayıcıda saklanır. Gerçek üyelik sistemi bağlandığında hesap verisine taşınabilir.</div>
-   <button class="full" onclick="saveProfileV241()">Profili kaydet</button>`;
- modalBack.classList.add('open');
- setTimeout(()=>document.getElementById('profileNameInput')?.focus(),50);
-}
-function saveProfileV241(){
- let name=(document.getElementById('profileNameInput')?.value||'').trim();
- let email=(document.getElementById('profileEmailInput')?.value||'').trim();
- if(!name){alert('Profil için bir ad gir.');return}
- localStorage.setItem('garajUserProfileV1',JSON.stringify({name,email}));
- closeModal();applyProfilePersonalization();renderProfile();
-}
 function renderProfile(){
  let el=document.getElementById('profileContent');if(!el)return;
- let p=garajProfile(),name=(p.name||'').trim(),email=(p.email||'').trim();
  let st=profileStats(),vehicleText=myCars.length?`${myCars.length} araç`:'Henüz araç yok';
- let plan=IS_PRO?'PRO':'FREE',initial=name?name.charAt(0).toLocaleUpperCase('tr-TR'):'G';
- let garageName=(p.garage_name||'').trim() || (name?garajPossessive(name):'Senin Garajın');
+ let plan=IS_PRO?'PRO':'FREE';
  el.innerHTML=`<div class="profile-v11">
    <div class="profile-hero">
      <div class="profile-wordmark">GARAJ</div>
      <div class="profile-plan">${plan}</div>
-     <div class="profile-identity">
-       <div class="profile-avatar">${initial}</div>
-       <div class="profile-identity-copy">
-         <small>${name?'PROFİL':'GARAJ HESABI'}</small>
-         <b>${name?safeText(name):'Profilini oluştur'}</b>
-         <span>${email?safeText(email):name?safeText(garageName):'Adını ekleyerek Garaj’ı kişiselleştir.'}</span>
-       </div>
-       <button class="profile-edit-btn" onclick="openProfileEdit()">${name?'Düzenle':'Oluştur'}</button>
-     </div>
-     <h1>${name?safeText(garageName)+'.':'Senin Garajın.'}</h1>
-     <p>${name?`${safeText(name)}, araçların, sahiplik verilerin ve kişisel tercihlerin tek merkezde.`:'Araç seçimin, sahiplik verilerin ve kişisel tercihlerin tek merkezde.'}</p>
+     <h1>Senin Garajın.</h1>
+     <p>Araç seçimin, sahiplik verilerin ve kişisel tercihlerin tek merkezde.</p>
      <div class="profile-statline">
        <div><b>${myCars.length}</b><span>Araç</span></div>
        <div><b>${st.expenseCount}</b><span>Gider</span></div>
        <div><b>${st.alarmCount}</b><span>Takip</span></div>
      </div>
    </div>
-   ${name?'':`<div class="profile-complete"><b>Garajını kişiselleştir</b><span>Adını eklediğinde Profil ve Garajım ekranları sana özel görünür.</span><button onclick="openProfileEdit()">Adımı ekle</button></div>`}
-   <div class="profile-local-note"><b>Profil durumu:</b> Bu prototipte bilgiler cihazında saklanıyor; henüz gerçek kullanıcı hesabı veya giriş sistemi yok.</div>
    <div class="profile-section-title"><div><small>ÜYELİK</small><h2>Garaj Pro</h2></div><span>${IS_PRO?'Aktif':'Free plan'}</span></div>
    <div class="profile-pro-card">
      <div class="pp-top"><div><small>GARAJ PRO</small><h3>Arabanı seçmekten<br>sahip olmaya kadar.</h3></div><div class="pp-mark">G+</div></div>
@@ -1395,19 +1351,19 @@ function renderProfile(){
      <div><small>Garaj</small><b>${vehicleText}</b></div>
      <div><small>Son 12 ay gider</small><b>${st.total12?moneyTR(st.total12):'—'}</b></div>
    </div>
-   <div class="profile-section-title"><div><small>HESAP</small><h2>Profil ve tercihler</h2></div></div>
+   <div class="profile-section-title"><div><small>TERCİHLER</small><h2>Uygulama</h2></div></div>
    <div class="profile-menu">
-     <button onclick="openProfileEdit()"><span class="pm-icon">${initial}</span><span><b>Profil bilgileri</b><small>${name?safeText(name)+(email?' · '+safeText(email):''):'Adını ve hesap bilgilerini ekle'}</small></span><em>›</em></button>
-     <button onclick="changeGarageNameV25()"><span class="pm-icon">G</span><span><b>Garaj adı</b><small>${safeText(garageName)}</small></span><em>›</em></button>
      <button onclick="toggleTheme()"><span class="pm-icon">◐</span><span><b>Görünüm</b><small>Açık / koyu temayı değiştir</small></span><em>›</em></button>
      <button onclick="alert('Bildirim tercihleri sonraki sürümde burada yönetilecek.')"><span class="pm-icon">⌁</span><span><b>Bildirimler</b><small>Hatırlatıcı ve bakım uyarıları</small></span><em>›</em></button>
      <button onclick="alert('Veri dışa aktarma Garaj Pro ile yakında.')"><span class="pm-icon">⇧</span><span><b>Verilerim</b><small>Garaj ve gider kayıtlarını yönet</small></span><em>›</em></button>
-     <button onclick="garajSignOut()"><span class="pm-icon">↪</span><span><b>Çıkış yap</b><small>Bu cihazdaki oturumu kapat</small></span><em>›</em></button>
    </div>
-   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V25.1</span></div>
+   <div class="profile-foot">GARAJ · PREMIUM AUTOMOTIVE COMPANION<br><span>V11</span></div>
  </div>`;
- applyProfilePersonalization();
 }
+
+
+
+
 
 function renderPersonalHomeV13(){
  let el=document.getElementById('personalHomeV13');if(!el)return;
@@ -1873,249 +1829,239 @@ window.saveFirstGarageCarV23=function(id){
   else if(typeof renderGarage==='function')renderGarage();
 };
 
-setTimeout(applyProfilePersonalization,0);
+// ================= V26 CLEAN AUTH =================
+const GARAJ_SUPABASE_URL_V26='https://scltlifdclvzlqdkyxln.supabase.co';
+const GARAJ_SUPABASE_KEY_V26='sb_publishable_WILVEmPcvF0eFDWhW4tLpQ_Q360oDru';
 
-// ================= V25 REAL AUTH / SUPABASE =================
-// Fill these two public values from Supabase Project Settings > API.
-// Never put a service_role key in browser code.
-const GARAJ_SUPABASE_URL='https://scltlifdclvzlqdkyxln.supabase.co';
-const GARAJ_SUPABASE_PUBLISHABLE_KEY='sb_publishable_WILVEmPcvF0eFDWhW4tLpQ_Q360oDru';
+let sbV26=null;
+let sessionV26=null;
+let pendingV26=null;
 
-let garajSb=null, garajSession=null, authMode='login';
-
-function garajSupabaseConfigured(){
-  return GARAJ_SUPABASE_URL.startsWith('https://') &&
-         !GARAJ_SUPABASE_URL.includes('PASTE_') &&
-         !GARAJ_SUPABASE_PUBLISHABLE_KEY.includes('PASTE_');
+function localProfileV26(){
+  try{return JSON.parse(localStorage.getItem('garajUserProfileV26')||'{}')}catch(e){return {}}
 }
-function getLocalProfile(){ return garajProfile(); }
-function setLocalProfile(p){ localStorage.setItem('garajUserProfileV1',JSON.stringify(p||{})); }
+function saveLocalProfileV26(p){
+  localStorage.setItem('garajUserProfileV26',JSON.stringify(p||{}));
+}
+function loggedInV26(){ return !!sessionV26?.user; }
 
-function renderAuthGate(mode='login',msg=''){
-  authMode=mode;
-  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
-  if(!gate||!card)return;
-  gate.classList.add('open');
-  const configured=garajSupabaseConfigured();
-
-  if(!configured){
-    card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
-      <div class="auth-kicker">GERÇEK ÜYELİK ALTYAPISI HAZIR</div>
-      <h2>Supabase bağlantısını tamamla.</h2>
-      <p>Kayıt olma, giriş, oturum ve kullanıcıya özel garaj adı hazır. Çalışması için yalnızca Supabase proje URL'i ve publishable key gerekiyor.</p>
-      <div class="auth-setup">Dosyada <b>GARAJ_SUPABASE_URL</b> ve <b>GARAJ_SUPABASE_PUBLISHABLE_KEY</b> alanlarını doldur. Ardından yanında verdiğim SQL dosyasını Supabase SQL Editor'da bir kez çalıştır.</div>
-      <button class="auth-secondary" onclick="document.getElementById('authGate').classList.remove('open')">Şimdilik uygulamayı görüntüle</button>`;
-    return;
-  }
-
-  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
-    <div class="auth-kicker">${mode==='signup'?'YENİ HESAP':'TEKRAR HOŞ GELDİN'}</div>
-    <h2>${mode==='signup'?'Garaj hesabını oluştur.':'Hesabına giriş yap.'}</h2>
-    <p>${mode==='signup'?'Araçların, harcamaların ve hatırlatıcıların hesabına bağlanacak.':'Kişisel garajına kaldığın yerden devam et.'}</p>
-    <div class="auth-tabs">
-      <button class="${mode==='login'?'active':''}" onclick="renderAuthGate('login')">Giriş yap</button>
-      <button class="${mode==='signup'?'active':''}" onclick="renderAuthGate('signup')">Kayıt ol</button>
+function closeAuthV26(clearPending=false){
+  const x=document.getElementById('v26AuthOverlay');
+  if(x){x.classList.remove('open');x.setAttribute('aria-hidden','true')}
+  if(clearPending) pendingV26=null;
+}
+function openAuthV26(mode='login', message=''){
+  const o=document.getElementById('v26AuthOverlay'), c=document.getElementById('v26AuthCard');
+  if(!o||!c)return;
+  o.classList.add('open');o.setAttribute('aria-hidden','false');
+  c.innerHTML=`
+    <button class="v26-auth-close" onclick="closeAuthV26(true)" aria-label="Kapat">×</button>
+    <div class="v26-auth-head">
+      <small>HESAP</small>
+      <h2>${mode==='signup'?'Kayıt Ol':'Giriş Yap'}</h2>
+      <p>${mode==='signup'?'Kişisel araç kayıtlarını kullanmak için hesabını oluştur.':'Kişisel alanına devam etmek için hesabına giriş yap.'}</p>
     </div>
-    ${mode==='signup'?`<div class="field"><label>Adın</label><input id="authName" autocomplete="name" placeholder="Kerem"></div>`:''}
-    <div class="field"><label>E-posta</label><input id="authEmail" type="email" autocomplete="email" placeholder="ornek@mail.com"></div>
-    <div class="field"><label>Şifre</label><input id="authPassword" type="password" autocomplete="${mode==='signup'?'new-password':'current-password'}" placeholder="En az 6 karakter"></div>
-    <button class="full" onclick="${mode==='signup'?'garajSignUp()':'garajSignIn()'}">${mode==='signup'?'Hesap oluştur':'Giriş yap'}</button>
-    <div id="authMessage" class="auth-error ${msg.includes('gönderildi')?'auth-success':''}">${safeText(msg)}</div>`;
+    <div class="v26-tabs">
+      <button class="${mode==='login'?'active':''}" onclick="openAuthV26('login')">Giriş Yap</button>
+      <button class="${mode==='signup'?'active':''}" onclick="openAuthV26('signup')">Kayıt Ol</button>
+    </div>
+    ${mode==='signup'?`<div class="field"><label>AD</label><input id="v26AuthName" autocomplete="name" placeholder="Adın"></div>`:''}
+    <div class="field"><label>E-POSTA</label><input id="v26AuthEmail" type="email" autocomplete="email" placeholder="ornek@mail.com"></div>
+    <div class="field"><label>ŞİFRE</label><input id="v26AuthPassword" type="password" autocomplete="${mode==='signup'?'new-password':'current-password'}" placeholder="En az 6 karakter"></div>
+    <button class="full v26-auth-main" onclick="${mode==='signup'?'signUpV26()':'signInV26()'}">${mode==='signup'?'Hesap Oluştur':'Giriş Yap'}</button>
+    <div id="v26AuthMsg" class="v26-auth-msg">${safeText(message)}</div>
+    <div class="v26-auth-note">Araç arama ve karşılaştırma için üyelik gerekmez.</div>`;
 }
-async function garajSignUp(){
-  const name=(document.getElementById('authName')?.value||'').trim();
-  const email=(document.getElementById('authEmail')?.value||'').trim();
-  const password=document.getElementById('authPassword')?.value||'';
-  const m=document.getElementById('authMessage');
-  if(!name||!email||password.length<6){m.textContent='Ad, geçerli e-posta ve en az 6 karakter şifre gir.';return}
-  m.textContent='Hesap oluşturuluyor…';
-  const {data,error}=await garajSb.auth.signUp({email,password,options:{data:{name}}});
+async function ensureProfileV26(user, fallbackName=''){
+  if(!user||!sbV26)return;
+  const name=(user.user_metadata?.name||fallbackName||'').trim();
+  await sbV26.from('profiles').upsert({user_id:user.id,name},{onConflict:'user_id'});
+}
+async function loadProfileV26(){
+  if(!sessionV26?.user||!sbV26)return {};
+  await ensureProfileV26(sessionV26.user);
+  const {data,error}=await sbV26.from('profiles').select('name,garage_name,avatar_url').eq('user_id',sessionV26.user.id).maybeSingle();
+  const p={
+    name:data?.name||sessionV26.user.user_metadata?.name||'',
+    email:sessionV26.user.email||'',
+    garage_name:data?.garage_name||'',
+    avatar_url:data?.avatar_url||''
+  };
+  saveLocalProfileV26(p);
+  return p;
+}
+async function signUpV26(){
+  const name=(document.getElementById('v26AuthName')?.value||'').trim();
+  const email=(document.getElementById('v26AuthEmail')?.value||'').trim();
+  const password=document.getElementById('v26AuthPassword')?.value||'';
+  const m=document.getElementById('v26AuthMsg');
+  if(!name||!email||password.length<6){m.textContent='Ad, e-posta ve en az 6 karakter şifre gerekli.';return}
+  m.className='v26-auth-msg';m.textContent='Hesap oluşturuluyor…';
+  const {data,error}=await sbV26.auth.signUp({email,password,options:{data:{name}}});
   if(error){m.textContent=error.message;return}
   if(data.session){
-    garajSession=data.session;
-    await ensureProfileRow(data.user,name);
-    await loadRemoteProfile();
-    renderGarageOnboardingIfNeeded();
+    sessionV26=data.session;
+    await ensureProfileV26(data.user,name);
+    await loadProfileV26();
+    showGarageNameV26();
   }else{
-    m.textContent='Doğrulama e-postası gönderildi. E-postanı onayladıktan sonra giriş yap.';
-    m.classList.add('auth-success');
+    m.className='v26-auth-msg ok';
+    m.textContent='Doğrulama e-postası gönderildi. Onayladıktan sonra giriş yap.';
   }
 }
-async function garajSignIn(){
-  const email=(document.getElementById('authEmail')?.value||'').trim();
-  const password=document.getElementById('authPassword')?.value||'';
-  const m=document.getElementById('authMessage');m.textContent='Giriş yapılıyor…';
-  const {data,error}=await garajSb.auth.signInWithPassword({email,password});
+async function signInV26(){
+  const email=(document.getElementById('v26AuthEmail')?.value||'').trim();
+  const password=document.getElementById('v26AuthPassword')?.value||'';
+  const m=document.getElementById('v26AuthMsg');
+  if(!email||!password){m.textContent='E-posta ve şifreni gir.';return}
+  m.className='v26-auth-msg';m.textContent='Giriş yapılıyor…';
+  const {data,error}=await sbV26.auth.signInWithPassword({email,password});
   if(error){m.textContent=error.message;return}
-  garajSession=data.session;
-  await loadRemoteProfile();
-  renderGarageOnboardingIfNeeded();
+  sessionV26=data.session;
+  const p=await loadProfileV26();
+  if(!(p.garage_name||'').trim()) showGarageNameV26();
+  else finishAuthV26();
 }
-async function garajSignOut(){
-  if(!garajSb)return;
-  await garajSb.auth.signOut();
-  garajSession=null;
-  localStorage.removeItem('garajUserProfileV1');
-  applyProfilePersonalization();
-  document.getElementById('authGate')?.classList.remove('open');
-  applyGuestProfileStateV251();
-  if(typeof renderProfile==='function')renderProfile();
+function showGarageNameV26(){
+  const p=localProfileV26();
+  const c=document.getElementById('v26AuthCard'),o=document.getElementById('v26AuthOverlay');
+  if(!c||!o)return;
+  o.classList.add('open');o.setAttribute('aria-hidden','false');
+  c.innerHTML=`
+    <button class="v26-auth-close" onclick="closeAuthV26(true)" aria-label="Kapat">×</button>
+    <div class="v26-auth-head">
+      <small>SON ADIM</small>
+      <h2>Garajına isim ver</h2>
+      <p>Bu yalnızca kişisel alanının adı. Daha sonra Hesap bölümünden değiştirebilirsin.</p>
+    </div>
+    <div class="field"><label>GARaj ADI</label><input id="v26GarageName" maxlength="40" placeholder="Örn. Blackline Garage"></div>
+    <div class="v26-onboard-picks">
+      <button onclick="document.getElementById('v26GarageName').value='My Garage'">My Garage</button>
+      <button onclick="document.getElementById('v26GarageName').value='Blackline Garage'">Blackline Garage</button>
+      <button onclick="document.getElementById('v26GarageName').value='Weekend Garage'">Weekend Garage</button>
+    </div>
+    <button class="full" onclick="saveGarageNameV26()">Devam Et</button>
+    <div id="v26AuthMsg" class="v26-auth-msg"></div>`;
 }
-async function ensureProfileRow(user,fallbackName=''){
-  if(!user)return;
-  const name=(user.user_metadata?.name||fallbackName||'').trim();
-  await garajSb.from('profiles').upsert({user_id:user.id,name},{onConflict:'user_id'});
-}
-async function loadRemoteProfile(){
-  if(!garajSession?.user)return;
-  await ensureProfileRow(garajSession.user);
-  const {data,error}=await garajSb.from('profiles').select('name,garage_name,avatar_url').eq('user_id',garajSession.user.id).maybeSingle();
-  if(!error&&data){
-    setLocalProfile({name:data.name||garajSession.user.user_metadata?.name||'',email:garajSession.user.email||'',garage_name:data.garage_name||'',avatar_url:data.avatar_url||''});
-  }
-  document.getElementById('authGate')?.classList.remove('open');
-  applyProfilePersonalization();
-  if(typeof renderProfile==='function')renderProfile();
-}
-function renderGarageOnboardingIfNeeded(){
-  const p=getLocalProfile();
-  if((p.garage_name||'').trim()){document.getElementById('authGate')?.classList.remove('open');continuePendingAuthV251();return}
-  const name=(p.name||'').trim()||'Garaj';
-  const suggestions=[garajPossessive(name),'My Garage','Blackline Garage','Weekend Garage'];
-  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
-  gate.classList.add('open');
-  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
-    <div class="auth-kicker">SON BİR ADIM</div>
-    <h2>Garajına bir isim ver.</h2>
-    <p>Bu isim tamamen sana ait. İstersen daha sonra Profil'den değiştirebilirsin.</p>
-    <div class="field"><label>Garaj adı</label><input id="garageNameOnboard" maxlength="40" value="${safeText(suggestions[0])}"></div>
-    <div class="onboard-picks">${suggestions.map(x=>`<button onclick="document.getElementById('garageNameOnboard').value='${safeText(x)}'">${safeText(x)}</button>`).join('')}</div>
-    <button class="full" onclick="saveGarageNameOnboarding()">Garajımı oluştur</button>
-    <div id="authMessage" class="auth-error"></div>`;
-}
-async function saveGarageNameOnboarding(){
-  const garage_name=(document.getElementById('garageNameOnboard')?.value||'').trim();
-  const m=document.getElementById('authMessage');
-  if(garage_name.length<2){m.textContent='Garaj adı en az 2 karakter olmalı.';return}
-  const uid=garajSession?.user?.id;if(!uid)return;
-  const {error}=await garajSb.from('profiles').update({garage_name}).eq('user_id',uid);
+async function saveGarageNameV26(){
+  const name=(document.getElementById('v26GarageName')?.value||'').trim();
+  const m=document.getElementById('v26AuthMsg');
+  if(name.length<2){m.textContent='En az 2 karakter gir.';return}
+  const {error}=await sbV26.from('profiles').update({garage_name:name}).eq('user_id',sessionV26.user.id);
   if(error){m.textContent=error.message;return}
-  const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);
-  document.getElementById('authGate').classList.remove('open');
-  applyProfilePersonalization();renderProfile();if(typeof renderGarageV24==='function')renderGarageV24();
-  continuePendingAuthV251();
+  const p=localProfileV26();p.garage_name=name;saveLocalProfileV26(p);
+  finishAuthV26();
 }
-async function changeGarageNameV25(){
-  const p=getLocalProfile();
-  modalBody.innerHTML=`<h3>Garaj adını değiştir</h3><div class="sub">Garajın sana ait; adını istediğin zaman değiştirebilirsin.</div>
-    <div class="field" style="margin-top:14px"><label>Garaj adı</label><input id="garageNameEdit" maxlength="40" value="${safeText(p.garage_name||'')}"></div>
-    <button class="full" onclick="saveGarageNameV25()">Kaydet</button>`;
-  modalBack.classList.add('open');
+function finishAuthV26(){
+  closeAuthV26(false);
+  renderAccountV26();
+  const fn=pendingV26;pendingV26=null;
+  if(typeof fn==='function')setTimeout(fn,80);
 }
-async function saveGarageNameV25(){
-  const garage_name=(document.getElementById('garageNameEdit')?.value||'').trim();
-  if(garage_name.length<2)return alert('Garaj adı en az 2 karakter olmalı.');
-  if(garajSb&&garajSession){
-    const {error}=await garajSb.from('profiles').update({garage_name}).eq('user_id',garajSession.user.id);
-    if(error)return alert(error.message);
-  }
-  const p=getLocalProfile();p.garage_name=garage_name;setLocalProfile(p);closeModal();applyProfilePersonalization();renderProfile();
+function requireAccountV26(action, reason='Bu özellik için giriş yapmalısın.'){
+  if(loggedInV26())return true;
+  pendingV26=action||null;
+  openAuthV26('login');
+  return false;
 }
-
-// ================= V25.1 GUEST MODE =================
-let pendingAuthActionV251=null;
-
-function isGarajLoggedInV251(){
-  return !!garajSession?.user;
-}
-function applyGuestProfileStateV251(){
-  const dot=document.getElementById('homeProfileDot');
-  if(!dot)return;
-  const sp=dot.querySelector('span');
-  if(!isGarajLoggedInV251()){
-    if(sp)sp.textContent='G';
-    dot.title='Giriş yap / Kayıt ol';
-  }
-}
-function openProfileV251(){
-  if(!isGarajLoggedInV251()){
-    pendingAuthActionV251=null;
-    renderAuthGate('login');
-    return;
-  }
+function openAccountV26(){
+  if(!loggedInV26()){pendingV26=()=>showScreen('profile');openAuthV26('login');return}
   showScreen('profile');
 }
-function guestAuthPromptV251(label='Bu özellik'){
-  const gate=document.getElementById('authGate'),card=document.getElementById('authCard');
-  if(!gate||!card)return;
-  gate.classList.add('open');
-  card.innerHTML=`<div class="auth-brand">GARAJ<b>.</b></div>
-    <div class="auth-kicker">KİŞİSEL GARAJ</div>
-    <h2>Garajını oluşturmaya başla.</h2>
-    <p>${safeText(label)} için ücretsiz bir Garaj hesabı gerekiyor. Araç arama, inceleme ve karşılaştırmaya üye olmadan devam edebilirsin.</p>
-    <button class="full" onclick="renderAuthGate('signup')">Ücretsiz kayıt ol</button>
-    <button class="auth-secondary" onclick="renderAuthGate('login')">Zaten hesabım var</button>
-    <button class="auth-secondary" onclick="document.getElementById('authGate').classList.remove('open');pendingAuthActionV251=null">Şimdilik devam et</button>`;
+function openGarageV26(){
+  if(!loggedInV26()){pendingV26=()=>showScreen('garage');openAuthV26('login');return}
+  showScreen('garage');
 }
-function continuePendingAuthV251(){
-  const fn=pendingAuthActionV251;
-  pendingAuthActionV251=null;
-  if(typeof fn==='function')setTimeout(fn,100);
+async function signOutV26(){
+  if(sbV26)await sbV26.auth.signOut();
+  sessionV26=null;
+  saveLocalProfileV26({});
+  showScreen('home');
 }
-
-async function initGarajAuth(){
-  if(!garajSupabaseConfigured()){applyGuestProfileStateV251();return}
-  garajSb=window.supabase.createClient(GARAJ_SUPABASE_URL,GARAJ_SUPABASE_PUBLISHABLE_KEY);
-  const {data}=await garajSb.auth.getSession();
-  garajSession=data.session;
-  garajSb.auth.onAuthStateChange(async(_event,session)=>{
-    garajSession=session;
-    if(session){await loadRemoteProfile();renderGarageOnboardingIfNeeded()}
-  });
-  if(!garajSession){document.getElementById('authGate')?.classList.remove('open');applyGuestProfileStateV251();return}
-  await loadRemoteProfile();renderGarageOnboardingIfNeeded();
+async function editGarageNameV26(){
+  const p=localProfileV26();
+  modalBody.innerHTML=`<h3>Garaj adı</h3><div class="sub">Kişisel alanının görünen adını değiştir.</div>
+    <div class="field" style="margin-top:14px"><label>Garaj adı</label><input id="v26GarageEdit" maxlength="40" value="${safeText(p.garage_name||'')}"></div>
+    <button class="full" onclick="saveGarageEditV26()">Kaydet</button>`;
+  modalBack.classList.add('open');
 }
-window.addEventListener('load',initGarajAuth);
+async function saveGarageEditV26(){
+  const garage_name=(document.getElementById('v26GarageEdit')?.value||'').trim();
+  if(garage_name.length<2)return;
+  const {error}=await sbV26.from('profiles').update({garage_name}).eq('user_id',sessionV26.user.id);
+  if(error){alert(error.message);return}
+  const p=localProfileV26();p.garage_name=garage_name;saveLocalProfileV26(p);
+  closeModal();renderAccountV26();
+}
+function renderAccountV26(){
+  const el=document.getElementById('profileContent');
+  if(!el)return;
+  if(!loggedInV26()){
+    el.innerHTML='';
+    return;
+  }
+  const p=localProfileV26();
+  const initial=(p.name||p.email||'H').charAt(0).toLocaleUpperCase('tr-TR');
+  el.innerHTML=`<div class="v26-account-shell">
+    <div class="v26-account-top">
+      <div class="v26-account-id"><div class="v26-avatar">${safeText(initial)}</div><div><b>${safeText(p.name||'Kullanıcı')}</b><small>${safeText(p.email||'')}</small></div></div>
+      <span class="v26-plan">${IS_PRO?'PRO':'FREE'}</span>
+    </div>
+    <div class="v26-account-section">
+      <small>HESAP</small>
+      <div class="v26-account-row"><div><b>Garaj adı</b><span>${safeText(p.garage_name||'Belirlenmedi')}</span></div><button onclick="editGarageNameV26()">Düzenle</button></div>
+      <div class="v26-account-row"><div><b>Üyelik</b><span>${IS_PRO?'Garaj Pro':'Free plan'}</span></div><button onclick="openProModal()">Detay</button></div>
+    </div>
+    <div class="v26-account-section">
+      <small>UYGULAMA</small>
+      <div class="v26-account-row"><div><b>Görünüm</b><span>Açık / koyu tema</span></div><button onclick="toggleTheme()">Değiştir</button></div>
+    </div>
+    <button class="v26-signout" onclick="signOutV26()">Çıkış Yap</button>
+  </div>`;
+}
+const oldRenderProfileV26=window.renderProfile;
+window.renderProfile=renderAccountV26;
 
-
+// Personal actions require login, but browsing/compare remain free.
 window.addEventListener('load',()=>{
   setTimeout(()=>{
     if(typeof openGaragePicker==='function'){
-      const originalGaragePicker=openGaragePicker;
+      const original=openGaragePicker;
       window.openGaragePicker=function(){
-        if(!isGarajLoggedInV251()){
-          pendingAuthActionV251=()=>originalGaragePicker();
-          guestAuthPromptV251('Garaja araç eklemek');
-          return;
-        }
-        return originalGaragePicker();
-      };
-    }
-    if(typeof openFirstGarageCarV23==='function'){
-      const originalFirstGarageCar=openFirstGarageCarV23;
-      window.openFirstGarageCarV23=function(){
-        if(!isGarajLoggedInV251()){
-          pendingAuthActionV251=()=>originalFirstGarageCar();
-          guestAuthPromptV251('İlk aracını Garaj’a eklemek');
-          return;
-        }
-        return originalFirstGarageCar();
-      };
+        if(!loggedInV26()){pendingV26=()=>original();openAuthV26('login');return}
+        return original();
+      }
     }
     if(typeof quickAddGarage==='function'){
-      const originalQuickAdd=quickAddGarage;
+      const originalQuick=quickAddGarage;
       window.quickAddGarage=function(id){
-        if(!isGarajLoggedInV251()){
-          pendingAuthActionV251=()=>originalQuickAdd(id);
-          guestAuthPromptV251('Bu aracı Garaj’a eklemek');
-          return;
-        }
-        return originalQuickAdd(id);
-      };
+        if(!loggedInV26()){pendingV26=()=>originalQuick(id);openAuthV26('login');return}
+        return originalQuick(id);
+      }
     }
-    applyGuestProfileStateV251();
-  },250);
+    if(typeof openFirstGarageCarV23==='function'){
+      const originalFirst=openFirstGarageCarV23;
+      window.openFirstGarageCarV23=function(){
+        if(!loggedInV26()){pendingV26=()=>originalFirst();openAuthV26('login');return}
+        return originalFirst();
+      }
+    }
+  },150);
 });
+
+async function initAuthV26(){
+  try{
+    sbV26=window.supabase.createClient(GARAJ_SUPABASE_URL_V26,GARAJ_SUPABASE_KEY_V26);
+    const {data}=await sbV26.auth.getSession();
+    sessionV26=data.session;
+    if(sessionV26)await loadProfileV26();
+    sbV26.auth.onAuthStateChange(async(_event,session)=>{
+      sessionV26=session;
+      if(session){await loadProfileV26();renderAccountV26();}
+    });
+  }catch(e){ console.error('V26 auth init',e); }
+}
+window.addEventListener('load',initAuthV26);
 
 </script>
 
