@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V30.8 Cost Confidence Fixed |  — Premium V24</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Garaj — V30.9 Cost Layout Clean |  — Premium V24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090b10;--surface:#10141b;--surface2:#151a23;--line:#252c38;--text:#f5f7fb;--muted:#8f98aa;--gold:#d6b46a;--gold2:#f0d79d;--good:#63d3ad;--danger:#ef8d73;--shadow:0 22px 70px rgba(0,0,0,.45)}
@@ -1763,6 +1763,148 @@ html:not(.v295-auth-ready) #screen-home .v28-hero{
 .v308-confidence p{margin:9px 0 0;color:var(--muted);font-size:6.5px;line-height:1.5}
 #v30Swap .v30-grid .v30-metric{border-bottom:0}
 #v30Swap .v30-grid .v30-metric:nth-child(2){border-right:0}
+</style>
+
+
+<style id="v309-cost-layout-clean-css">
+/* V30.9 — cost mode owns the screen completely */
+#screen-compare.v309-cost-active > .v21-compare-pickhint,
+#screen-compare.v309-cost-active > #slots,
+#screen-compare.v309-cost-active > #v294WideBar,
+#screen-compare.v309-cost-active > #modeToggle,
+#screen-compare.v309-cost-active > #viewToggle,
+#screen-compare.v309-cost-active > #compareResult{
+  display:none!important;
+}
+
+#screen-compare.v309-cost-active #v30Swap{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px;
+  padding:0 16px 34px;
+  min-width:0;
+}
+
+#screen-compare.v309-cost-active #v30Swap > *{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  margin-top:0!important;
+}
+
+#screen-compare.v309-cost-active .v30-intro{
+  margin:0 0 2px!important;
+  line-height:1.6;
+}
+
+#screen-compare.v309-cost-active .v30-pair{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)!important;
+  gap:8px!important;
+  align-items:stretch;
+}
+
+#screen-compare.v309-cost-active .v30-car{
+  min-width:0;
+  overflow:hidden;
+}
+#screen-compare.v309-cost-active .v30-car b,
+#screen-compare.v309-cost-active .v30-car span{
+  overflow-wrap:anywhere;
+}
+
+#screen-compare.v309-cost-active .v304-quick{
+  padding:14px!important;
+  border-radius:16px!important;
+  margin:0!important;
+}
+#screen-compare.v309-cost-active .v304-quick-grid{
+  gap:12px!important;
+}
+#screen-compare.v309-cost-active .v304-quick small{
+  display:block;
+  margin-bottom:7px;
+}
+#screen-compare.v309-cost-active .v304-chips{
+  display:flex!important;
+  flex-wrap:wrap;
+  gap:6px!important;
+}
+
+#screen-compare.v309-cost-active .v30-result{
+  margin:0!important;
+}
+#screen-compare.v309-cost-active .v30-result-head{
+  padding:16px!important;
+}
+#screen-compare.v309-cost-active .v306-result-main{
+  margin-top:7px!important;
+  line-height:1.15!important;
+}
+#screen-compare.v309-cost-active .v306-result-sub{
+  margin-top:8px!important;
+}
+#screen-compare.v309-cost-active .v30-grid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+}
+#screen-compare.v309-cost-active .v30-metric{
+  min-width:0;
+  padding:14px!important;
+}
+#screen-compare.v309-cost-active .v30-metric small{
+  display:block;
+  margin-bottom:7px;
+  line-height:1.35;
+}
+#screen-compare.v309-cost-active .v30-metric b{
+  display:block;
+  line-height:1.25;
+}
+#screen-compare.v309-cost-active .v30-verdict{
+  padding:14px 16px!important;
+  line-height:1.55!important;
+}
+
+#screen-compare.v309-cost-active .v308-confidence{
+  margin:0!important;
+}
+#screen-compare.v309-cost-active .v308-source{
+  padding:8px 0!important;
+  line-height:1.4;
+}
+#screen-compare.v309-cost-active .v308-source b,
+#screen-compare.v309-cost-active .v308-source span{
+  display:block;
+}
+
+#screen-compare.v309-cost-active .v304-how,
+#screen-compare.v309-cost-active .v305-details,
+#screen-compare.v309-cost-active .v303-settings{
+  margin:0!important;
+}
+#screen-compare.v309-cost-active details > summary{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 13px!important;
+  box-sizing:border-box;
+}
+
+/* prevent old comparison suggestions from leaking below cost mode, even if another script touches display */
+#screen-compare.v309-cost-active .v21-compare-suggestions{
+  display:none!important;
+}
+
+@media (max-width:520px){
+  #screen-compare.v309-cost-active .v30-pair{
+    grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr)!important;
+  }
+  #screen-compare.v309-cost-active .v306-result-main{
+    font-size:20px!important;
+  }
+}
 </style>
 
 </head><body data-theme="dark">
@@ -4764,6 +4906,7 @@ window.addEventListener('DOMContentLoaded',()=>document.documentElement.classLis
  window.setDecisionModeV30=function(mode){
    const scr=document.getElementById('screen-compare');
    scr.classList.toggle('v30-swap-on',mode==='swap');
+   scr.classList.toggle('v309-cost-active',mode==='swap');
    document.getElementById('v30ModeCompare')?.classList.toggle('active',mode==='compare');
    document.getElementById('v30ModeSwap')?.classList.toggle('active',mode==='swap');
    if(mode==='swap')renderCostV301();
@@ -5139,6 +5282,32 @@ window.addEventListener('DOMContentLoaded',()=>document.documentElement.classLis
     setTimeout(fixTcoFlowV306,350);
     setTimeout(fixTcoFlowV306,900);
   });
+})();
+</script>
+
+
+<script id="v309-cost-mode-guard">
+(function(){
+  function enforce(){
+    const scr=document.getElementById('screen-compare');
+    const btn=document.getElementById('v30ModeSwap');
+    if(!scr||!btn)return;
+    const active=btn.classList.contains('active');
+    scr.classList.toggle('v309-cost-active',active);
+    scr.classList.toggle('v30-swap-on',active);
+    if(active){
+      ['how','details','settings'].forEach(()=>{});
+      scr.querySelectorAll('#v30Swap details').forEach(d=>{
+        if(!d.dataset.v309Touched){
+          d.removeAttribute('open');
+          d.dataset.v309Touched='1';
+        }
+      });
+    }
+  }
+  document.addEventListener('click',()=>setTimeout(enforce,0),true);
+  window.addEventListener('load',()=>{enforce();setTimeout(enforce,300);});
+  new MutationObserver(enforce).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['class']});
 })();
 </script>
 
